@@ -1,0 +1,18 @@
+Einkaufsliste fuer Lieferanten Metzgerfachhandel Schneider
+
++---------------------------+--------------------+--------------------+
+|       Nahrungsmittel      | Menge (in Gebinde) |    Preis (Euro)    |
++---------------------------+--------------------+--------------------+
+| Elchfleisch               | 76000.0            | 729.6              |
+| Haehnchenbrustfilet       | 101000.0           | 465.61             |
+| Rinderhack                | 49000.0            | 390.04             |
+| Hackfleisch halb und halb | 85000.0            | 283.05             |
+| Speck                     | 31000.0            | 138.57             |
+| Truthahnfilet             | 61000.0            | 357.46000000000004 |
+| Cordon Bleu TK            | 310.0              | 222.57999999999998 |
+| Rindersalami              | 24000.0            | 137.52             |
+| Gyrosfleisch Vorgewuerzt  | 46000.0            | 328.90000000000003 |
+| Straussenfilet            | 46000.0            | 4475.8             |
+| Rindfleisch               | 46000.0            | 218.04000000000002 |
++---------------------------+--------------------+--------------------+
+

@@ -1,0 +1,8 @@
+Einkaufsliste fuer Lieferanten Naturschlachterei Hackebeil
+
++---------------------+--------------------+--------------+
+|    Nahrungsmittel   | Menge (in Gebinde) | Preis (Euro) |
++---------------------+--------------------+--------------+
+| Haehnchenbrustfilet | 95000.0            | 474.05       |
++---------------------+--------------------+--------------+
+
