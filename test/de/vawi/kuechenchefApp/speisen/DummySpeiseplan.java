@@ -5,7 +5,7 @@
 package de.vawi.kuechenchefApp.speisen;
 
 import de.vawi.kuechenchefApp.speiseplan.Kantine;
-import de.vawi.kuechenchefApp.speiseplan.Speiseplan;
+import de.vawi.kuechenchefApp.speiseplan.Menu;
 import de.vawi.kuechenchefApp.speiseplan.Tag;
 
 /**
@@ -14,7 +14,7 @@ import de.vawi.kuechenchefApp.speiseplan.Tag;
  */
 public class DummySpeiseplan {
     
-    private Speiseplan plan = new Speiseplan();
+    private Menu plan = new Menu();
     private int tage = 0;
     public DummySpeiseplan fuerKantine(Kantine kantine){
         plan.setKantine(kantine);
@@ -30,7 +30,7 @@ public class DummySpeiseplan {
         return this;
     }
     
-    public Speiseplan erstelle(){
+    public Menu erstelle(){
         return plan;
     }
     

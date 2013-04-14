@@ -3,7 +3,7 @@ package de.vawi.kuechenchefApp.einkaufsliste;
 import de.vawi.kuechenchefApp.speisen.ZutatenKalkulator;
 import de.vawi.kuechenchefApp.lieferanten.*;
 import de.vawi.kuechenchefApp.nahrungsmittel.Nahrungsmittel;
-import de.vawi.kuechenchefApp.speiseplan.Speiseplan;
+import de.vawi.kuechenchefApp.speiseplan.Menu;
 import java.util.*;
 
 /**
@@ -15,7 +15,7 @@ import java.util.*;
 public class EinkaufslistenErsteller {
 
     private Einkaufsliste liste = new Einkaufsliste();
-    private List<Speiseplan> speiseplaene = new ArrayList<>();
+    private List<Menu> speiseplaene = new ArrayList<>();
     private LieferantenVerwaltung lieferanten = LieferantenVerwaltung.getInstanz();
     private List<EinkaufslistenPosition> zusaetzlichePositionen = new ArrayList<>();
 
@@ -25,7 +25,7 @@ public class EinkaufslistenErsteller {
      *
      * @param plan Speiseplan
      */
-    public void add(Speiseplan plan) {
+    public void add(Menu plan) {
         this.speiseplaene.add(plan);
     }
 
@@ -49,7 +49,7 @@ public class EinkaufslistenErsteller {
     }
 
     private void erstelleEinkaufslistePosition() {
-        for (Speiseplan speiseplan : speiseplaene) {
+        for (Menu speiseplan : speiseplaene) {
             Map<Nahrungsmittel, Double> mengen = new ZutatenKalkulator().berechneGesamtMengen(speiseplan);
             fuegeMengenInEinkaufslisteEin(mengen);
         }

@@ -39,13 +39,13 @@ public class SpeiseplanErstellerTest {
     public void testSpeiseplanErstellungOhneVerfügbarkeitsProbleme() {
         SpeiseplanErsteller ersteller = new TestbarerSpeiseplanErsteller();
         ersteller.setPlanungsperiode(planungsperiode);
-        List<Speiseplan> plaene = ersteller.erzeuge();
+        List<Menu> plaene = ersteller.erzeuge();
 
 
         assertEquals(2, plaene.size());
         assertEquals(Kantine.ESSEN, plaene.get(0).getKantine());
         assertEquals(Kantine.MUELHEIM_AN_DER_RUHR, plaene.get(1).getKantine());
-        for (Speiseplan plan : plaene) {
+        for (Menu plan : plaene) {
             assertEquals(5, plan.getTageMitGerichten().size());
         }
     }
@@ -55,7 +55,7 @@ public class SpeiseplanErstellerTest {
         ausreichendSpeisenVorhanden = false;
         SpeiseplanErsteller ersteller = new TestbarerSpeiseplanErsteller();
         ersteller.setPlanungsperiode(planungsperiode);
-        List<Speiseplan> plaene = ersteller.erzeuge();
+        List<Menu> plaene = ersteller.erzeuge();
         fail();
     }
 

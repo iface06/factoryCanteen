@@ -3,7 +3,7 @@ package de.vawi.kuechenchefApp.speisen;
 import de.vawi.kuechenchefApp.nahrungsmittel.Einheit;
 import de.vawi.kuechenchefApp.nahrungsmittel.Nahrungsmittel;
 import de.vawi.kuechenchefApp.speiseplan.Kantine;
-import de.vawi.kuechenchefApp.speiseplan.Speiseplan;
+import de.vawi.kuechenchefApp.speiseplan.Menu;
 import de.vawi.kuechenchefApp.speiseplan.Tag;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class ZutatenKalkulatorTest {
 
     @Test
     public void testMengenBerechnung() {
-        Speiseplan plan = erzeugeDummySpeiseplan();
+        Menu plan = erzeugeDummySpeiseplan();
         ZutatenKalkulator kalkulator = new ZutatenKalkulator();
         Map<Nahrungsmittel, Double> mengen = kalkulator.berechneGesamtMengen(plan);
 
@@ -30,11 +30,11 @@ public class ZutatenKalkulatorTest {
         assertEquals(1502.0, mengen.get(kartoffeln), 0.0001);
     }
     
-    private Speiseplan erzeugeDummySpeiseplan() {
+    private Menu erzeugeDummySpeiseplan() {
         List<Tag> tage = new ArrayList<Tag>();
         Tag tag = erzeugeTag();
         tage.add(tag);
-        Speiseplan plan = new Speiseplan(Kantine.ESSEN, tage);
+        Menu plan = new Menu(Kantine.ESSEN, tage);
 
         return plan;
     }

@@ -9,7 +9,7 @@ import java.util.*;
  * @author Beer 
  * @version 30.01.2013
  */
-public class Speiseplan implements Iterable<Tag>
+public class Menu implements Iterable<Tag>
 {
     private List<Tag> tageMitGerichten = new ArrayList<>();
     private Kantine kantine;
@@ -17,7 +17,7 @@ public class Speiseplan implements Iterable<Tag>
     /**
      * Konstruktor
      */
-    public Speiseplan(){
+    public Menu(){
         
     }
     
@@ -26,7 +26,7 @@ public class Speiseplan implements Iterable<Tag>
      * @param kantine gibt die Kantine an zu dem der Plan erzeugt werden.
      * @param tageMitGerichten eine Liste mit Tagen, entsprechend der Anzahl an Tagen, die der Plan beinhalten soll
      */
-    public Speiseplan(Kantine kantine, List<Tag> tageMitGerichten){
+    public Menu(Kantine kantine, List<Tag> tageMitGerichten){
         this.kantine = kantine;
         this.tageMitGerichten = tageMitGerichten;
     }

@@ -4,7 +4,7 @@ import de.vawi.kuechenchefApp.speisen.*;
 import de.vawi.kuechenchefApp.einkaufsliste.EinkaufslistenPosition;
 import de.vawi.kuechenchefApp.nahrungsmittel.Nahrungsmittel;
 import de.vawi.kuechenchefApp.speiseplan.Kantine;
-import de.vawi.kuechenchefApp.speiseplan.Speiseplan;
+import de.vawi.kuechenchefApp.speiseplan.Menu;
 import de.vawi.kuechenchefApp.speiseplan.Tag;
 import java.util.*;
 
@@ -28,7 +28,7 @@ public class ZutatenKalkulator {
      * @param plan (erstellter Speiseplan)
      * @return benötigte Mengen
      */
-    public Map<Nahrungsmittel, Double> berechneGesamtMengen(Speiseplan plan) {
+    public Map<Nahrungsmittel, Double> berechneGesamtMengen(Menu plan) {
         for (Tag tag : plan) {
             berechneSpeise(tag.getBeliebtesteSpeise(), plan.getKantine().berechneAnzahlFuerBeliebtestesGericht());
             berechneSpeise(tag.getZweitbeliebtesteSpeise(), plan.getKantine().berechneAnzahlFuerZweitBeliebtestesGericht());

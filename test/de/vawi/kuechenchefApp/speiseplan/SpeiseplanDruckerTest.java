@@ -23,7 +23,7 @@ public class SpeiseplanDruckerTest {
             }
         }
         
-        Speiseplan plan = new Speiseplan(Kantine.ESSEN, tage);
+        Menu plan = new Menu(Kantine.ESSEN, tage);
         
         String ausdruck = new SpeiseplanDrucker().drucke(plan);
         

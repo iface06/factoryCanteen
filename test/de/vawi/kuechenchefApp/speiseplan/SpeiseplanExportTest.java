@@ -36,7 +36,7 @@ public class SpeiseplanExportTest {
         dummy.plusTag(surfAndTurf, surfAndTurf, surfAndTurf);
         dummy.plusTag(surfAndTurf, surfAndTurf, surfAndTurf);
         dummy.plusTag(surfAndTurf, surfAndTurf, surfAndTurf);
-        Speiseplan plan = dummy.erstelle();
+        Menu plan = dummy.erstelle();
         SpeiseplanExport exporter = new TetsableSpieseplanExport();
         exporter.export(Arrays.asList(plan));
         
@@ -48,7 +48,7 @@ public class SpeiseplanExportTest {
 
         List<String> inhalt = new ArrayList<>();
         @Override
-        protected DateiSchreiber erstelleSchreiberFuer(Speiseplan speiseplan) {
+        protected DateiSchreiber erstelleSchreiberFuer(Menu speiseplan) {
             return new TestableDateiSchreiber(new Datei() {
 
                 @Override

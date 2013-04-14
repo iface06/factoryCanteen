@@ -25,15 +25,15 @@ public class SpeiseplanErsteller {
     private List<Speise> uebrigeSpeiesenEssen;
     private List<Speise> speisenFuerMuehlheim;
     private List<Speise> uebrigeSpeisenMuehlheim;
-    private Speiseplan speiseplanEssen;
-    private Speiseplan speiseplanMuehlheim;
+    private Menu speiseplanEssen;
+    private Menu speiseplanMuehlheim;
     private PlanungsPeriode planungsperiode = new PlanungsPeriode();
 
     /**
      * Stoesst den Pruefungs und Anpassungsprozess an.
      * @return liefert eine Liste mit den erzeugten Plaene 
      */
-    public List<Speiseplan> erzeuge() {
+    public List<Menu> erzeuge() {
         validiereSpeisenAnzahl();
         ladeBeliebtesteSpeisen();
         ladeUnbeliebtesteSpeisen();
@@ -317,7 +317,7 @@ public class SpeiseplanErsteller {
         speiseplanMuehlheim = erstelleSpeiseplan(Kantine.MUELHEIM_AN_DER_RUHR);
     }
 
-    private Speiseplan erstelleSpeiseplan(Kantine kantine) {
+    private Menu erstelleSpeiseplan(Kantine kantine) {
         List<Speise> speisenFuerPlan;
         if (kantine.equals(Kantine.ESSEN)) {
             speisenFuerPlan = new ArrayList<Speise>(speisenFuerEssen);
@@ -337,7 +337,7 @@ public class SpeiseplanErsteller {
                 tage.add(erstelleNormalenTag(speisenFuerPlan, i));
             }
         }
-        return new Speiseplan(kantine, tage);
+        return new Menu(kantine, tage);
     }
 
     private Tag erstelleNormalenTag(List<Speise> speisenFuerPlan, int nummer) {

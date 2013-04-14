@@ -17,7 +17,7 @@ class ProzessSteuerung{
     private KostenaufstellungErsteller kostanaufstellungErsteller;
     
     private Einkaufsliste einkaufsliste;
-    private List<Speiseplan> speiseplaene = new ArrayList<>();
+    private List<Menu> speiseplaene = new ArrayList<>();
     private KostenUebersicht kostenUbersicht;
     
     /**
@@ -74,7 +74,7 @@ class ProzessSteuerung{
      * 
      * @return     Liste von Speiseplänen
      */
-    public List<Speiseplan> getSpeiseplaene(){
+    public List<Menu> getSpeiseplaene(){
         return this.speiseplaene;
     }
     

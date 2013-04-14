@@ -31,8 +31,8 @@ public class EinkaufslistenErstellerTest {
     
     
     public void initSpeiseplaene() {
-        Speiseplan plan = erzeugeDummySpeiseplan(Kantine.MUELHEIM_AN_DER_RUHR);
-        Speiseplan plan1 = erzeugeDummySpeiseplan(Kantine.ESSEN);
+        Menu plan = erzeugeDummySpeiseplan(Kantine.MUELHEIM_AN_DER_RUHR);
+        Menu plan1 = erzeugeDummySpeiseplan(Kantine.ESSEN);
         ersteller = new EinkaufslistenErsteller();
         ersteller.add(plan);
         ersteller.add(plan1);
@@ -85,8 +85,8 @@ public class EinkaufslistenErstellerTest {
     @Test
     public void testGesamtmengeGroeßerAlsVoratsmengeEinesLieferanten() {
         Speise speise = erzeugeButtermöhren();
-        Speiseplan planEssen = new DummySpeiseplan().fuerKantine(Kantine.ESSEN).plusTag(speise, speise, speise).erstelle();
-        Speiseplan planMuehlheim = new DummySpeiseplan().fuerKantine(Kantine.MUELHEIM_AN_DER_RUHR).plusTag(speise, speise, speise).erstelle();
+        Menu planEssen = new DummySpeiseplan().fuerKantine(Kantine.ESSEN).plusTag(speise, speise, speise).erstelle();
+        Menu planMuehlheim = new DummySpeiseplan().fuerKantine(Kantine.MUELHEIM_AN_DER_RUHR).plusTag(speise, speise, speise).erstelle();
         ersteller = new EinkaufslistenErsteller();
         ersteller.add(planEssen);
         ersteller.add(planMuehlheim);
@@ -103,8 +103,8 @@ public class EinkaufslistenErstellerTest {
     public void testOptimierungDerLieferkostenMitBauerNurEinePosition(){
         Speise buttermöhren = erzeugeButtermöhren();
         Speise bratkartoffeln = erzeugeBratkartoffeln();
-        Speiseplan planEssen = new DummySpeiseplan().fuerKantine(Kantine.ESSEN).plusTag(buttermöhren, buttermöhren, buttermöhren).plusTag(bratkartoffeln, bratkartoffeln, bratkartoffeln).erstelle();
-        Speiseplan planMuehlheim = new DummySpeiseplan().fuerKantine(Kantine.MUELHEIM_AN_DER_RUHR).plusTag(buttermöhren, buttermöhren, buttermöhren).plusTag(bratkartoffeln, bratkartoffeln, bratkartoffeln).erstelle();
+        Menu planEssen = new DummySpeiseplan().fuerKantine(Kantine.ESSEN).plusTag(buttermöhren, buttermöhren, buttermöhren).plusTag(bratkartoffeln, bratkartoffeln, bratkartoffeln).erstelle();
+        Menu planMuehlheim = new DummySpeiseplan().fuerKantine(Kantine.MUELHEIM_AN_DER_RUHR).plusTag(buttermöhren, buttermöhren, buttermöhren).plusTag(bratkartoffeln, bratkartoffeln, bratkartoffeln).erstelle();
         ersteller = new EinkaufslistenErsteller();
         ersteller.add(planEssen);
         ersteller.add(planMuehlheim);
@@ -120,8 +120,8 @@ public class EinkaufslistenErstellerTest {
         Speise buttermöhren = erzeugeButtermöhren();
         Speise bratkartoffeln = erzeugeBratkartoffeln();
         Speise eiersalat = erzeugeEiersalat();
-        Speiseplan planEssen = new DummySpeiseplan().fuerKantine(Kantine.ESSEN).plusTag(buttermöhren, buttermöhren, eiersalat).plusTag(bratkartoffeln, bratkartoffeln, bratkartoffeln).erstelle();
-        Speiseplan planMuehlheim = new DummySpeiseplan().fuerKantine(Kantine.MUELHEIM_AN_DER_RUHR).plusTag(buttermöhren, buttermöhren, buttermöhren).plusTag(bratkartoffeln, bratkartoffeln, bratkartoffeln).erstelle();
+        Menu planEssen = new DummySpeiseplan().fuerKantine(Kantine.ESSEN).plusTag(buttermöhren, buttermöhren, eiersalat).plusTag(bratkartoffeln, bratkartoffeln, bratkartoffeln).erstelle();
+        Menu planMuehlheim = new DummySpeiseplan().fuerKantine(Kantine.MUELHEIM_AN_DER_RUHR).plusTag(buttermöhren, buttermöhren, buttermöhren).plusTag(bratkartoffeln, bratkartoffeln, bratkartoffeln).erstelle();
         ersteller = new EinkaufslistenErsteller();
         ersteller.add(planEssen);
         ersteller.add(planMuehlheim);
@@ -132,11 +132,11 @@ public class EinkaufslistenErstellerTest {
         assertEquals(15.0, liste.getPositionen().get(0).getPreis(), 0.001);
     }
     
-    private Speiseplan erzeugeDummySpeiseplan(Kantine kantine) {
+    private Menu erzeugeDummySpeiseplan(Kantine kantine) {
         List<Tag> tage = new ArrayList<Tag>();
         Tag tag = erzeugeTag();
         tage.add(tag);
-        Speiseplan plan = new Speiseplan(kantine, tage);
+        Menu plan = new Menu(kantine, tage);
 
         return plan;
     }

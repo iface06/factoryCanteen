@@ -16,7 +16,7 @@ class SpeiseplanDrucker {
     private String ausdruck = new String();
     private PlanungsPeriode periode = new PlanungsPeriode();
     
-    String drucke(Speiseplan plan) {
+    String drucke(Menu plan) {
         ausdruck += "Speiseplan";
         ausdruck += "\n\n";
         ausdruck += speiseplanTabellen(plan);
@@ -24,7 +24,7 @@ class SpeiseplanDrucker {
         return ausdruck;
     }
     
-    private String speiseplanTabellen(Speiseplan plan){
+    private String speiseplanTabellen(Menu plan){
         int woche = 0;
         String tabellen = new String();
         while(woche < periode.getAnzahlWochen()){
@@ -42,7 +42,7 @@ class SpeiseplanDrucker {
         return ueberschrift;
     }
 
-    private String speiseplanFuerEineWoche(Speiseplan plan, int woche) {
+    private String speiseplanFuerEineWoche(Menu plan, int woche) {
         AsciiTable tabelle = new AsciiTable();
         Row headRow = tabelle.row();
         Row variante1 = tabelle.row();
