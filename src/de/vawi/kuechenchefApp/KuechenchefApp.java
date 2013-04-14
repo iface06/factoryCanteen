@@ -11,7 +11,7 @@ import de.vawi.kuechenchefApp.speiseplan.*;
  * Diese Klasse ist der Einstiegspunkt der Anwendung KüchenchefApp.
  *
  * @author Tatsch
- * @version 30.01.2013
+ * @version 30.01.2013 
  *
  *
  */
