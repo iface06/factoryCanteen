@@ -1,4 +1,4 @@
-package de.vawi.kuechenchefApp.speisen;
+package de.vawi.kuechenchefApp.entities;
 
 import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
 import java.util.*;

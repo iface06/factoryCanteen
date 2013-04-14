@@ -1,6 +1,8 @@
 package de.vawi.kuechenchefApp.speisen;
 
+import de.vawi.kuechenchefApp.entities.Zutat;
 import de.vawi.kuechenchefApp.dateien.*;
+import de.vawi.kuechenchefApp.entities.*;
 import de.vawi.kuechenchefApp.nahrungsmittel.*;
 import de.vawi.kuechenchefApp.speisen.SpeisenVerwaltung.SpeiseNichtGefunden;
 import java.util.*;

@@ -1,7 +1,6 @@
 package de.vawi.kuechenchefApp.speisen;
 
-import de.vawi.kuechenchefApp.nahrungsmittel.Einheit;
-import de.vawi.kuechenchefApp.nahrungsmittel.Nahrungsmittel;
+import de.vawi.kuechenchefApp.entities.*;
 import de.vawi.kuechenchefApp.speiseplan.Kantine;
 import de.vawi.kuechenchefApp.speiseplan.Menu;
 import de.vawi.kuechenchefApp.speiseplan.Tag;

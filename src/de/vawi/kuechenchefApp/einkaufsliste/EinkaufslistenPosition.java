@@ -1,8 +1,8 @@
 package de.vawi.kuechenchefApp.einkaufsliste;
 
-import de.vawi.kuechenchefApp.nahrungsmittel.Einheit;
-import de.vawi.kuechenchefApp.nahrungsmittel.Nahrungsmittel;
-import de.vawi.kuechenchefApp.lieferanten.Lieferant;
+import de.vawi.kuechenchefApp.entities.Einheit;
+import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
+import de.vawi.kuechenchefApp.entities.Lieferant;
 
 
 /**

@@ -1,4 +1,4 @@
-package de.vawi.kuechenchefApp.lieferanten;
+package de.vawi.kuechenchefApp.entities;
 
 import java.util.ArrayList;
 

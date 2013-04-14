@@ -2,10 +2,10 @@
 
 package de.vawi.kuechenchefApp.speisen;
 
+import de.vawi.kuechenchefApp.entities.Speise;
 import de.vawi.kuechenchefApp.lieferanten.*;
 import org.junit.*;
 import static org.junit.Assert.*;
-import org.junit.experimental.categories.*;
 
 
 public class ImportIntegrationTest {   

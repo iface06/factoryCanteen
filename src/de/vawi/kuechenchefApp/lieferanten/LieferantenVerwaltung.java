@@ -1,7 +1,8 @@
 package de.vawi.kuechenchefApp.lieferanten;
 
+import de.vawi.kuechenchefApp.entities.Lieferant;
 import de.vawi.kuechenchefApp.einkaufsliste.EinkaufslistenPosition;
-import de.vawi.kuechenchefApp.nahrungsmittel.Nahrungsmittel;
+import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
 import java.util.*;
 
 /**

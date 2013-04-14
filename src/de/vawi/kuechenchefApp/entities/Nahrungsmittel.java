@@ -1,4 +1,6 @@
-package de.vawi.kuechenchefApp.nahrungsmittel;
+package de.vawi.kuechenchefApp.entities;
+
+import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
 
 /**
  * Diese Klasse hält Informationen die für die Beschreibung eines

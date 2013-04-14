@@ -2,7 +2,7 @@
 
 package de.vawi.kuechenchefApp.lieferanten;
 
-import de.vawi.kuechenchefApp.nahrungsmittel.Einheit;
+import de.vawi.kuechenchefApp.entities.Einheit;
 import java.util.*;
 import org.junit.Ignore;
 

@@ -1,6 +1,8 @@
 package de.vawi.kuechenchefApp.speiseplan;
 
+import de.vawi.kuechenchefApp.entities.Zutat;
 import de.vawi.kuechenchefApp.PlanungsPeriode;
+import de.vawi.kuechenchefApp.entities.*;
 import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
 import de.vawi.kuechenchefApp.speisen.*;
 import de.vawi.kuechenchefApp.speiseplan.SpeiseplanErsteller.KeineAusreichendeAnzahlAnSpeisen;

@@ -1,4 +1,4 @@
-package de.vawi.kuechenchefApp.lieferanten;
+package de.vawi.kuechenchefApp.entities;
 
 /**
  * Der Großhändler verrechnet vom gesamten Einkaufswert einen Kostensatz für die

@@ -1,5 +1,6 @@
 package de.vawi.kuechenchefApp.einkaufsliste;
 
+import de.vawi.kuechenchefApp.entities.*;
 import de.vawi.kuechenchefApp.lieferanten.*;
 import de.vawi.kuechenchefApp.nahrungsmittel.*;
 import de.vawi.kuechenchefApp.speisen.*;

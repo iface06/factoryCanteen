@@ -1,4 +1,4 @@
-package de.vawi.kuechenchefApp.nahrungsmittel;
+package de.vawi.kuechenchefApp.entities;
 
 /**
  * Mögliche Einheiten aus den Importdateien.
