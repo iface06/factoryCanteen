@@ -1,18 +1,20 @@
-package de.vawi.kuechenchefApp.einkaufsliste;
+package de.vawi.kuechenchefApp.purchaseList;
 
-import de.vawi.kuechenchefApp.entities.Einheit;
+import de.vawi.kuechenchefApp.purchaseList.KostenRechner;
+import de.vawi.kuechenchefApp.purchaseList.PurchaseList;
+import de.vawi.kuechenchefApp.entities.Unit;
 import org.junit.*;
 import static org.junit.Assert.*;
 
 public class KostenRechnerTest {
 
-    private Einkaufsliste einkaufsliste;
+    private PurchaseList einkaufsliste;
 
     @Before
     public void before() {
-        einkaufsliste = new Einkaufsliste();
-        DummyEinkaufslistenPosition kartoffeln = new DummyEinkaufslistenPosition().fuerNahrungsmittel("Kartoffeln").menge(50.0).einheit(Einheit.GRAMM).vomBauer("Huber", 10).preis(500.0);
-        DummyEinkaufslistenPosition moehren = new DummyEinkaufslistenPosition().fuerNahrungsmittel("Möhren").menge(50.0).einheit(Einheit.GRAMM).vomGrosshaendler("Meier", 1.1).preis(500.0);
+        einkaufsliste = new PurchaseList();
+        DummyEinkaufslistenPosition kartoffeln = new DummyEinkaufslistenPosition().fuerNahrungsmittel("Kartoffeln").menge(50.0).einheit(Unit.GRAMM).vomBauer("Huber", 10).preis(500.0);
+        DummyEinkaufslistenPosition moehren = new DummyEinkaufslistenPosition().fuerNahrungsmittel("Möhren").menge(50.0).einheit(Unit.GRAMM).vomGrosshaendler("Meier", 1.1).preis(500.0);
         einkaufsliste.hinzufügenEinkaufslistenPosition(kartoffeln.erstelle());
         einkaufsliste.hinzufügenEinkaufslistenPosition(moehren.erstelle());
 

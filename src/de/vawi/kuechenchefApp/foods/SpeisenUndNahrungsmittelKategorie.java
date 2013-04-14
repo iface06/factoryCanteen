@@ -1,4 +1,4 @@
-package de.vawi.kuechenchefApp.nahrungsmittel;
+package de.vawi.kuechenchefApp.foods;
 
 import java.util.*;
 

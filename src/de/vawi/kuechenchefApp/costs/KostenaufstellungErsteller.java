@@ -1,7 +1,8 @@
-package de.vawi.kuechenchefApp.kostenaufstellung;
+package de.vawi.kuechenchefApp.costs;
 
-import de.vawi.kuechenchefApp.einkaufsliste.*;
-import de.vawi.kuechenchefApp.entities.Lieferant;
+import de.vawi.kuechenchefApp.purchaseList.PurchaseList;
+import de.vawi.kuechenchefApp.purchaseList.PurchaseListPosition;
+import de.vawi.kuechenchefApp.entities.Supplier;
 import java.util.*;
 
 /**
@@ -12,7 +13,7 @@ import java.util.*;
  */
 public class KostenaufstellungErsteller {
 
-    private Einkaufsliste liste;
+    private PurchaseList liste;
     private KostenUebersicht uebersicht;
 
     /**
@@ -21,7 +22,7 @@ public class KostenaufstellungErsteller {
      *
      * @param liste Die zu bearbeitende Einkaufsliste.
      */
-    public void setEinkaufsliste(Einkaufsliste liste) {
+    public void setEinkaufsliste(PurchaseList liste) {
         this.liste = liste;
     }
 
@@ -63,9 +64,9 @@ public class KostenaufstellungErsteller {
      * @param lieferant der Lieferant, nach dem gefiltert werden soll.
      * @return Gibt die Kostenaufstellung für den gewünschten Lieferanten wider.
      */
-    private Kostenaufstellung filtereNachLieferanten(Lieferant lieferant) {
-        List<EinkaufslistenPosition> lieferantenFilter = new ArrayList<>();
-        for (EinkaufslistenPosition position : liste.getPositionen()) {
+    private Kostenaufstellung filtereNachLieferanten(Supplier lieferant) {
+        List<PurchaseListPosition> lieferantenFilter = new ArrayList<>();
+        for (PurchaseListPosition position : liste.getPositionen()) {
             if (position.getLieferant().equals(lieferant)) {
                 lieferantenFilter.add(position);
             }
@@ -85,10 +86,10 @@ public class KostenaufstellungErsteller {
      */
     private void kostenaufstellungNachLieferant() {
         List<Kostenaufstellung> kostenaufstellungNachLieferant = new ArrayList<>();
-        List<Lieferant> alleBeteiligtenLieferanten = zaehleLieferantenAuf();
+        List<Supplier> alleBeteiligtenLieferanten = zaehleLieferantenAuf();
         int j = alleBeteiligtenLieferanten.size();
         for (int i = 0; i < j; i++) {
-            Lieferant lieferant = alleBeteiligtenLieferanten.get(i);
+            Supplier lieferant = alleBeteiligtenLieferanten.get(i);
             Kostenaufstellung temporäreSpeicherverschwendendeKostenaufstellungDamitSonjaEsVersteht = filtereNachLieferanten(lieferant);
             kostenaufstellungNachLieferant.add(temporäreSpeicherverschwendendeKostenaufstellungDamitSonjaEsVersteht);
         }
@@ -101,10 +102,10 @@ public class KostenaufstellungErsteller {
      * @return Gibt eine Liste aller Lieferanten, bei denen eingekauft wird,
      * wider
      */
-    private List<Lieferant> zaehleLieferantenAuf() {
-        List<Lieferant> lieferantenAuflistung = new ArrayList<>();
-        for (EinkaufslistenPosition position : liste.getPositionen()) {
-            Lieferant lieferant = position.getLieferant();
+    private List<Supplier> zaehleLieferantenAuf() {
+        List<Supplier> lieferantenAuflistung = new ArrayList<>();
+        for (PurchaseListPosition position : liste.getPositionen()) {
+            Supplier lieferant = position.getLieferant();
             if (!lieferantenAuflistung.contains(lieferant)) {
                 lieferantenAuflistung.add(lieferant);
             }

@@ -1,4 +1,4 @@
-package de.vawi.kuechenchefApp.kostenaufstellung;
+package de.vawi.kuechenchefApp.costs;
 
 import java.util.List;
 

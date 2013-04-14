@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.vawi.kuechenchefApp.speisen;
+package de.vawi.kuechenchefApp.dishes;
 
-import de.vawi.kuechenchefApp.entities.Speise;
-import de.vawi.kuechenchefApp.speiseplan.Kantine;
-import de.vawi.kuechenchefApp.speiseplan.Menu;
-import de.vawi.kuechenchefApp.speiseplan.Tag;
+import de.vawi.kuechenchefApp.entities.Dish;
+import de.vawi.kuechenchefApp.menues.Canteen;
+import de.vawi.kuechenchefApp.menues.Menu;
+import de.vawi.kuechenchefApp.menues.Day;
 
 /**
  *
@@ -17,13 +17,13 @@ public class DummySpeiseplan {
     
     private Menu plan = new Menu();
     private int tage = 0;
-    public DummySpeiseplan fuerKantine(Kantine kantine){
+    public DummySpeiseplan fuerKantine(Canteen kantine){
         plan.setKantine(kantine);
         return this;
     }
     
-    public DummySpeiseplan plusTag(Speise erste, Speise zweite, Speise dritte){
-        Tag t = new Tag(tage++);
+    public DummySpeiseplan plusTag(Dish erste, Dish zweite, Dish dritte){
+        Day t = new Day(tage++);
         t.setBeliebtesteSpeise(erste);
         t.setZweitbeliebtesteSpeise(zweite);
         t.setDrittbeliebtesteSpeise(dritte);

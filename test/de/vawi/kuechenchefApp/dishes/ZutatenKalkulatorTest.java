@@ -1,9 +1,10 @@
-package de.vawi.kuechenchefApp.speisen;
+package de.vawi.kuechenchefApp.dishes;
 
+import de.vawi.kuechenchefApp.dishes.IngredientCalculator;
 import de.vawi.kuechenchefApp.entities.*;
-import de.vawi.kuechenchefApp.speiseplan.Kantine;
-import de.vawi.kuechenchefApp.speiseplan.Menu;
-import de.vawi.kuechenchefApp.speiseplan.Tag;
+import de.vawi.kuechenchefApp.menues.Canteen;
+import de.vawi.kuechenchefApp.menues.Menu;
+import de.vawi.kuechenchefApp.menues.Day;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,10 +20,10 @@ public class ZutatenKalkulatorTest {
     @Test
     public void testMengenBerechnung() {
         Menu plan = erzeugeDummySpeiseplan();
-        ZutatenKalkulator kalkulator = new ZutatenKalkulator();
-        Map<Nahrungsmittel, Double> mengen = kalkulator.berechneGesamtMengen(plan);
+        IngredientCalculator kalkulator = new IngredientCalculator();
+        Map<Food, Double> mengen = kalkulator.berechneGesamtMengen(plan);
 
-        Nahrungsmittel kartoffeln = new Nahrungsmittel();
+        Food kartoffeln = new Food();
         kartoffeln.setName("Kartoffeln");
 
         assertEquals(1, mengen.size());
@@ -30,44 +31,44 @@ public class ZutatenKalkulatorTest {
     }
     
     private Menu erzeugeDummySpeiseplan() {
-        List<Tag> tage = new ArrayList<Tag>();
-        Tag tag = erzeugeTag();
+        List<Day> tage = new ArrayList<Day>();
+        Day tag = erzeugeTag();
         tage.add(tag);
-        Menu plan = new Menu(Kantine.ESSEN, tage);
+        Menu plan = new Menu(Canteen.ESSEN, tage);
 
         return plan;
     }
 
-    private Tag erzeugeTag() {
-        Tag tag = new Tag(1);
-        Speise speise = erzeugeSpeise();
-        Speise speise1 = erzeugeSpeise();
-        Speise speise2 = erzeugeSpeise();
+    private Day erzeugeTag() {
+        Day tag = new Day(1);
+        Dish speise = erzeugeSpeise();
+        Dish speise1 = erzeugeSpeise();
+        Dish speise2 = erzeugeSpeise();
         tag.setBeliebtesteSpeise(speise);
         tag.setZweitbeliebtesteSpeise(speise1);
         tag.setDrittbeliebtesteSpeise(speise2);
         return tag;
     }
 
-    private Speise erzeugeSpeise() {
-        Speise speise = new Speise();
-        Zutat zutat = erzeugeZutat();
+    private Dish erzeugeSpeise() {
+        Dish speise = new Dish();
+        Ingredient zutat = erzeugeZutat();
         speise.addZutat(zutat);
         return speise;
     }
 
-    private Zutat erzeugeZutat() {
-        Zutat zutat = new Zutat();
-        Nahrungsmittel nahrungsmittel = erzeugeNahrungsmittel(zutat);
+    private Ingredient erzeugeZutat() {
+        Ingredient zutat = new Ingredient();
+        Food nahrungsmittel = erzeugeNahrungsmittel(zutat);
         zutat.setMenge(2.0);
         zutat.setNahrungsmittel(nahrungsmittel);
         return zutat;
     }
 
-    private Nahrungsmittel erzeugeNahrungsmittel(Zutat zutat) {
-        Nahrungsmittel nahrungsmittel = new Nahrungsmittel();
+    private Food erzeugeNahrungsmittel(Ingredient zutat) {
+        Food nahrungsmittel = new Food();
         nahrungsmittel.setName("Kartoffeln");
-        nahrungsmittel.setEinheit(Einheit.STUECK);
+        nahrungsmittel.setEinheit(Unit.STUECK);
         return nahrungsmittel;
     }
 }

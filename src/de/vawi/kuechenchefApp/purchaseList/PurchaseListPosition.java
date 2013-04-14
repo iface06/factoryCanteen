@@ -1,8 +1,8 @@
-package de.vawi.kuechenchefApp.einkaufsliste;
+package de.vawi.kuechenchefApp.purchaseList;
 
-import de.vawi.kuechenchefApp.entities.Einheit;
-import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
-import de.vawi.kuechenchefApp.entities.Lieferant;
+import de.vawi.kuechenchefApp.entities.Unit;
+import de.vawi.kuechenchefApp.entities.Food;
+import de.vawi.kuechenchefApp.entities.Supplier;
 
 
 /**
@@ -11,11 +11,11 @@ import de.vawi.kuechenchefApp.entities.Lieferant;
  * @author Lepping
  * @version 29.01.2013
  */
-public class EinkaufslistenPosition
+public class PurchaseListPosition
 {
     private double anzahlGebinde;
-    private Nahrungsmittel nahrungsmittel;
-    private Lieferant lieferant;
+    private Food nahrungsmittel;
+    private Supplier lieferant;
     private double preis;
 
     
@@ -23,7 +23,7 @@ public class EinkaufslistenPosition
      *
      * @param nahrungsmittel
      */
-    public EinkaufslistenPosition(Nahrungsmittel nahrungsmittel) {
+    public PurchaseListPosition(Food nahrungsmittel) {
         this.nahrungsmittel = nahrungsmittel;
     }
 
@@ -32,14 +32,14 @@ public class EinkaufslistenPosition
     /**
      * @return     Name des Lieferanten
      */
-    public Lieferant getLieferant() {
+    public Supplier getLieferant() {
         return lieferant;
     }
 
     /**
      * @param  lieferant    Name des Lieferanten
      */
-    public void setLieferant(Lieferant lieferant) {
+    public void setLieferant(Supplier lieferant) {
         this.lieferant = lieferant;
     }
 
@@ -67,7 +67,7 @@ public class EinkaufslistenPosition
     /**
      * @return     Einheit der Menge zum Nahrungsmittel
      */
-    public Einheit getEinheit(){
+    public Unit getEinheit(){
         return this.nahrungsmittel.getEinheit();
     }
 
@@ -90,7 +90,7 @@ public class EinkaufslistenPosition
      * 
      * @return Nahrungsmittel
      */
-    protected Nahrungsmittel getNahrungsmittel() {
+    protected Food getNahrungsmittel() {
         return nahrungsmittel;
     }
 }

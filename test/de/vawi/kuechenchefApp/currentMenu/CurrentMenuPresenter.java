@@ -3,7 +3,7 @@
 package de.vawi.kuechenchefApp.currentMenu;
 
 import de.vawi.kuechenchefApp.ResponseBoundary;
-import de.vawi.kuechenchefApp.speiseplan.Menu;
+import de.vawi.kuechenchefApp.menues.Menu;
 
 
 public class CurrentMenuPresenter {

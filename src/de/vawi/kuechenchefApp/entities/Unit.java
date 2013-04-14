@@ -6,12 +6,12 @@ package de.vawi.kuechenchefApp.entities;
  * @author Struebe
  * @version 30.12.2012
  */
-public enum Einheit {
+public enum Unit {
 
     STUECK(""), LITER("l"), GRAMM("g");
     private String abkuerzung;
 
-    private Einheit(String abkuerzung) {
+    private Unit(String abkuerzung) {
         this.abkuerzung = abkuerzung;
     }
 
@@ -31,12 +31,12 @@ public enum Einheit {
      * @param abkuerzung die Abkürzung, die aus der Datei gelesen wird.
      * @return Gibt die vom Programm vorgegebene Einheit wider.
      */
-    public static Einheit nachAbkuerzung(String abkuerzung) {
-        for (Einheit einheit : values()) {
+    public static Unit nachAbkuerzung(String abkuerzung) {
+        for (Unit einheit : values()) {
             if (einheit.getAbkuerzung().equals(abkuerzung)) {
                 return einheit;
             }
         }
-        return Einheit.STUECK;
+        return Unit.STUECK;
     }
 }

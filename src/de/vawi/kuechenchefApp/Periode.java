@@ -8,7 +8,7 @@ package de.vawi.kuechenchefApp;
  * @author Lepping
  * @version 29.01.2013
  */
-public class PlanungsPeriode {
+public class Periode {
     
     private int anzahlWochen = 3;
     private int anzahlTageProWoche = 5;

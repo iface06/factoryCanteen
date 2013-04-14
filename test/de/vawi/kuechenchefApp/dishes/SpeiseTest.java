@@ -1,9 +1,9 @@
 
 
-package de.vawi.kuechenchefApp.speisen;
+package de.vawi.kuechenchefApp.dishes;
 
 import de.vawi.kuechenchefApp.entities.*;
-import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
+import de.vawi.kuechenchefApp.foods.SpeisenUndNahrungsmittelKategorie;
 import java.util.*;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -13,10 +13,10 @@ public class SpeiseTest {
 
     @Test
     public void testNotEquals() {
-        Speise a = new Speise();
+        Dish a = new Dish();
         a.setName("Steaks");
         
-        Speise b = new Speise();
+        Dish b = new Dish();
         b.setName("Blumenkohl");
         
         assertFalse(a.equals(b));
@@ -24,10 +24,10 @@ public class SpeiseTest {
     
     @Test
     public void testEquals() {
-        Speise a = new Speise();
+        Dish a = new Dish();
         a.setName("Steaks");
         
-        Speise b = new Speise();
+        Dish b = new Dish();
         b.setName("Steaks");
         
         assertTrue(a.equals(b));
@@ -35,9 +35,9 @@ public class SpeiseTest {
     
     @Test
     public void testKategorieFleisch(){
-        Zutat fleisch = new DummyZutat().name("Hüftsteak").kategorie(SpeisenUndNahrungsmittelKategorie.FLEISCH).menge(10.0).erstelle();
-        Zutat kartoffeln = new DummyZutat().name("Kartoffeln").kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).menge(100.0).erstelle();
-        Speise speise = new DummySpeise().name("Steaks").mitZutat(kartoffeln).mitZutat(fleisch).erstelle();
+        Ingredient fleisch = new DummyZutat().name("Hüftsteak").kategorie(SpeisenUndNahrungsmittelKategorie.FLEISCH).menge(10.0).erstelle();
+        Ingredient kartoffeln = new DummyZutat().name("Kartoffeln").kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).menge(100.0).erstelle();
+        Dish speise = new DummySpeise().name("Steaks").mitZutat(kartoffeln).mitZutat(fleisch).erstelle();
         
         sortiereZutatzenDerSpeise(speise);
         
@@ -46,9 +46,9 @@ public class SpeiseTest {
     
     @Test
     public void testKategorieVegetarisch(){
-        Zutat eier = new DummyZutat().name("Eier").kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).menge(10.0).erstelle();
-        Zutat kartoffeln = new DummyZutat().name("Kartoffeln").kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).menge(100.0).erstelle();
-        Speise speise = new DummySpeise().name("Steaks").mitZutat(kartoffeln).mitZutat(eier).erstelle();
+        Ingredient eier = new DummyZutat().name("Eier").kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).menge(10.0).erstelle();
+        Ingredient kartoffeln = new DummyZutat().name("Kartoffeln").kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).menge(100.0).erstelle();
+        Dish speise = new DummySpeise().name("Steaks").mitZutat(kartoffeln).mitZutat(eier).erstelle();
         
         sortiereZutatzenDerSpeise(speise);
         
@@ -57,19 +57,19 @@ public class SpeiseTest {
     
     @Test
     public void testKategorieFisch(){
-        Zutat fisch = new DummyZutat().name("Seelachs").kategorie(SpeisenUndNahrungsmittelKategorie.FISCH).menge(10.0).erstelle();
-        Zutat kartoffeln = new DummyZutat().name("Kartoffeln").kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).menge(100.0).erstelle();
-        Speise speise = new DummySpeise().name("Steaks").mitZutat(kartoffeln).mitZutat(fisch).erstelle();
+        Ingredient fisch = new DummyZutat().name("Seelachs").kategorie(SpeisenUndNahrungsmittelKategorie.FISCH).menge(10.0).erstelle();
+        Ingredient kartoffeln = new DummyZutat().name("Kartoffeln").kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).menge(100.0).erstelle();
+        Dish speise = new DummySpeise().name("Steaks").mitZutat(kartoffeln).mitZutat(fisch).erstelle();
         
         sortiereZutatzenDerSpeise(speise);
         
         assertEquals(SpeisenUndNahrungsmittelKategorie.FISCH, speise.getKategorie());   
     }
 
-    private void sortiereZutatzenDerSpeise(Speise speise) {
-        Collections.sort(speise.getZutaten(), new Comparator<Zutat>() {
+    private void sortiereZutatzenDerSpeise(Dish speise) {
+        Collections.sort(speise.getZutaten(), new Comparator<Ingredient>() {
                 @Override
-                public int compare(Zutat o1, Zutat o2) {
+                public int compare(Ingredient o1, Ingredient o2) {
                     SpeisenUndNahrungsmittelKategorie kategorie1 = o1.getNahrungsmittel().getKategorie();
                     SpeisenUndNahrungsmittelKategorie kategorie2 = o2.getNahrungsmittel().getKategorie();
                     return kategorie1.compareTo(kategorie2);

@@ -1,8 +1,11 @@
 package de.vawi.kuechenchefApp;
 
-import de.vawi.kuechenchefApp.einkaufsliste.*;
-import de.vawi.kuechenchefApp.kostenaufstellung.*;
-import de.vawi.kuechenchefApp.speiseplan.*;
+import de.vawi.kuechenchefApp.menues.MenuCreator;
+import de.vawi.kuechenchefApp.menues.Menu;
+import de.vawi.kuechenchefApp.purchaseList.PurchaseListCreator;
+import de.vawi.kuechenchefApp.purchaseList.PurchaseList;
+import de.vawi.kuechenchefApp.costs.KostenaufstellungErsteller;
+import de.vawi.kuechenchefApp.costs.KostenUebersicht;
 import java.util.*;
 
 /**
@@ -12,11 +15,11 @@ import java.util.*;
  */
 class ProzessSteuerung{
 
-    private SpeiseplanErsteller speiseplanErsteller;
-    private EinkaufslistenErsteller einkaufslistenErsteller;
+    private MenuCreator speiseplanErsteller;
+    private PurchaseListCreator einkaufslistenErsteller;
     private KostenaufstellungErsteller kostanaufstellungErsteller;
     
-    private Einkaufsliste einkaufsliste;
+    private PurchaseList einkaufsliste;
     private List<Menu> speiseplaene = new ArrayList<>();
     private KostenUebersicht kostenUbersicht;
     
@@ -26,7 +29,7 @@ class ProzessSteuerung{
      * @param  ersteller    Ersteller-Klasse für den Speiseplan Sonja, Tobias, Matthias
      * 
      */
-    public void setSpeiseplanErsteller(SpeiseplanErsteller ersteller){
+    public void setSpeiseplanErsteller(MenuCreator ersteller){
         this.speiseplanErsteller = ersteller;
     }
     
@@ -35,7 +38,7 @@ class ProzessSteuerung{
      * 
      * @param  ersteller     Ersteller-Klasse für die Einkaufsliste
      */
-    public void setEinkaufslistenErsteller(EinkaufslistenErsteller ersteller){
+    public void setEinkaufslistenErsteller(PurchaseListCreator ersteller){
         this.einkaufslistenErsteller = ersteller;
     }
     
@@ -83,7 +86,7 @@ class ProzessSteuerung{
      * 
      * @return     Einkaufsliste
      */
-    public Einkaufsliste getEinkaufsliste(){
+    public PurchaseList getEinkaufsliste(){
         return this.einkaufsliste;
     }
 

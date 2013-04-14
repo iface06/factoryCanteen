@@ -1,6 +1,6 @@
 package de.vawi.kuechenchefApp.entities;
 
-import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
+import de.vawi.kuechenchefApp.foods.SpeisenUndNahrungsmittelKategorie;
 
 /**
  * Diese Klasse hält Informationen die für die Beschreibung eines
@@ -9,10 +9,10 @@ import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
  * @author Struebe
  * @version 30.12.2012
  */
-public class Nahrungsmittel {
+public class Food {
 
     private String name;
-    private Einheit einheit;
+    private Unit einheit;
     private int verfuegbareGesamtMenge;
     private SpeisenUndNahrungsmittelKategorie kategorie;
 
@@ -21,14 +21,14 @@ public class Nahrungsmittel {
     /**
      * @return Einheit des Nahrungsmittels
      */
-    public Einheit getEinheit() {
+    public Unit getEinheit() {
         return einheit;
     }
 
     /**
      * @param einheit Einheit des Nahrungsmittels
      */
-    public void setEinheit(Einheit einheit) {
+    public void setEinheit(Unit einheit) {
         this.einheit = einheit;
     }
 
@@ -93,7 +93,7 @@ public class Nahrungsmittel {
     @Override
     public boolean equals(Object obj) {
         if (obj.getClass() == this.getClass()) {
-            Nahrungsmittel nahrungsmittel = (Nahrungsmittel) obj;
+            Food nahrungsmittel = (Food) obj;
             return nahrungsmittel.name.equals(this.name);
         } else {
             return false;

@@ -3,7 +3,7 @@
 package de.vawi.kuechenchefApp.currentMenu;
 
 import de.vawi.kuechenchefApp.RequestBoundary;
-import de.vawi.kuechenchefApp.speiseplan.Menu;
+import de.vawi.kuechenchefApp.menues.Menu;
 import org.junit.*;
 import static org.junit.Assert.*;
 

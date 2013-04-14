@@ -1,9 +1,10 @@
 
-package de.vawi.kuechenchefApp.einkaufsliste;
+package de.vawi.kuechenchefApp.purchaseList;
 
-import de.vawi.kuechenchefApp.entities.Lieferant;
-import de.vawi.kuechenchefApp.lieferanten.*;
-import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
+import de.vawi.kuechenchefApp.purchaseList.PurchaseListPosition;
+import de.vawi.kuechenchefApp.purchaseList.PurchaseList;
+import de.vawi.kuechenchefApp.entities.Supplier;
+import de.vawi.kuechenchefApp.entities.Food;
 import java.util.Set;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -13,35 +14,35 @@ import static org.junit.Assert.*;
  * @author Matthias
  */
 public class EinkaufslisteTest {
-    Einkaufsliste liste = new Einkaufsliste();
+    PurchaseList liste = new PurchaseList();
 
     @Test
     public void testFindeVorhandenePositionDurchNahrungsmittel() {
-        Nahrungsmittel kartoffeln = new Nahrungsmittel();
-        liste.hinzufügenEinkaufslistenPosition(new EinkaufslistenPosition(kartoffeln));
+        Food kartoffeln = new Food();
+        liste.hinzufügenEinkaufslistenPosition(new PurchaseListPosition(kartoffeln));
         kartoffeln.setName("Kartoffeln");
-        EinkaufslistenPosition position = liste.findePositionDurchNahrungsmittel(kartoffeln);
+        PurchaseListPosition position = liste.findePositionDurchNahrungsmittel(kartoffeln);
     
         assertEquals(kartoffeln.getName(), position.getName());
     }
     
     @Test
     public void testFindeNichtVorhandenePositionDurchNahrungsmittel() {
-        Nahrungsmittel kartoffeln = new Nahrungsmittel();
+        Food kartoffeln = new Food();
         kartoffeln.setName("Kartoffeln");
-        EinkaufslistenPosition position = liste.findePositionDurchNahrungsmittel(kartoffeln);
+        PurchaseListPosition position = liste.findePositionDurchNahrungsmittel(kartoffeln);
     
         assertEquals(kartoffeln.getName(), position.getName());
     }
     
     @Test
     public void testHoleLieferanten(){
-        EinkaufslistenPosition positionA = new DummyEinkaufslistenPosition().fuerNahrungsmittel("Kartoffeln").vomBauer("Huber", 10).erstelle();
-        EinkaufslistenPosition positionB = new DummyEinkaufslistenPosition().fuerNahrungsmittel("Kartoffeln").vomBauer("Meier", 10).erstelle();
+        PurchaseListPosition positionA = new DummyEinkaufslistenPosition().fuerNahrungsmittel("Kartoffeln").vomBauer("Huber", 10).erstelle();
+        PurchaseListPosition positionB = new DummyEinkaufslistenPosition().fuerNahrungsmittel("Kartoffeln").vomBauer("Meier", 10).erstelle();
         liste.hinzufügenEinkaufslistenPosition(positionB);
         liste.hinzufügenEinkaufslistenPosition(positionA);
         
-        Set<Lieferant> lieferanten = liste.holeLieferanten();
+        Set<Supplier> lieferanten = liste.holeLieferanten();
         
         assertEquals(2, lieferanten.size());
         

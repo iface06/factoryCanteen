@@ -1,6 +1,6 @@
 package de.vawi.kuechenchefApp.entities;
 
-import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
+import de.vawi.kuechenchefApp.foods.SpeisenUndNahrungsmittelKategorie;
 import java.util.*;
 
 /**
@@ -9,11 +9,11 @@ import java.util.*;
  * @author Tatsch
  * @version 28.01.2013
  */
-public class Speise implements Iterable<Zutat> {
+public class Dish implements Iterable<Ingredient> {
 
     private String name;
     private int beliebtheit;
-    private List<Zutat> zutaten = new ArrayList<>();
+    private List<Ingredient> zutaten = new ArrayList<>();
 
     /**
      * @return Beliebtheit bei den Gästen
@@ -46,7 +46,7 @@ public class Speise implements Iterable<Zutat> {
     /**
      * @return Alle Zutaten einer Speise
      */
-    public List<Zutat> getZutaten() {
+    public List<Ingredient> getZutaten() {
         return this.zutaten;
     }
 
@@ -54,7 +54,7 @@ public class Speise implements Iterable<Zutat> {
      *
      * @param zutat Zutat einer Speise
      */
-    public void addZutat(Zutat zutat) {
+    public void addZutat(Ingredient zutat) {
         zutaten.add(zutat);
     }
 
@@ -66,7 +66,7 @@ public class Speise implements Iterable<Zutat> {
      */
     @Override
     public boolean equals(Object obj) {
-        Speise speise = (Speise) obj;
+        Dish speise = (Dish) obj;
         return speise.name.equals(this.name);
     }
 
@@ -86,7 +86,7 @@ public class Speise implements Iterable<Zutat> {
      * @return Gibt die Kategorie der Speise wieder.
      */
     public SpeisenUndNahrungsmittelKategorie getKategorie() {
-        Iterator<Zutat> iterator = zutaten.iterator();
+        Iterator<Ingredient> iterator = zutaten.iterator();
         return iterator.hasNext() ? iterator.next().getKategorie() : SpeisenUndNahrungsmittelKategorie.VEGETARISCH;
     }
 
@@ -95,7 +95,7 @@ public class Speise implements Iterable<Zutat> {
      * @return Ein Iterator-Objekt, um die Zutaten zu iterieren.
      */
     @Override
-    public Iterator<Zutat> iterator() {
+    public Iterator<Ingredient> iterator() {
         return zutaten.iterator();
     }
 }

@@ -1,6 +1,6 @@
-package de.vawi.kuechenchefApp.einkaufsliste;
+package de.vawi.kuechenchefApp.purchaseList;
 
-import de.vawi.kuechenchefApp.entities.Lieferant;
+import de.vawi.kuechenchefApp.entities.Supplier;
 import java.util.List;
 
 
@@ -19,7 +19,7 @@ class KostenRechner {
      * @param liste
      * @return Gesamtkosten
      */
-    public double berechneGesamtkosten(Einkaufsliste liste){
+    public double berechneGesamtkosten(PurchaseList liste){
         return berechneGesamtkostenFuerNahrungsmittel(liste) + berechneGesamtkostenFuerLieferung(liste);
     }
     
@@ -29,7 +29,7 @@ class KostenRechner {
      * @param einkaufsliste
      * @return Gesamtkosten für Nahrungsmittel
      */
-    public double berechneGesamtkostenFuerNahrungsmittel(Einkaufsliste einkaufsliste) {
+    public double berechneGesamtkostenFuerNahrungsmittel(PurchaseList einkaufsliste) {
         return berechneGesamtkostenFuerNahrungsmittel(einkaufsliste.getPositionen());
     }
 
@@ -40,20 +40,20 @@ class KostenRechner {
      * @param einkaufsliste
      * @return lieferkosten
      */
-    public double berechneGesamtkostenFuerLieferung(Einkaufsliste einkaufsliste) {
+    public double berechneGesamtkostenFuerLieferung(PurchaseList einkaufsliste) {
         double lieferkosten = 0.0;
-        for (Lieferant lieferant : einkaufsliste.holeLieferanten()) {
-            List<EinkaufslistenPosition> positionen = einkaufsliste.holeEinkaufslistenpositionenVonLieferant(lieferant);
+        for (Supplier lieferant : einkaufsliste.holeLieferanten()) {
+            List<PurchaseListPosition> positionen = einkaufsliste.holeEinkaufslistenpositionenVonLieferant(lieferant);
             double nahrungsmittelKosten = berechneGesamtkostenFuerNahrungsmittel(positionen);
             lieferkosten += lieferant.berechneLieferkosten(nahrungsmittelKosten);
         }
         return lieferkosten;
     }
 
-    private double berechneGesamtkostenFuerNahrungsmittel(List<EinkaufslistenPosition> positionen) {
+    private double berechneGesamtkostenFuerNahrungsmittel(List<PurchaseListPosition> positionen) {
         double einkaufsKosten = 0.0;
 
-        for (EinkaufslistenPosition position : positionen) {
+        for (PurchaseListPosition position : positionen) {
             einkaufsKosten += position.getPreis();
         }
         

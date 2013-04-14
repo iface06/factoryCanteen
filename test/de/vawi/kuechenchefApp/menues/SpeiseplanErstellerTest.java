@@ -1,11 +1,11 @@
-package de.vawi.kuechenchefApp.speiseplan;
+package de.vawi.kuechenchefApp.menues;
 
-import de.vawi.kuechenchefApp.entities.Zutat;
-import de.vawi.kuechenchefApp.PlanungsPeriode;
+import de.vawi.kuechenchefApp.entities.Ingredient;
+import de.vawi.kuechenchefApp.Periode;
+import de.vawi.kuechenchefApp.dishes.*;
 import de.vawi.kuechenchefApp.entities.*;
-import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
-import de.vawi.kuechenchefApp.speisen.*;
-import de.vawi.kuechenchefApp.speiseplan.SpeiseplanErsteller.KeineAusreichendeAnzahlAnSpeisen;
+import de.vawi.kuechenchefApp.foods.SpeisenUndNahrungsmittelKategorie;
+import de.vawi.kuechenchefApp.menues.MenuCreator.KeineAusreichendeAnzahlAnSpeisen;
 import java.util.*;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
  */
 public class SpeiseplanErstellerTest {
 
-    private PlanungsPeriode planungsperiode;
-    private List<Speise> beliebtestSpeisen;
-    private List<Speise> unbeliebtesteSpeisen;
+    private Periode planungsperiode;
+    private List<Dish> beliebtestSpeisen;
+    private List<Dish> unbeliebtesteSpeisen;
     private boolean ausreichendSpeisenVorhanden;
 
     @Before
@@ -39,14 +39,14 @@ public class SpeiseplanErstellerTest {
      */
     @Test
     public void testSpeiseplanErstellungOhneVerfügbarkeitsProbleme() {
-        SpeiseplanErsteller ersteller = new TestbarerSpeiseplanErsteller();
+        MenuCreator ersteller = new TestbarerSpeiseplanErsteller();
         ersteller.setPlanungsperiode(planungsperiode);
         List<Menu> plaene = ersteller.erzeuge();
 
 
         assertEquals(2, plaene.size());
-        assertEquals(Kantine.ESSEN, plaene.get(0).getKantine());
-        assertEquals(Kantine.MUELHEIM_AN_DER_RUHR, plaene.get(1).getKantine());
+        assertEquals(Canteen.ESSEN, plaene.get(0).getKantine());
+        assertEquals(Canteen.MUELHEIM_AN_DER_RUHR, plaene.get(1).getKantine());
         for (Menu plan : plaene) {
             assertEquals(5, plan.getTageMitGerichten().size());
         }
@@ -55,14 +55,14 @@ public class SpeiseplanErstellerTest {
     @Test(expected=KeineAusreichendeAnzahlAnSpeisen.class)
     public void testSpeiseplanErstellungZuWenigVegetarischSpeisen() {
         ausreichendSpeisenVorhanden = false;
-        SpeiseplanErsteller ersteller = new TestbarerSpeiseplanErsteller();
+        MenuCreator ersteller = new TestbarerSpeiseplanErsteller();
         ersteller.setPlanungsperiode(planungsperiode);
         List<Menu> plaene = ersteller.erzeuge();
         fail();
     }
 
     private void initialisierePlanunsperiode() {
-        planungsperiode = new PlanungsPeriode();
+        planungsperiode = new Periode();
         planungsperiode.setAnzahlWochen(1);
     }
 
@@ -104,27 +104,27 @@ public class SpeiseplanErstellerTest {
         unbeliebtesteSpeisen.add(erstelleFleischSpeise("Vollkornraviolie", 30, SpeisenUndNahrungsmittelKategorie.VEGETARISCH));
     }
 
-    private Speise erstelleFleischSpeise(String name, int beliebtheit, SpeisenUndNahrungsmittelKategorie kategorie) {
-        Zutat zutat = new DummyZutat().name(name + "-Zutat").kategorie(kategorie).menge(1).verfuegbareMengeAmMarkt(100000).erstelle();
-        Zutat salz = new DummyZutat().name("Salz").kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).menge(1).verfuegbareMengeAmMarkt(100000).erstelle();
-        Speise speise = new DummySpeise().name(name).beliebtheit(beliebtheit).mitZutat(zutat).mitZutat(salz).erstelle();
+    private Dish erstelleFleischSpeise(String name, int beliebtheit, SpeisenUndNahrungsmittelKategorie kategorie) {
+        Ingredient zutat = new DummyZutat().name(name + "-Zutat").kategorie(kategorie).menge(1).verfuegbareMengeAmMarkt(100000).erstelle();
+        Ingredient salz = new DummyZutat().name("Salz").kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).menge(1).verfuegbareMengeAmMarkt(100000).erstelle();
+        Dish speise = new DummySpeise().name(name).beliebtheit(beliebtheit).mitZutat(zutat).mitZutat(salz).erstelle();
         sortiereZutatenDerSpeise(speise);
         return speise;
     }
 
-    private void sortiereZutatenDerSpeise(Speise speise) {
-        Collections.sort(speise.getZutaten(), new Comparator<Zutat>() {
+    private void sortiereZutatenDerSpeise(Dish speise) {
+        Collections.sort(speise.getZutaten(), new Comparator<Ingredient>() {
 
             @Override
-            public int compare(Zutat o1, Zutat o2) {
+            public int compare(Ingredient o1, Ingredient o2) {
                 return o1.getKategorie().compareTo(o2.getKategorie());
             }
         });
     }
 
-    private List<Speise> loescheSpeisenMitKategorie(List<Speise> beliebtestSpeisen, SpeisenUndNahrungsmittelKategorie kategorie) {
-        List<Speise> ohneKategorie = new ArrayList<>();
-        for (Speise speise : beliebtestSpeisen) {
+    private List<Dish> loescheSpeisenMitKategorie(List<Dish> beliebtestSpeisen, SpeisenUndNahrungsmittelKategorie kategorie) {
+        List<Dish> ohneKategorie = new ArrayList<>();
+        for (Dish speise : beliebtestSpeisen) {
             if(!speise.getKategorie().equals(kategorie)){
                 ohneKategorie.add(speise);
             }
@@ -134,16 +134,16 @@ public class SpeiseplanErstellerTest {
 
     
 
-    class TestbarerSpeiseplanErsteller extends SpeiseplanErsteller {
+    class TestbarerSpeiseplanErsteller extends MenuCreator {
         
 
         @Override
-        protected List<Speise> findeBeliebtesteSpeisenFuerPlanungsperiode() {
+        protected List<Dish> findeBeliebtesteSpeisenFuerPlanungsperiode() {
             return beliebtestSpeisen;
         }
 
         @Override
-        protected List<Speise> findeUnbeliebtesteSpeisen() {
+        protected List<Dish> findeUnbeliebtesteSpeisen() {
             return unbeliebtesteSpeisen;
         }
 

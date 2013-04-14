@@ -1,6 +1,6 @@
 package de.vawi.kuechenchefApp.entities;
 
-import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
+import de.vawi.kuechenchefApp.foods.SpeisenUndNahrungsmittelKategorie;
 
 /**
  * Diese Klasse repräsentiert eine Zutat eines Gerichtes. Dementsprechend hält
@@ -9,10 +9,10 @@ import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
  * @author Tatsch
  * @version 29.01.2013
  */
-public class Zutat {
+public class Ingredient {
 
     private double menge;
-    private Nahrungsmittel nahrungsmittel;
+    private Food nahrungsmittel;
 
     /**
      * @return Menge die für das Zubereiten benötigt wird.
@@ -31,14 +31,14 @@ public class Zutat {
     /**
      * @return Das zugrundeliegende Nahrungsmittel
      */
-    public Nahrungsmittel getNahrungsmittel() {
+    public Food getNahrungsmittel() {
         return nahrungsmittel;
     }
 
     /**
      * @param nahrungsmittel Das zugrundeliegende Nahrungsmittel
      */
-    public void setNahrungsmittel(Nahrungsmittel nahrungsmittel) {
+    public void setNahrungsmittel(Food nahrungsmittel) {
         this.nahrungsmittel = nahrungsmittel;
     }
 /**
@@ -48,7 +48,7 @@ public class Zutat {
  */
     @Override
     public boolean equals(Object obj) {
-        Zutat zutat = (Zutat) obj;
+        Ingredient zutat = (Ingredient) obj;
         return nahrungsmittel.equals(zutat.nahrungsmittel);
     }
 /**
@@ -70,7 +70,7 @@ public class Zutat {
  * 
  * @return Gibt die Einheit für ein Nahrungsmittel aus.
  */
-    public Einheit getEinheit() {
+    public Unit getEinheit() {
         return nahrungsmittel.getEinheit();
     }
 /**

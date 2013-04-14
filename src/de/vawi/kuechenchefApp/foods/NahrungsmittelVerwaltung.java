@@ -1,6 +1,6 @@
-package de.vawi.kuechenchefApp.nahrungsmittel;
+package de.vawi.kuechenchefApp.foods;
 
-import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
+import de.vawi.kuechenchefApp.entities.Food;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +13,7 @@ import java.util.Set;
 public class NahrungsmittelVerwaltung {
 
     public static NahrungsmittelVerwaltung INSTANZ;
-    private Set<Nahrungsmittel> nahrungsmittels = new HashSet<>();
+    private Set<Food> nahrungsmittels = new HashSet<>();
 
     /**
      * Diese Methode überprüft anhand des Namens eines Nahrungsmittels, ob es
@@ -23,8 +23,8 @@ public class NahrungsmittelVerwaltung {
      * @return Gibt das Nahrungsmittel wider, das schon existiert. Existiert
      * noch kein Nahrungsmittel mit diesem Namen, wird Null wider gegeben.
      */
-    public Nahrungsmittel findeDurchName(String name) throws NahrungsmittelNichtGefunden {
-        for (Nahrungsmittel nahrungsmittel1 : nahrungsmittels) {
+    public Food findeDurchName(String name) throws NahrungsmittelNichtGefunden {
+        for (Food nahrungsmittel1 : nahrungsmittels) {
             if (nahrungsmittel1.getName().contains(name)) {
                 return nahrungsmittel1;
             }
@@ -37,7 +37,7 @@ public class NahrungsmittelVerwaltung {
      *
      * @param nahrungsmittel ein Nahrungsmittel.
      */
-    public void fuegeHinzu(Nahrungsmittel nahrungsmittel) {
+    public void fuegeHinzu(Food nahrungsmittel) {
         nahrungsmittels.add(nahrungsmittel);
     }
 

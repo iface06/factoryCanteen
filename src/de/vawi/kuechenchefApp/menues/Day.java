@@ -1,23 +1,23 @@
-package de.vawi.kuechenchefApp.speiseplan;
+package de.vawi.kuechenchefApp.menues;
 
-import de.vawi.kuechenchefApp.entities.Speise;
+import de.vawi.kuechenchefApp.entities.Dish;
 
 /**
  * Diese Klasse repraensntiert einen Tag innerhalb eines Speiseplans
  * @author Max
  */
-public class Tag{
+public class Day{
 
     private int nummer;
-    private Speise beliebtesteSpeise;
-    private Speise zweitbeliebtesteSpeise;
-    private Speise drittbeliebtesteSpeise;
+    private Dish beliebtesteSpeise;
+    private Dish zweitbeliebtesteSpeise;
+    private Dish drittbeliebtesteSpeise;
     
     /**
      * Konstrutkor 
      * @param nummer Die Tage innerhalb eines Plans werden druch nummeriert, diese Nummer wird dem Konstrukor mitgegeben. 
      */
-    public Tag(int nummer) {
+    public Day(int nummer) {
         this.nummer = nummer;
     }
     
@@ -25,7 +25,7 @@ public class Tag{
      * Setzt die beliebtestes Speise, die an diesem Tag angeboten wird.
      * @param beliebtesteSpeise die Speise mit der hoechsten Beliebtheit an diesem Tag
      */
-    public void setBeliebtesteSpeise(Speise beliebtesteSpeise) {
+    public void setBeliebtesteSpeise(Dish beliebtesteSpeise) {
         this.beliebtesteSpeise = beliebtesteSpeise;
     }
     
@@ -33,7 +33,7 @@ public class Tag{
      * Setzt die zweit beliebtestes Speise, die an diesem Tag angeboten wird.
      * @param zweitbeliebtesteSpeise die Speise mit der zweit hoechsten Beliebtheit an diesem Tag
      */
-    public void setZweitbeliebtesteSpeise(Speise zweitbeliebtesteSpeise) {
+    public void setZweitbeliebtesteSpeise(Dish zweitbeliebtesteSpeise) {
         this.zweitbeliebtesteSpeise = zweitbeliebtesteSpeise;
     }
     
@@ -41,7 +41,7 @@ public class Tag{
      * Setzt die dritt beliebtestes Speise, die an diesem Tag angeboten wird.
      * @param drittbeliebtesteSpeise die Speise mit der dritt hoechsten Beliebtheit an diesem Tag
      */
-    public void setDrittbeliebtesteSpeise(Speise drittbeliebtesteSpeise) {
+    public void setDrittbeliebtesteSpeise(Dish drittbeliebtesteSpeise) {
         this.drittbeliebtesteSpeise = drittbeliebtesteSpeise;
     }
      /**
@@ -56,7 +56,7 @@ public class Tag{
      * 
      * @return gibt die beliebteste Speise dieses Tages zurueck
      */
-    public Speise getBeliebtesteSpeise() {
+    public Dish getBeliebtesteSpeise() {
         return beliebtesteSpeise;
     }
     
@@ -64,7 +64,7 @@ public class Tag{
      * 
      * @return gibt die zweitbeliebteste Speise dieses Tages zurueck
      */
-    public Speise getZweitbeliebtesteSpeise() {
+    public Dish getZweitbeliebtesteSpeise() {
         return zweitbeliebtesteSpeise;
     }
     
@@ -72,7 +72,7 @@ public class Tag{
      * 
      * @return gibt die drittbeliebteste Speise dieses Tages zurueck
      */
-    public Speise getDrittbeliebtesteSpeise() {
+    public Dish getDrittbeliebtesteSpeise() {
         return drittbeliebtesteSpeise;
     }
 

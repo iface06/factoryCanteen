@@ -1,11 +1,11 @@
-package de.vawi.kuechenchefApp.einkaufsliste;
+package de.vawi.kuechenchefApp.purchaseList;
 
-import de.vawi.kuechenchefApp.entities.Grosshaendler;
-import de.vawi.kuechenchefApp.entities.Bauer;
-import de.vawi.kuechenchefApp.lieferanten.*;
-import de.vawi.kuechenchefApp.entities.Einheit;
-import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
-import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
+import de.vawi.kuechenchefApp.purchaseList.PurchaseListPosition;
+import de.vawi.kuechenchefApp.entities.Distributer;
+import de.vawi.kuechenchefApp.entities.Farmer;
+import de.vawi.kuechenchefApp.entities.Unit;
+import de.vawi.kuechenchefApp.entities.Food;
+import de.vawi.kuechenchefApp.foods.SpeisenUndNahrungsmittelKategorie;
 import org.junit.Ignore;
 
 /**
@@ -15,14 +15,14 @@ import org.junit.Ignore;
 @Ignore
 public class DummyEinkaufslistenPosition {
 
-    EinkaufslistenPosition position = new EinkaufslistenPosition(new Nahrungsmittel());
+    PurchaseListPosition position = new PurchaseListPosition(new Food());
 
     public DummyEinkaufslistenPosition fuerNahrungsmittel(String name) {
         position.getNahrungsmittel().setName(name);
         return this;
     }
 
-    public DummyEinkaufslistenPosition einheit(Einheit einheit) {
+    public DummyEinkaufslistenPosition einheit(Unit einheit) {
         position.getNahrungsmittel().setEinheit(einheit);
         return this;
     }
@@ -38,30 +38,30 @@ public class DummyEinkaufslistenPosition {
     }
 
     public DummyEinkaufslistenPosition vomBauer(String name, double distanzInKm) {
-        position.setLieferant(new Bauer());
+        position.setLieferant(new Farmer());
         position.getLieferant().setName(name);
         position.getLieferant().setLieferKostenFaktor(distanzInKm);
         return this;
     }
 
     public DummyEinkaufslistenPosition vomGrosshaendler(String name, double zuschlagsatz) {
-        position.setLieferant(new Grosshaendler());
+        position.setLieferant(new Distributer());
         position.getLieferant().setName(name);
         position.getLieferant().setLieferKostenFaktor(zuschlagsatz);
         return this;
     }
 
-    public EinkaufslistenPosition erstelle() {
+    public PurchaseListPosition erstelle() {
         return position;
     }
 
-    public static EinkaufslistenPosition eier() {
+    public static PurchaseListPosition eier() {
         DummyEinkaufslistenPosition dummy = new DummyEinkaufslistenPosition();
-        return dummy.fuerNahrungsmittel("Eier").menge(1000).einheit(Einheit.STUECK).preis(500).vomBauer("Heinrich", 10).erstelle();
+        return dummy.fuerNahrungsmittel("Eier").menge(1000).einheit(Unit.STUECK).preis(500).vomBauer("Heinrich", 10).erstelle();
     }
     
-    public static EinkaufslistenPosition rinderhuefte() {
+    public static PurchaseListPosition rinderhuefte() {
         DummyEinkaufslistenPosition dummy = new DummyEinkaufslistenPosition();
-        return dummy.fuerNahrungsmittel("Argentinisches Rinderhüfte").einheit(Einheit.GRAMM).menge(10000).preis(300).vomGrosshaendler("Otto Gourmet", 1.1).erstelle();
+        return dummy.fuerNahrungsmittel("Argentinisches Rinderhüfte").einheit(Unit.GRAMM).menge(10000).preis(300).vomGrosshaendler("Otto Gourmet", 1.1).erstelle();
     }
 }

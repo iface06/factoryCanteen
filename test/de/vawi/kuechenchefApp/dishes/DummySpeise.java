@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.vawi.kuechenchefApp.speisen;
+package de.vawi.kuechenchefApp.dishes;
 
 import de.vawi.kuechenchefApp.entities.*;
 
@@ -12,7 +12,7 @@ import de.vawi.kuechenchefApp.entities.*;
  */
 public class DummySpeise {
     
-    private Speise speise = new Speise();
+    private Dish speise = new Dish();
     
     
     public DummySpeise beliebtheit(int beliebtheit){
@@ -24,12 +24,12 @@ public class DummySpeise {
         return this;
     }
     
-    public DummySpeise mitZutat(Zutat zutat){
+    public DummySpeise mitZutat(Ingredient zutat){
         speise.addZutat(zutat);
         return this;
     }
 
-    public Speise erstelle() {
+    public Dish erstelle() {
         return speise;
     }
     

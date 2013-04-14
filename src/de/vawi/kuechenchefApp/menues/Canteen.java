@@ -1,4 +1,4 @@
-package de.vawi.kuechenchefApp.speiseplan;
+package de.vawi.kuechenchefApp.menues;
 
 
 /**
@@ -7,7 +7,7 @@ package de.vawi.kuechenchefApp.speiseplan;
  * @author Beer
  * @version 30.01.2013
  */
-public enum Kantine
+public enum Canteen
 {
     MUELHEIM_AN_DER_RUHR(300), ESSEN(500);
     
@@ -17,7 +17,7 @@ public enum Kantine
     private double anteilDrittbeliebtestesGerichte = 0.25;
     private double faktorSicherheitsbstand = 1.5;
     
-    Kantine(int mitarbeiterAnzahl){
+    Canteen(int mitarbeiterAnzahl){
         this.mitarbeiterAnzahl = mitarbeiterAnzahl;
     }
     

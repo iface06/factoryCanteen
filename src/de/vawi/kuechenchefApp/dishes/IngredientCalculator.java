@@ -1,8 +1,8 @@
-package de.vawi.kuechenchefApp.speisen;
+package de.vawi.kuechenchefApp.dishes;
 
 import de.vawi.kuechenchefApp.entities.*;
-import de.vawi.kuechenchefApp.speiseplan.Menu;
-import de.vawi.kuechenchefApp.speiseplan.Tag;
+import de.vawi.kuechenchefApp.menues.Menu;
+import de.vawi.kuechenchefApp.menues.Day;
 import java.util.*;
 
 
@@ -12,9 +12,9 @@ import java.util.*;
  * @author Tatsch
  * @version 29.01.2013
  */
-public class ZutatenKalkulator {
+public class IngredientCalculator {
 
-    private Map<Nahrungsmittel, Double> mengen = new HashMap<>();
+    private Map<Food, Double> mengen = new HashMap<>();
 
     /**
      * Auf Basis eines Speiseplans werden in dieser Methode für jede angebotene
@@ -25,8 +25,8 @@ public class ZutatenKalkulator {
      * @param plan (erstellter Speiseplan)
      * @return benötigte Mengen
      */
-    public Map<Nahrungsmittel, Double> berechneGesamtMengen(Menu plan) {
-        for (Tag tag : plan) {
+    public Map<Food, Double> berechneGesamtMengen(Menu plan) {
+        for (Day tag : plan) {
             berechneSpeise(tag.getBeliebtesteSpeise(), plan.getKantine().berechneAnzahlFuerBeliebtestesGericht());
             berechneSpeise(tag.getZweitbeliebtesteSpeise(), plan.getKantine().berechneAnzahlFuerZweitBeliebtestesGericht());
             berechneSpeise(tag.getDrittbeliebtesteSpeise(), plan.getKantine().berechneAnzahlFuerDrittBeliebtestesGericht());
@@ -34,16 +34,16 @@ public class ZutatenKalkulator {
         return mengen;
     }
 
-    private void berechneSpeise(Speise speise, int anzahlGerichte) {
-        List<Zutat> zutaten = speise.getZutaten();
-        for (Zutat zutat : zutaten) {
+    private void berechneSpeise(Dish speise, int anzahlGerichte) {
+        List<Ingredient> zutaten = speise.getZutaten();
+        for (Ingredient zutat : zutaten) {
             Double gesamtMenge = getGesamtMengeFuer(zutat.getNahrungsmittel());
             gesamtMenge += zutat.getMenge() * anzahlGerichte;
             mengen.put(zutat.getNahrungsmittel(), Math.ceil(gesamtMenge));
         }
     }
 
-    private Double getGesamtMengeFuer(Nahrungsmittel nahrungsmittel) {
+    private Double getGesamtMengeFuer(Food nahrungsmittel) {
         // double berechneteMenge = zutat.getMenge();
         // Menge muss noch mit Sicherheitsfaktor multipliziert werden und anschließend gerundet werden
         Double gesamtMenge = mengen.get(nahrungsmittel);

@@ -1,5 +1,5 @@
 
-package de.vawi.kuechenchefApp.einkaufsliste;
+package de.vawi.kuechenchefApp.purchaseList;
 
 import org.junit.*;
 import static org.junit.Assert.*;

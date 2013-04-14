@@ -1,7 +1,7 @@
-package de.vawi.kuechenchefApp.kostenaufstellung;
+package de.vawi.kuechenchefApp.costs;
 
-import de.vawi.kuechenchefApp.einkaufsliste.EinkaufslistenPosition;
-import de.vawi.kuechenchefApp.entities.Lieferant;
+import de.vawi.kuechenchefApp.purchaseList.PurchaseListPosition;
+import de.vawi.kuechenchefApp.entities.Supplier;
 import java.util.*;
 
 /**
@@ -13,14 +13,14 @@ import java.util.*;
  */
 public class Kostenaufstellung {
 
-    Lieferant lieferant;
-    List<EinkaufslistenPosition> einkaufslistenPositionen;
+    Supplier lieferant;
+    List<PurchaseListPosition> einkaufslistenPositionen;
 
     /**
      * Gibt Lieferant zurück
      * @return lieferant
      */
-    public Lieferant getLieferant() {
+    public Supplier getLieferant() {
         return this.lieferant;
     }
 
@@ -28,7 +28,7 @@ public class Kostenaufstellung {
      *
      * @param lieferant
      */
-    public void setLieferant(Lieferant lieferant) {
+    public void setLieferant(Supplier lieferant) {
         this.lieferant = lieferant;
     }
 
@@ -38,7 +38,7 @@ public class Kostenaufstellung {
      * 
      * @return einkaufslistePositionen
      */
-    public List<EinkaufslistenPosition> getEinkaufslistenPositionsListe() {
+    public List<PurchaseListPosition> getEinkaufslistenPositionsListe() {
         return this.einkaufslistenPositionen;
     }
 
@@ -46,7 +46,7 @@ public class Kostenaufstellung {
      *
      * @param einkaufslistenPositionen
      */
-    public void setEinkaufslistenPositionsListe(List<EinkaufslistenPosition> einkaufslistenPositionen) {
+    public void setEinkaufslistenPositionsListe(List<PurchaseListPosition> einkaufslistenPositionen) {
         this.einkaufslistenPositionen = einkaufslistenPositionen;
     }
 
@@ -71,7 +71,7 @@ public class Kostenaufstellung {
     public double berechneEinkaufsKostenProLieferant() {
         double einkaufsKosten = 0.0;
 
-        for (EinkaufslistenPosition position : einkaufslistenPositionen) {
+        for (PurchaseListPosition position : einkaufslistenPositionen) {
             einkaufsKosten += position.getPreis();
         }
         return einkaufsKosten;

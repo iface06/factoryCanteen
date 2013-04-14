@@ -1,7 +1,7 @@
-package de.vawi.kuechenchefApp.lieferanten;
+package de.vawi.kuechenchefApp.entities;
 
-import de.vawi.kuechenchefApp.entities.Lieferant;
-import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
+import de.vawi.kuechenchefApp.entities.Supplier;
+import de.vawi.kuechenchefApp.entities.Food;
 
 /**
  * Diese Klasse stellt eine Position in der Preisliste des Lieferanten dar;
@@ -13,22 +13,22 @@ import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
 public class PreisListenPosition {
 
     private double gebindeGroesse;
-    private Nahrungsmittel nahrungsmittel;
+    private Food nahrungsmittel;
     private double preis;
     private int vorratsBestand;
-    private Lieferant lieferant;
+    private Supplier lieferant;
 
     /**
      * @return Lieferant der Preislisten-Position
      */
-    public Lieferant getLieferant() {
+    public Supplier getLieferant() {
         return lieferant;
     }
 
     /**
      * @param lieferant Lieferant der Preislisten-Position
      */
-    public void setLieferant(Lieferant lieferant) {
+    public void setLieferant(Supplier lieferant) {
         this.lieferant = lieferant;
     }
 
@@ -50,14 +50,14 @@ public class PreisListenPosition {
     /**
      * @return Angebotenes Nahrungsmittel
      */
-    public Nahrungsmittel getNahrungsmittel() {
+    public Food getNahrungsmittel() {
         return nahrungsmittel;
     }
 
     /**
      * @param nahrungsmittel Angebotenes Nahrungsmittel
      */
-    public void setNahrungsmittel(Nahrungsmittel nahrungsmittel) {
+    public void setNahrungsmittel(Food nahrungsmittel) {
         this.nahrungsmittel = nahrungsmittel;
     }
 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Struebe
  * @version 30.12.2012
  */
-public class Bauer extends Lieferant {
+public class Farmer extends Supplier {
 
     public static double PAUSCHALE_PRO_KILOMETER = 2.0;
 

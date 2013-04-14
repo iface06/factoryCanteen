@@ -1,4 +1,4 @@
-package de.vawi.kuechenchefApp.speiseplan;
+package de.vawi.kuechenchefApp.menues;
 
 
 import java.util.*;
@@ -9,10 +9,10 @@ import java.util.*;
  * @author Beer 
  * @version 30.01.2013
  */
-public class Menu implements Iterable<Tag>
+public class Menu implements Iterable<Day>
 {
-    private List<Tag> tageMitGerichten = new ArrayList<>();
-    private Kantine kantine;
+    private List<Day> tageMitGerichten = new ArrayList<>();
+    private Canteen kantine;
     
     /**
      * Konstruktor
@@ -26,7 +26,7 @@ public class Menu implements Iterable<Tag>
      * @param kantine gibt die Kantine an zu dem der Plan erzeugt werden.
      * @param tageMitGerichten eine Liste mit Tagen, entsprechend der Anzahl an Tagen, die der Plan beinhalten soll
      */
-    public Menu(Kantine kantine, List<Tag> tageMitGerichten){
+    public Menu(Canteen kantine, List<Day> tageMitGerichten){
         this.kantine = kantine;
         this.tageMitGerichten = tageMitGerichten;
     }
@@ -34,14 +34,14 @@ public class Menu implements Iterable<Tag>
     /**
      * @return  Gibt die die Liste mit den Tagen der Planungsperiode zurueck.
      */
-    public List<Tag> getTageMitGerichten(){
+    public List<Day> getTageMitGerichten(){
         return this.tageMitGerichten;
     }  
     
     /**
      * @return  Gibt die zugeordnete Kantine zurueck
      */
-    public Kantine getKantine(){
+    public Canteen getKantine(){
         return this.kantine;
     }
     
@@ -49,7 +49,7 @@ public class Menu implements Iterable<Tag>
      * Setzt die zugehoerige Kantine
      * @param kantine 
      */
-    public void setKantine(Kantine kantine) {
+    public void setKantine(Canteen kantine) {
         this.kantine = kantine;
     }
     
@@ -57,7 +57,7 @@ public class Menu implements Iterable<Tag>
      * Fuegt dem Plan einen Tag hinzu
      * @param tag 
      */
-    public void fuegeTagHinzu(Tag tag){
+    public void fuegeTagHinzu(Day tag){
         this.tageMitGerichten.add(tag);
     }
     
@@ -66,7 +66,7 @@ public class Menu implements Iterable<Tag>
      * @return 
      */
     @Override
-    public Iterator<Tag> iterator() {
+    public Iterator<Day> iterator() {
         return tageMitGerichten.iterator();
     }
 

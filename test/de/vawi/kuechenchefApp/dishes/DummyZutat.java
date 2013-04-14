@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.vawi.kuechenchefApp.speisen;
+package de.vawi.kuechenchefApp.dishes;
 
-import de.vawi.kuechenchefApp.entities.Zutat;
-import de.vawi.kuechenchefApp.entities.Einheit;
-import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
-import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
+import de.vawi.kuechenchefApp.entities.Ingredient;
+import de.vawi.kuechenchefApp.entities.Unit;
+import de.vawi.kuechenchefApp.entities.Food;
+import de.vawi.kuechenchefApp.foods.SpeisenUndNahrungsmittelKategorie;
 
 /**
  *
@@ -15,14 +15,14 @@ import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
  */
 public class DummyZutat {
 
-    private Zutat zutat = new Zutat();
-    private Nahrungsmittel nahrungsmittel = new Nahrungsmittel();
+    private Ingredient zutat = new Ingredient();
+    private Food nahrungsmittel = new Food();
     
     public DummyZutat name(String name){
         nahrungsmittel.setName(name);
         return this;
     }
-    public DummyZutat einheit(Einheit einheit){
+    public DummyZutat einheit(Unit einheit){
         nahrungsmittel.setEinheit(einheit);
         return this;
     }
@@ -42,20 +42,20 @@ public class DummyZutat {
         return this;
     }
     
-    public Zutat erstelle(){
+    public Ingredient erstelle(){
         zutat.setNahrungsmittel(nahrungsmittel);
         return zutat;
     }
     
-    public static Zutat kartoffeln(){
-        return new DummyZutat().name("Kartoffeln").einheit(Einheit.GRAMM).menge(1000).kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).erstelle();
+    public static Ingredient kartoffeln(){
+        return new DummyZutat().name("Kartoffeln").einheit(Unit.GRAMM).menge(1000).kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).erstelle();
     }
     
-    public static Zutat steaks(){
-        return new DummyZutat().name("Steaks").einheit(Einheit.GRAMM).menge(500).kategorie(SpeisenUndNahrungsmittelKategorie.FLEISCH).erstelle();
+    public static Ingredient steaks(){
+        return new DummyZutat().name("Steaks").einheit(Unit.GRAMM).menge(500).kategorie(SpeisenUndNahrungsmittelKategorie.FLEISCH).erstelle();
     }
     
-    public static Zutat garnelen(){
-        return new DummyZutat().name("Garnelen").einheit(Einheit.GRAMM).menge(200).kategorie(SpeisenUndNahrungsmittelKategorie.FISCH).erstelle();
+    public static Ingredient garnelen(){
+        return new DummyZutat().name("Garnelen").einheit(Unit.GRAMM).menge(200).kategorie(SpeisenUndNahrungsmittelKategorie.FISCH).erstelle();
     }
 }

@@ -10,7 +10,7 @@ package de.vawi.kuechenchefApp.entities;
  * @author Struebe
  * @version 30.12.2012
  */
-public class Grosshaendler extends Lieferant {
+public class Distributer extends Supplier {
 
     /**
      * Diese Methode berechnet die Lieferkosten eines Großhändlers.

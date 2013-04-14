@@ -1,7 +1,7 @@
-package de.vawi.kuechenchefApp.einkaufsliste;
+package de.vawi.kuechenchefApp.purchaseList;
 
-import de.vawi.kuechenchefApp.entities.Lieferant;
-import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
+import de.vawi.kuechenchefApp.entities.Supplier;
+import de.vawi.kuechenchefApp.entities.Food;
 import java.util.*;
 
 /**
@@ -10,16 +10,16 @@ import java.util.*;
  * @author Lepping
  * @version 29.01.2013
  */
-public class Einkaufsliste implements Iterable<EinkaufslistenPosition> {
+public class PurchaseList implements Iterable<PurchaseListPosition> {
 
-    private List<EinkaufslistenPosition> positionen = new ArrayList<EinkaufslistenPosition>();
+    private List<PurchaseListPosition> positionen = new ArrayList<PurchaseListPosition>();
 
     /**
      * Fügt eine Positione zu der Einkaufsliste hinzu.
      *
      * @param position Position der Einkaufsliste
      */
-    public void hinzufügenEinkaufslistenPosition(EinkaufslistenPosition position) {
+    public void hinzufügenEinkaufslistenPosition(PurchaseListPosition position) {
         positionen.add(position);
     }
 
@@ -29,7 +29,7 @@ public class Einkaufsliste implements Iterable<EinkaufslistenPosition> {
      * 
      * @return Positionen der Einkaufsliste
      */
-    public List<EinkaufslistenPosition> getPositionen() {
+    public List<PurchaseListPosition> getPositionen() {
         return positionen;
     }
 
@@ -40,14 +40,14 @@ public class Einkaufsliste implements Iterable<EinkaufslistenPosition> {
      * @param nahrungsmittel
      * @return position
      */
-    protected EinkaufslistenPosition findePositionDurchNahrungsmittel(Nahrungsmittel nahrungsmittel) {
-        for (EinkaufslistenPosition position : positionen) {
+    protected PurchaseListPosition findePositionDurchNahrungsmittel(Food nahrungsmittel) {
+        for (PurchaseListPosition position : positionen) {
             if (position.getName().equals(nahrungsmittel.getName())) {
                 return position;
             }
         }
 
-        EinkaufslistenPosition position = new EinkaufslistenPosition(nahrungsmittel);
+        PurchaseListPosition position = new PurchaseListPosition(nahrungsmittel);
         hinzufügenEinkaufslistenPosition(position);
         return position;
 
@@ -58,7 +58,7 @@ public class Einkaufsliste implements Iterable<EinkaufslistenPosition> {
      * @return Iterator über die Positionen der Einkaufsliste
      */
     @Override
-    public Iterator<EinkaufslistenPosition> iterator() {
+    public Iterator<PurchaseListPosition> iterator() {
         return positionen.iterator();
     }
 
@@ -69,9 +69,9 @@ public class Einkaufsliste implements Iterable<EinkaufslistenPosition> {
      * 
      * @return Liste an Lieferanten (bei denen mindestens eine Zutat bestellt wird)
      */
-    public Set<Lieferant> holeLieferanten() {
-        Set<Lieferant> lieferanten = new HashSet<>();
-        for (EinkaufslistenPosition position : positionen) {
+    public Set<Supplier> holeLieferanten() {
+        Set<Supplier> lieferanten = new HashSet<>();
+        for (PurchaseListPosition position : positionen) {
             lieferanten.add(position.getLieferant());
         }
         return lieferanten;
@@ -85,9 +85,9 @@ public class Einkaufsliste implements Iterable<EinkaufslistenPosition> {
      * @param lieferant
      * @return Gibt die Liste an Einkaufslistenpositionen für einen bestimmten Lieferanten zurück
      */
-    public List<EinkaufslistenPosition> holeEinkaufslistenpositionenVonLieferant(Lieferant lieferant) {
-        List<EinkaufslistenPosition> positionenZuLieferant = new ArrayList<>();
-        for (EinkaufslistenPosition position : this.positionen) {
+    public List<PurchaseListPosition> holeEinkaufslistenpositionenVonLieferant(Supplier lieferant) {
+        List<PurchaseListPosition> positionenZuLieferant = new ArrayList<>();
+        for (PurchaseListPosition position : this.positionen) {
             if (position.getLieferant().equals(lieferant)) {
                 positionenZuLieferant.add(position);
             }

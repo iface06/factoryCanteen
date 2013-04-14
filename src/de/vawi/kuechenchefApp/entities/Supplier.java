@@ -12,7 +12,7 @@ import java.util.*;
  * @author Struebe
  * @version 30.12.2012
  */
-public abstract class Lieferant {
+public abstract class Supplier {
 
     private String name;
     private double lieferKostenFaktor;
@@ -76,7 +76,7 @@ public abstract class Lieferant {
 
     @Override
     public boolean equals(Object obj) {
-        Lieferant lieferant = (Lieferant) obj;
+        Supplier lieferant = (Supplier) obj;
         return this.name.equals(lieferant.name);
     }
 

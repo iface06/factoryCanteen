@@ -1,9 +1,8 @@
-package de.vawi.kuechenchefApp.kostenaufstellung;
+package de.vawi.kuechenchefApp.costs;
 
-import de.vawi.kuechenchefApp.einkaufsliste.*;
-import java.util.List;
+import de.vawi.kuechenchefApp.purchaseList.*;
+import static org.junit.Assert.assertEquals;
 import org.junit.*;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -11,7 +10,7 @@ import static org.junit.Assert.*;
  */
 public class KostenaufstellungErstellerTest {
 
-    private Einkaufsliste einkaufsliste;
+    private PurchaseList einkaufsliste;
     
     @Before
     public void initEinkaufsliste(){
@@ -61,9 +60,9 @@ public class KostenaufstellungErstellerTest {
         assertEquals(30.0, ubersicht.getKostenaufstellungenProLieferant().get(1).berechneLieferKostenProLieferant(), 0.001);
     }
 
-    private Einkaufsliste erstelleEinkaufsliste(EinkaufslistenPosition... positionen) {
-        Einkaufsliste liste = new Einkaufsliste();
-        for (EinkaufslistenPosition position : positionen) {
+    private PurchaseList erstelleEinkaufsliste(PurchaseListPosition... positionen) {
+        PurchaseList liste = new PurchaseList();
+        for (PurchaseListPosition position : positionen) {
             liste.hinzufügenEinkaufslistenPosition(position);            
         }
         return liste;
