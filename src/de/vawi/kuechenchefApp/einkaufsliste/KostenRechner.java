@@ -1,6 +1,6 @@
 package de.vawi.kuechenchefApp.einkaufsliste;
 
-import de.vawi.kuechenchefApp.lieferanten.Lieferant;
+import de.vawi.kuechenchefApp.entities.Lieferant;
 import java.util.List;
 
 

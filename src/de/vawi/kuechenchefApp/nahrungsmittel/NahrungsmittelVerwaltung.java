@@ -1,5 +1,6 @@
 package de.vawi.kuechenchefApp.nahrungsmittel;
 
+import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
 import java.util.HashSet;
 import java.util.Set;
 

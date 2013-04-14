@@ -1,6 +1,7 @@
 package de.vawi.kuechenchefApp.speisen;
 
 import de.vawi.kuechenchefApp.PlanungsPeriode;
+import de.vawi.kuechenchefApp.entities.Speise;
 import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
 import static de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie.*;
 import java.util.*;

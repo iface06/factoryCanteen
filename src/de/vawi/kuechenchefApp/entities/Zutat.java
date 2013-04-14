@@ -1,7 +1,5 @@
-package de.vawi.kuechenchefApp.speisen;
+package de.vawi.kuechenchefApp.entities;
 
-import de.vawi.kuechenchefApp.nahrungsmittel.Einheit;
-import de.vawi.kuechenchefApp.nahrungsmittel.Nahrungsmittel;
 import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
 
 /**

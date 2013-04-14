@@ -1,5 +1,7 @@
 package de.vawi.kuechenchefApp.lieferanten;
 
+import de.vawi.kuechenchefApp.entities.Lieferant;
+import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
 import de.vawi.kuechenchefApp.dateien.CsvZeileSeparator;
 import de.vawi.kuechenchefApp.dateien.Parse;
 import de.vawi.kuechenchefApp.nahrungsmittel.*;

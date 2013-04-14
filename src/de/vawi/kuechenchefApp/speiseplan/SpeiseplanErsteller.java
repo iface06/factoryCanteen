@@ -1,8 +1,9 @@
 package de.vawi.kuechenchefApp.speiseplan;
 
+import de.vawi.kuechenchefApp.entities.Zutat;
 import de.vawi.kuechenchefApp.PlanungsPeriode;
+import de.vawi.kuechenchefApp.entities.*;
 import de.vawi.kuechenchefApp.speisen.ZutatenKalkulator;
-import de.vawi.kuechenchefApp.nahrungsmittel.Nahrungsmittel;
 import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
 import de.vawi.kuechenchefApp.speisen.*;
 import java.util.*;

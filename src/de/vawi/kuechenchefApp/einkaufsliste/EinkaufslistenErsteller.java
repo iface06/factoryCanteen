@@ -1,8 +1,9 @@
 package de.vawi.kuechenchefApp.einkaufsliste;
 
+import de.vawi.kuechenchefApp.entities.Lieferant;
 import de.vawi.kuechenchefApp.speisen.ZutatenKalkulator;
 import de.vawi.kuechenchefApp.lieferanten.*;
-import de.vawi.kuechenchefApp.nahrungsmittel.Nahrungsmittel;
+import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
 import de.vawi.kuechenchefApp.speiseplan.Speiseplan;
 import java.util.*;
 

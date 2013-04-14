@@ -2,9 +2,7 @@
 
 package de.vawi.kuechenchefApp.speisen;
 
-import de.vawi.kuechenchefApp.speisen.SpeisenErsteller;
-import de.vawi.kuechenchefApp.speisen.Speise;
-import de.vawi.kuechenchefApp.speiseplan.Kantine;
+import de.vawi.kuechenchefApp.entities.Speise;
 import org.junit.*;
 import static org.junit.Assert.*;
 

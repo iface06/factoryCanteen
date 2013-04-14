@@ -1,6 +1,5 @@
 package de.vawi.kuechenchefApp.speiseplan;
 
-import de.vawi.kuechenchefApp.speisen.Speise;
 import java.util.*;
 /**
  * Ein Speiseplan für eine Planungsperiode. Solch ein Plan ist einer Kantine zugeordnet und haelt eine Liste von Tagen

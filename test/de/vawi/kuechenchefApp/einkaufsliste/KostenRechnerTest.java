@@ -1,6 +1,6 @@
 package de.vawi.kuechenchefApp.einkaufsliste;
 
-import de.vawi.kuechenchefApp.nahrungsmittel.Einheit;
+import de.vawi.kuechenchefApp.entities.Einheit;
 import org.junit.*;
 import static org.junit.Assert.*;
 

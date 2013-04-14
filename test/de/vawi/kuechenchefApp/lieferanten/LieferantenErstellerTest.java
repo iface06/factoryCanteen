@@ -2,6 +2,9 @@
 
 package de.vawi.kuechenchefApp.lieferanten;
 
+import de.vawi.kuechenchefApp.entities.Grosshaendler;
+import de.vawi.kuechenchefApp.entities.Lieferant;
+import de.vawi.kuechenchefApp.entities.Bauer;
 import de.vawi.kuechenchefApp.dateien.CsvZeileSeparator;
 import org.junit.*;
 import static org.junit.Assert.*;

@@ -58,12 +58,6 @@ public class KuechenchefApp {
         return prozess;
     }
 
-    private static void exportiereErgebnisse(ProzessSteuerung steuerung) {
-        new SpeiseplanExport().export(steuerung.getSpeiseplaene());
-        new EinkaufslistenExport().export(steuerung.getEinkaufsliste());
-        new KostenaufstellungExport().export(steuerung.getKostenUbersicht());
-    }
-
     /**
      * Startet den Import und startet die Prozesssteuerung
      * @param dateiOrdner
@@ -74,6 +68,5 @@ public class KuechenchefApp {
         ProzessSteuerung steuerung = erstelleProzessSteuerung();
         steuerung.start();
 
-        exportiereErgebnisse(steuerung);
     }
 }

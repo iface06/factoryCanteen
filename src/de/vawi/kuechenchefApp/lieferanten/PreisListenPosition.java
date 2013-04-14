@@ -1,6 +1,7 @@
 package de.vawi.kuechenchefApp.lieferanten;
 
-import de.vawi.kuechenchefApp.nahrungsmittel.Nahrungsmittel;
+import de.vawi.kuechenchefApp.entities.Lieferant;
+import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
 
 /**
  * Diese Klasse stellt eine Position in der Preisliste des Lieferanten dar;

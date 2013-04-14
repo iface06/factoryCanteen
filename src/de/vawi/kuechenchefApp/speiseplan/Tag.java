@@ -1,8 +1,6 @@
 package de.vawi.kuechenchefApp.speiseplan;
 
-import de.vawi.kuechenchefApp.speisen.Speise;
-
-
+import de.vawi.kuechenchefApp.entities.Speise;
 
 /**
  * Diese Klasse repraensntiert einen Tag innerhalb eines Speiseplans

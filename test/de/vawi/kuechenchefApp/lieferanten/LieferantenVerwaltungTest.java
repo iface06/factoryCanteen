@@ -1,7 +1,9 @@
 package de.vawi.kuechenchefApp.lieferanten;
 
-import de.vawi.kuechenchefApp.nahrungsmittel.Einheit;
-import de.vawi.kuechenchefApp.nahrungsmittel.Nahrungsmittel;
+import de.vawi.kuechenchefApp.entities.Lieferant;
+import de.vawi.kuechenchefApp.entities.Bauer;
+import de.vawi.kuechenchefApp.entities.Einheit;
+import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
 import java.util.*;
 import static org.junit.Assert.*;
 import org.junit.*;

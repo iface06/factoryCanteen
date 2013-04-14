@@ -1,7 +1,7 @@
 package de.vawi.kuechenchefApp.kostenaufstellung;
 
 import de.vawi.kuechenchefApp.einkaufsliste.EinkaufslistenPosition;
-import de.vawi.kuechenchefApp.lieferanten.Lieferant;
+import de.vawi.kuechenchefApp.entities.Lieferant;
 import java.util.*;
 
 /**

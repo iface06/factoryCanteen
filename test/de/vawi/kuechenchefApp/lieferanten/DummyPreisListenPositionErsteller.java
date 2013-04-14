@@ -2,6 +2,11 @@
 
 package de.vawi.kuechenchefApp.lieferanten;
 
+import de.vawi.kuechenchefApp.entities.Grosshaendler;
+import de.vawi.kuechenchefApp.entities.Lieferant;
+import de.vawi.kuechenchefApp.entities.Bauer;
+import de.vawi.kuechenchefApp.entities.Nahrungsmittel;
+import de.vawi.kuechenchefApp.entities.Einheit;
 import de.vawi.kuechenchefApp.nahrungsmittel.*;
 import org.junit.Ignore;
 

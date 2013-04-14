@@ -2,8 +2,8 @@
 
 package de.vawi.kuechenchefApp.speisen;
 
+import de.vawi.kuechenchefApp.entities.*;
 import de.vawi.kuechenchefApp.nahrungsmittel.SpeisenUndNahrungsmittelKategorie;
-import de.vawi.kuechenchefApp.speisen.Speise;
 import java.util.*;
 import org.junit.*;
 import static org.junit.Assert.*;

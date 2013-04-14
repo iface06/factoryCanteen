@@ -4,6 +4,7 @@
  */
 package de.vawi.kuechenchefApp.speisen;
 
+import de.vawi.kuechenchefApp.entities.Speise;
 import de.vawi.kuechenchefApp.speiseplan.Kantine;
 import de.vawi.kuechenchefApp.speiseplan.Speiseplan;
 import de.vawi.kuechenchefApp.speiseplan.Tag;

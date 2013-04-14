@@ -20,7 +20,6 @@ import org.junit.runners.Suite;
     de.vawi.kuechenchefApp.einkaufsliste.KostenRechnerTest.class,
     de.vawi.kuechenchefApp.kostenaufstellung.KostenaufstellungTest.class,
     de.vawi.kuechenchefApp.kostenaufstellung.KostenaufstellungErstellerTest.class,
-    de.vawi.kuechenchefApp.kostenaufstellung.KostenUebersichtDruckerTest.class,
     de.vawi.kuechenchefApp.lieferanten.PreisListenPositionTest.class,
     de.vawi.kuechenchefApp.lieferanten.PreisListenPositionErstellerTest.class,
     de.vawi.kuechenchefApp.lieferanten.LieferantenErstellerTest.class,
@@ -32,9 +31,7 @@ import org.junit.runners.Suite;
     de.vawi.kuechenchefApp.speisen.SpeisenVerwaltungTest.class,
     de.vawi.kuechenchefApp.speisen.SpeisenErstellerTest.class,
     de.vawi.kuechenchefApp.speiseplan.SpeiseplanErstellerTest.class,
-    de.vawi.kuechenchefApp.speiseplan.SpeiseplanExportTest.class,
     de.vawi.kuechenchefApp.speiseplan.KantineTest.class,
-    de.vawi.kuechenchefApp.speiseplan.SpeiseplanDruckerTest.class,
     AsciiTableTest.class
 })
 

@@ -4,6 +4,8 @@
  */
 package de.vawi.kuechenchefApp.speisen;
 
+import de.vawi.kuechenchefApp.entities.*;
+
 /**
  *
  * @author Tatsch
