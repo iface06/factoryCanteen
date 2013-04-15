@@ -8,7 +8,7 @@ import org.junit.*;
  *
  * @author Sonja
  */
-public class KostenaufstellungErstellerTest {
+public class CostReportCreatorTest {
 
     private PurchaseList einkaufsliste;
     
@@ -20,18 +20,18 @@ public class KostenaufstellungErstellerTest {
     @Test
     public void testBerechneGesamtKosten() {
  
-        KostenaufstellungErsteller ersteller = new KostenaufstellungErsteller();
+        CostReportCreator ersteller = new CostReportCreator();
         ersteller.setEinkaufsliste(einkaufsliste);
-        KostenUebersicht ubersicht = ersteller.erstelle();
+        CostReport ubersicht = ersteller.erstelle();
         
         assertEquals(850.0, ubersicht.getGesamtKosten(), 0.001);
     }
 
     @Test
     public void testGruppierungNachLieferanten() {    
-        KostenaufstellungErsteller ersteller = new KostenaufstellungErsteller();
+        CostReportCreator ersteller = new CostReportCreator();
         ersteller.setEinkaufsliste(einkaufsliste);
-        KostenUebersicht ubersicht = ersteller.erstelle();
+        CostReport ubersicht = ersteller.erstelle();
         
         assertEquals(2, ubersicht.getKostenaufstellungenProLieferant().size());
         assertEquals("Heinrich", ubersicht.getKostenaufstellungenProLieferant().get(0).getLieferant().getName());
@@ -40,9 +40,9 @@ public class KostenaufstellungErstellerTest {
     
     @Test
     public void testBerechneEinkaufsKostenProLieferant() {
-        KostenaufstellungErsteller ersteller = new KostenaufstellungErsteller();
+        CostReportCreator ersteller = new CostReportCreator();
         ersteller.setEinkaufsliste(einkaufsliste);
-        KostenUebersicht ubersicht = ersteller.erstelle();
+        CostReport ubersicht = ersteller.erstelle();
         
         assertEquals(2, ubersicht.getKostenaufstellungenProLieferant().size());
         assertEquals(500.0, ubersicht.getKostenaufstellungenProLieferant().get(0).berechneEinkaufsKostenProLieferant(), 0.001);
@@ -51,9 +51,9 @@ public class KostenaufstellungErstellerTest {
     
     @Test
     public void testBerechneLieferKostenProLieferant() {
-        KostenaufstellungErsteller ersteller = new KostenaufstellungErsteller();
+        CostReportCreator ersteller = new CostReportCreator();
         ersteller.setEinkaufsliste(einkaufsliste);
-        KostenUebersicht ubersicht = ersteller.erstelle();
+        CostReport ubersicht = ersteller.erstelle();
         
         assertEquals(2, ubersicht.getKostenaufstellungenProLieferant().size());
         assertEquals(20.0, ubersicht.getKostenaufstellungenProLieferant().get(0).berechneLieferKostenProLieferant(), 0.001);

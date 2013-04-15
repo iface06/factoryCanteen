@@ -6,19 +6,19 @@ import de.vawi.kuechenchefApp.entities.Supplier;
 import java.util.*;
 
 /**
- * Erstellt anhand einer Einkaufsliste die entsprechende Kostenaufstellung.
+ * Erstellt anhand einer Einkaufsliste die entsprechende CostPosition.
  *
  * @author Struebe
  * @version 27.01.2013
  */
-public class KostenaufstellungErsteller {
+public class CostReportCreator {
 
     private PurchaseList liste;
-    private KostenUebersicht uebersicht;
+    private CostReport uebersicht;
 
     /**
      * Setzt die Einkaufsliste. Diese ist die Basis für die Berechnung der
-     * Kostenaufstellung.
+     * CostPosition.
      *
      * @param liste Die zu bearbeitende Einkaufsliste.
      */
@@ -32,8 +32,8 @@ public class KostenaufstellungErsteller {
      * 
      * @return uebersicht
      */
-    public KostenUebersicht erstelle(){
-        uebersicht = new KostenUebersicht();
+    public CostReport erstelle(){
+        uebersicht = new CostReport();
         kostenaufstellungNachLieferant();
         berechneGesamtKosten();
         return uebersicht;
@@ -48,7 +48,7 @@ public class KostenaufstellungErsteller {
     public void berechneGesamtKosten() {
         double gesamtKosten = 0.0;
         double lieferKosten = 0.0;
-        for (Kostenaufstellung kostenaufstellung : uebersicht.getKostenaufstellungenProLieferant()) {
+        for (CostPosition kostenaufstellung : uebersicht.getKostenaufstellungenProLieferant()) {
             gesamtKosten += kostenaufstellung.berechneGesamtKostenProLieferant();
             lieferKosten += kostenaufstellung.berechneLieferKostenProLieferant();
             
@@ -62,35 +62,35 @@ public class KostenaufstellungErsteller {
      * dass nur die Kosten eines bestimmten Lieferanten ausgegeben werden.
      *
      * @param lieferant der Lieferant, nach dem gefiltert werden soll.
-     * @return Gibt die Kostenaufstellung für den gewünschten Lieferanten wider.
+     * @return Gibt die CostPosition für den gewünschten Lieferanten wider.
      */
-    private Kostenaufstellung filtereNachLieferanten(Supplier lieferant) {
+    private CostPosition filtereNachLieferanten(Supplier lieferant) {
         List<PurchaseListPosition> lieferantenFilter = new ArrayList<>();
         for (PurchaseListPosition position : liste.getPositionen()) {
             if (position.getLieferant().equals(lieferant)) {
                 lieferantenFilter.add(position);
             }
         }
-        Kostenaufstellung kostenaufstellungProLieferanten = new Kostenaufstellung();
+        CostPosition kostenaufstellungProLieferanten = new CostPosition();
         kostenaufstellungProLieferanten.setLieferant(lieferant);
         kostenaufstellungProLieferanten.setEinkaufslistenPositionsListe(lieferantenFilter);
         return kostenaufstellungProLieferanten;
     }
 
     /**
-     * Diese Methode erstellt aus der Kostenaufstellung pro Lieferant eine
-     * Kostenaufstellung aller Lieferanten, nach Lieferanten sortiert.
+     * Diese Methode erstellt aus der CostPosition pro Lieferant eine
+     * CostPosition aller Lieferanten, nach Lieferanten sortiert.
      *
-     * @return Gibt eine Kostenaufstellung, die nach Lieferant sortiert ist
+     * @return Gibt eine CostPosition, die nach Lieferant sortiert ist
      * wider.
      */
     private void kostenaufstellungNachLieferant() {
-        List<Kostenaufstellung> kostenaufstellungNachLieferant = new ArrayList<>();
+        List<CostPosition> kostenaufstellungNachLieferant = new ArrayList<>();
         List<Supplier> alleBeteiligtenLieferanten = zaehleLieferantenAuf();
         int j = alleBeteiligtenLieferanten.size();
         for (int i = 0; i < j; i++) {
             Supplier lieferant = alleBeteiligtenLieferanten.get(i);
-            Kostenaufstellung temporäreSpeicherverschwendendeKostenaufstellungDamitSonjaEsVersteht = filtereNachLieferanten(lieferant);
+            CostPosition temporäreSpeicherverschwendendeKostenaufstellungDamitSonjaEsVersteht = filtereNachLieferanten(lieferant);
             kostenaufstellungNachLieferant.add(temporäreSpeicherverschwendendeKostenaufstellungDamitSonjaEsVersteht);
         }
         uebersicht.setKostenaufstellungenProLieferant(kostenaufstellungNachLieferant);   

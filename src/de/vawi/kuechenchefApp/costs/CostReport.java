@@ -8,10 +8,10 @@ import java.util.List;
  * @author Tatsch
  * @version 30.01.2013
  */
-public class KostenUebersicht {
+public class CostReport {
     private double gesamtKosten;
     private double lieferKostenGesamt;
-    private List<Kostenaufstellung> kostenaufstellungenProLieferant;
+    private List<CostPosition> kostenaufstellungenProLieferant;
 
     /**
      * Gibt Gesamtkosten zurück
@@ -48,9 +48,9 @@ public class KostenUebersicht {
 
     /**
      *
-     * @return Gibt Kostenaufstellung pro Lieferanten zurück
+     * @return Gibt CostPosition pro Lieferanten zurück
      */
-    public List<Kostenaufstellung> getKostenaufstellungenProLieferant() {
+    public List<CostPosition> getKostenaufstellungenProLieferant() {
         return kostenaufstellungenProLieferant;
     }
 
@@ -59,7 +59,7 @@ public class KostenUebersicht {
      *  
      * @param kostenaufstellungenProLieferant
      */
-    public void setKostenaufstellungenProLieferant(List<Kostenaufstellung> kostenaufstellungenProLieferant) {
+    public void setKostenaufstellungenProLieferant(List<CostPosition> kostenaufstellungenProLieferant) {
         this.kostenaufstellungenProLieferant = kostenaufstellungenProLieferant;
     }
 }

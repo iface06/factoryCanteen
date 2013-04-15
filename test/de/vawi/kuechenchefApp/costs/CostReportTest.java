@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
  *
  * @author Sonja
  */
-public class KostenaufstellungTest {
+public class CostReportTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {

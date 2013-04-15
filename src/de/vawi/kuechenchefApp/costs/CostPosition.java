@@ -11,7 +11,7 @@ import java.util.*;
  * @author Struebe
  * @version 20.01.2013
  */
-public class Kostenaufstellung {
+public class CostPosition {
 
     Supplier lieferant;
     List<PurchaseListPosition> einkaufslistenPositionen;

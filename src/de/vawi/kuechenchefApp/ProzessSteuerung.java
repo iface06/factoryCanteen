@@ -4,8 +4,8 @@ import de.vawi.kuechenchefApp.menues.MenuCreator;
 import de.vawi.kuechenchefApp.menues.Menu;
 import de.vawi.kuechenchefApp.purchaseList.PurchaseListCreator;
 import de.vawi.kuechenchefApp.purchaseList.PurchaseList;
-import de.vawi.kuechenchefApp.costs.KostenaufstellungErsteller;
-import de.vawi.kuechenchefApp.costs.KostenUebersicht;
+import de.vawi.kuechenchefApp.costs.CostReportCreator;
+import de.vawi.kuechenchefApp.costs.CostReport;
 import java.util.*;
 
 /**
@@ -17,11 +17,11 @@ class ProzessSteuerung{
 
     private MenuCreator speiseplanErsteller;
     private PurchaseListCreator einkaufslistenErsteller;
-    private KostenaufstellungErsteller kostanaufstellungErsteller;
+    private CostReportCreator kostanaufstellungErsteller;
     
     private PurchaseList einkaufsliste;
     private List<Menu> speiseplaene = new ArrayList<>();
-    private KostenUebersicht kostenUbersicht;
+    private CostReport kostenUbersicht;
     
     /**
      * Übergeben des SpeiseplanErsteller.
@@ -43,11 +43,11 @@ class ProzessSteuerung{
     }
     
     /**
-     * Übergeben des KostenaufstellungErsteller.
+     * Übergeben des CostReportCreator.
      * 
      * @param  ersteller  Ersteller-Klasse für die Kostenaufstellung
      */
-    public void setKostenaufstellungErsteller(KostenaufstellungErsteller ersteller){
+    public void setKostenaufstellungErsteller(CostReportCreator ersteller){
         this.kostanaufstellungErsteller = ersteller;
     }
     
@@ -67,7 +67,7 @@ class ProzessSteuerung{
      * 
      * @return     Kostenaufstellung
      */
-    public KostenUebersicht getKostenUbersicht() {
+    public CostReport getKostenUbersicht() {
         return kostenUbersicht;
     }
     
