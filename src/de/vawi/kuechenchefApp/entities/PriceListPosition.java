@@ -21,7 +21,7 @@ public class PriceListPosition {
     /**
      * @return Lieferant der Preislisten-Position
      */
-    public Supplier getLieferant() {
+    public Supplier getSupplier() {
         return lieferant;
     }
 
@@ -50,7 +50,7 @@ public class PriceListPosition {
     /**
      * @return Angebotenes Nahrungsmittel
      */
-    public Food getNahrungsmittel() {
+    public Food getFood() {
         return nahrungsmittel;
     }
 

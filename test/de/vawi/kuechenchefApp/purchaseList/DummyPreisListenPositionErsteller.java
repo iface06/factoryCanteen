@@ -24,8 +24,8 @@ public class DummyPreisListenPositionErsteller {
     }
     
     public DummyPreisListenPositionErsteller nahrungsmittel(String name, Unit einheit){
-        position.getNahrungsmittel().setName(name);
-        position.getNahrungsmittel().setEinheit(einheit);
+        position.getFood().setName(name);
+        position.getFood().setEinheit(einheit);
         return this;
     }
     

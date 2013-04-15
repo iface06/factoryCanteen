@@ -15,33 +15,34 @@ import org.junit.*;
  */
 public class PurchaseListCreatorTest {
 
-    private static CreatePurchaseListDao verwaltung;
 
-    @BeforeClass
-    public static void initLieferantenVerwaltung() {
+    @Before
+    public void initLieferantenVerwaltung() {
         PriceListPosition kartoffelAngebotA = new DummyPreisListenPositionErsteller().nahrungsmittel("Kartoffeln", Unit.GRAMM).bauer("Müller", 10.0).angebot(5.0, 1000.0, 10000).erstelle();
         PriceListPosition EierA = new DummyPreisListenPositionErsteller().nahrungsmittel("Eier", Unit.STUECK).bauer("Müller", 10.0).angebot(2.5, 30.0, 10000).erstelle();
         PriceListPosition kartoffelAngebotB = new DummyPreisListenPositionErsteller().nahrungsmittel("Kartoffeln", Unit.GRAMM).bauer("Meier", 5.0).angebot(7.0, 1000.0, 50000).erstelle();
         PriceListPosition moehrenAngebotB = new DummyPreisListenPositionErsteller().nahrungsmittel("Möhren", Unit.GRAMM).bauer("Müller", 10.0).angebot(2.0, 500.0, 1).erstelle();
         PriceListPosition moehrenAngebotA = new DummyPreisListenPositionErsteller().nahrungsmittel("Möhren", Unit.GRAMM).bauer("Meier", 5.0).angebot(1.0, 500.0, 3).erstelle();
         PriceListPosition moehrenAngebotC = new DummyPreisListenPositionErsteller().nahrungsmittel("Möhren", Unit.GRAMM).grosshaendler("GRANDLER", 1.1).angebot(1.5, 1000.0, 1).erstelle();
-//        verwaltung.hinzufuegenPreisListenPosition(Arrays.asList(kartoffelAngebotA, kartoffelAngebotB, moehrenAngebotA, moehrenAngebotB, moehrenAngebotC, EierA));
+        verwaltung = new DummyCreatePurchaseListDao(Arrays.asList(kartoffelAngebotA, kartoffelAngebotB, moehrenAngebotA, moehrenAngebotB, moehrenAngebotC, EierA));
     }
-    private PurchaseListCreator ersteller;
+    private PurchaseListCreator creator;
+    private CreatePurchaseListDao verwaltung;
     
     
     public void initSpeiseplaene() {
         Menu plan = erzeugeDummySpeiseplan(Canteen.MUELHEIM_AN_DER_RUHR);
         Menu plan1 = erzeugeDummySpeiseplan(Canteen.ESSEN);
-        ersteller = new PurchaseListCreator();
-        ersteller.add(plan);
-        ersteller.add(plan1);
+        creator = new PurchaseListCreator();
+        creator.setDao(verwaltung);
+        creator.add(plan);
+        creator.add(plan1);
     }
 
     @Test
     public void testErzeugeEinkauflistenPosition() {
         initSpeiseplaene();
-        PurchaseList liste = ersteller.erzeuge();
+        PurchaseList liste = creator.erzeuge();
         PurchaseListPosition position = liste.getPositionen().get(0);
 
         assertEquals(1, liste.getPositionen().size());
@@ -52,7 +53,7 @@ public class PurchaseListCreatorTest {
     @Test
     public void testFuegeGleichesNahrungsmittelHinzu() {
         initSpeiseplaene();
-        PurchaseList liste = ersteller.erzeuge();
+        PurchaseList liste = creator.erzeuge();
         PurchaseListPosition position = liste.getPositionen().get(0);
 
         assertEquals(1, liste.getPositionen().size());
@@ -69,7 +70,7 @@ public class PurchaseListCreatorTest {
     @Test
     public void testFindePreiswertestenLieferantenFuerEinkaufslistenposition() {
         initSpeiseplaene();
-        PurchaseList liste = ersteller.erzeuge();
+        PurchaseList liste = creator.erzeuge();
         assertEquals("Müller", liste.getPositionen().get(0).getLieferant().getName());
         
     }
@@ -78,7 +79,7 @@ public class PurchaseListCreatorTest {
     @Test
     public void testFindeGünstigstenGesamtPreisFuerEinkaufslistenposition() {
         initSpeiseplaene();
-        PurchaseList liste = ersteller.erzeuge();
+        PurchaseList liste = creator.erzeuge();
         assertEquals(15.0, liste.getPositionen().get(0).getPreis(), 0.001);
     }
     
@@ -87,11 +88,12 @@ public class PurchaseListCreatorTest {
         Dish speise = erzeugeButtermöhren();
         Menu planEssen = new DummySpeiseplan().fuerKantine(Canteen.ESSEN).plusTag(speise, speise, speise).erstelle();
         Menu planMuehlheim = new DummySpeiseplan().fuerKantine(Canteen.MUELHEIM_AN_DER_RUHR).plusTag(speise, speise, speise).erstelle();
-        ersteller = new PurchaseListCreator();
-        ersteller.add(planEssen);
-        ersteller.add(planMuehlheim);
+        creator = new PurchaseListCreator();
+        creator.setDao(verwaltung);
+        creator.add(planEssen);
+        creator.add(planMuehlheim);
     
-        PurchaseList liste = ersteller.erzeuge();
+        PurchaseList liste = creator.erzeuge();
         assertEquals(2, liste.getPositionen().size());
         assertEquals(1000.0, liste.getPositionen().get(0).getMenge(), 0.001);
         assertEquals("GRANDLER", liste.getPositionen().get(0).getLieferant().getName());
@@ -105,11 +107,12 @@ public class PurchaseListCreatorTest {
         Dish bratkartoffeln = erzeugeBratkartoffeln();
         Menu planEssen = new DummySpeiseplan().fuerKantine(Canteen.ESSEN).plusTag(buttermöhren, buttermöhren, buttermöhren).plusTag(bratkartoffeln, bratkartoffeln, bratkartoffeln).erstelle();
         Menu planMuehlheim = new DummySpeiseplan().fuerKantine(Canteen.MUELHEIM_AN_DER_RUHR).plusTag(buttermöhren, buttermöhren, buttermöhren).plusTag(bratkartoffeln, bratkartoffeln, bratkartoffeln).erstelle();
-        ersteller = new PurchaseListCreator();
-        ersteller.add(planEssen);
-        ersteller.add(planMuehlheim);
+        creator = new PurchaseListCreator();
+        creator.setDao(verwaltung);
+        creator.add(planEssen);
+        creator.add(planMuehlheim);
         
-        PurchaseList liste = ersteller.erzeuge();
+        PurchaseList liste = creator.erzeuge();
         assertEquals(3, liste.getPositionen().size());
         assertEquals("Meier", liste.getPositionen().get(0).getLieferant().getName());
         assertEquals(21.0, liste.getPositionen().get(0).getPreis(), 0.001);
@@ -122,11 +125,12 @@ public class PurchaseListCreatorTest {
         Dish eiersalat = erzeugeEiersalat();
         Menu planEssen = new DummySpeiseplan().fuerKantine(Canteen.ESSEN).plusTag(buttermöhren, buttermöhren, eiersalat).plusTag(bratkartoffeln, bratkartoffeln, bratkartoffeln).erstelle();
         Menu planMuehlheim = new DummySpeiseplan().fuerKantine(Canteen.MUELHEIM_AN_DER_RUHR).plusTag(buttermöhren, buttermöhren, buttermöhren).plusTag(bratkartoffeln, bratkartoffeln, bratkartoffeln).erstelle();
-        ersteller = new PurchaseListCreator();
-        ersteller.add(planEssen);
-        ersteller.add(planMuehlheim);
+        creator = new PurchaseListCreator();
+        creator.setDao(verwaltung);
+        creator.add(planEssen);
+        creator.add(planMuehlheim);
         
-        PurchaseList liste = ersteller.erzeuge();
+        PurchaseList liste = creator.erzeuge();
         assertEquals(4, liste.getPositionen().size());
         assertEquals("Müller", liste.getPositionen().get(0).getLieferant().getName());
         assertEquals(15.0, liste.getPositionen().get(0).getPreis(), 0.001);
