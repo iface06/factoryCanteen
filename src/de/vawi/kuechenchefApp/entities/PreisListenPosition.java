@@ -10,7 +10,7 @@ import de.vawi.kuechenchefApp.entities.Food;
  * @author Struebe
  * @version 25.01.2013
  */
-public class PreisListenPosition {
+public class PriceListPosition {
 
     private double gebindeGroesse;
     private Food nahrungsmittel;

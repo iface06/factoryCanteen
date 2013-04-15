@@ -5,7 +5,7 @@ import de.vawi.kuechenchefApp.entities.Distributer;
 import de.vawi.kuechenchefApp.entities.Farmer;
 import de.vawi.kuechenchefApp.entities.Unit;
 import de.vawi.kuechenchefApp.entities.Food;
-import de.vawi.kuechenchefApp.foods.SpeisenUndNahrungsmittelKategorie;
+import de.vawi.kuechenchefApp.entities.FoodCategory;
 import org.junit.Ignore;
 
 /**

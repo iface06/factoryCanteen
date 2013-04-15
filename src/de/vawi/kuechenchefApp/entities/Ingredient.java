@@ -1,7 +1,5 @@
 package de.vawi.kuechenchefApp.entities;
 
-import de.vawi.kuechenchefApp.foods.SpeisenUndNahrungsmittelKategorie;
-
 /**
  * Diese Klasse repräsentiert eine Zutat eines Gerichtes. Dementsprechend hält
  * diese die Informationen über Art und Menge des Nahrungsmittels.
@@ -63,7 +61,7 @@ public class Ingredient {
  * 
  * @return Gibt die Kategorie für ein Nahrungsmittel aus.
  */
-    public SpeisenUndNahrungsmittelKategorie getKategorie() {
+    public FoodCategory getKategorie() {
         return nahrungsmittel.getKategorie();
     }
 /**

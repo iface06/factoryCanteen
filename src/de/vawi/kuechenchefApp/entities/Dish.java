@@ -1,6 +1,5 @@
 package de.vawi.kuechenchefApp.entities;
 
-import de.vawi.kuechenchefApp.foods.SpeisenUndNahrungsmittelKategorie;
 import java.util.*;
 
 /**
@@ -85,9 +84,9 @@ public class Dish implements Iterable<Ingredient> {
      *
      * @return Gibt die Kategorie der Speise wieder.
      */
-    public SpeisenUndNahrungsmittelKategorie getKategorie() {
+    public FoodCategory getKategorie() {
         Iterator<Ingredient> iterator = zutaten.iterator();
-        return iterator.hasNext() ? iterator.next().getKategorie() : SpeisenUndNahrungsmittelKategorie.VEGETARISCH;
+        return iterator.hasNext() ? iterator.next().getKategorie() : FoodCategory.VEGETARISCH;
     }
 
     /**

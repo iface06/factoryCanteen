@@ -1,4 +1,4 @@
-package de.vawi.kuechenchefApp.foods;
+package de.vawi.kuechenchefApp.entities;
 
 import java.util.*;
 
@@ -8,12 +8,12 @@ import java.util.*;
  * @author Struebe
  * @version 30.12.2012
  */
-public enum SpeisenUndNahrungsmittelKategorie {
+public enum FoodCategory {
 
     FLEISCH("m"), FISCH("f"), VEGETARISCH("");
     private String abkuerzung;
 
-    private SpeisenUndNahrungsmittelKategorie(String abkuerzung) {
+    private FoodCategory(String abkuerzung) {
         this.abkuerzung = abkuerzung;
     }
 
@@ -34,13 +34,13 @@ public enum SpeisenUndNahrungsmittelKategorie {
      * @param abkuerzung die Abkürzung, die aus der Datei gelesen wird.
      * @return Gibt die vom Programm vorgegebene Kategorie wider.
      */
-    public static SpeisenUndNahrungsmittelKategorie nachAbkuerzung(String abkuerzung) {
-        for (SpeisenUndNahrungsmittelKategorie kategorie : values()) {
+    public static FoodCategory nachAbkuerzung(String abkuerzung) {
+        for (FoodCategory kategorie : values()) {
             if (kategorie.getAbkuerzung().equals(abkuerzung)) {
                 return kategorie;
             }
         }
-        return SpeisenUndNahrungsmittelKategorie.VEGETARISCH;
+        return FoodCategory.VEGETARISCH;
     }
 
     /**
@@ -49,9 +49,9 @@ public enum SpeisenUndNahrungsmittelKategorie {
      * @param kategorie eine Speisen- und Nahrungsmittel-Kategorie.
      * @return Die Kategorien, die nicht eingegeben wurden.
      */
-    public static List<SpeisenUndNahrungsmittelKategorie> holeAndereKategorien(SpeisenUndNahrungsmittelKategorie kategorie) {
-        List<SpeisenUndNahrungsmittelKategorie> andereKategorien = new ArrayList<>();
-        for (SpeisenUndNahrungsmittelKategorie kategoriee : values()) {
+    public static List<FoodCategory> holeAndereKategorien(FoodCategory kategorie) {
+        List<FoodCategory> andereKategorien = new ArrayList<>();
+        for (FoodCategory kategoriee : values()) {
             if (!kategoriee.equals(kategorie)) {
                 andereKategorien.add(kategoriee);
             }

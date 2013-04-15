@@ -66,7 +66,7 @@ public class PurchaseListCreator {
     }
 
     private void findeGuenstigestenLieferantFuer(PurchaseListPosition position) {
-        List<PreisListenPosition> angebote = findeAngeboteZuNahrungsmittel(position);
+        List<PriceListPosition> angebote = findeAngeboteZuNahrungsmittel(position);
         // benoetigte Menge wird zwischengepeichert und auf 0 gesetzt, sobald die benoetigte Menge bestellt ist
         double benoetigteMenge = position.getMenge();
         double bestellteAnzahlGebinde;
@@ -74,7 +74,7 @@ public class PurchaseListCreator {
         int positionsNummer = 0;
         // laufe bis benotigteMenge gleich 0 ist
         while (benoetigteMenge != 0.0) {
-            PreisListenPosition guenstigstesAngebot = angebote.get(positionsNummer);
+            PriceListPosition guenstigstesAngebot = angebote.get(positionsNummer);
             // Berechne Anzahl an benoetigten Gebinden    
             double benoetigteAnzahlAnGebinden = benoetigteMenge / guenstigstesAngebot.getGebindeGroesse();
             // Wenn mehr angeboten als benötigt wird, muss die Nachkommastelle beachtet werden
@@ -132,7 +132,7 @@ public class PurchaseListCreator {
                         && istNichtDerGleicheBauer(aktuellerLieferant, alternativLieferant)
                         && hatGuenstigereLieferkosten(aktuellerLieferant, alternativLieferant)) {
 
-                    PreisListenPosition alternativAngebot = lieferanten.findeAngebotFuerNahrungsmittelVonLieferant(aktuellesAngebot.getNahrungsmittel(), alternativLieferant);
+                    PriceListPosition alternativAngebot = lieferanten.findeAngebotFuerNahrungsmittelVonLieferant(aktuellesAngebot.getNahrungsmittel(), alternativLieferant);
                     if (alternativAngebot != null
                             && neuesAngebotHatAusreichendMenge(alternativAngebot, aktuellesAngebot)
                             && istGuenstiger(alternativAngebot, aktuellesAngebot)) {
@@ -157,11 +157,11 @@ public class PurchaseListCreator {
         return aktuellerLieferant.getClass().isInstance(alternativLieferant);
     }
 
-    private boolean neuesAngebotHatAusreichendMenge(PreisListenPosition ersatzPosition, PurchaseListPosition position) {
+    private boolean neuesAngebotHatAusreichendMenge(PriceListPosition ersatzPosition, PurchaseListPosition position) {
         return ersatzPosition.getGesamtMenge() >= position.getMenge();
     }
 
-    private boolean istGuenstiger(PreisListenPosition alternativAngebot, PurchaseListPosition aktuellesAngebot) {
+    private boolean istGuenstiger(PriceListPosition alternativAngebot, PurchaseListPosition aktuellesAngebot) {
         double gesparteLieferkosten = aktuellesAngebot.getLieferant().berechneLieferkosten(0) - alternativAngebot.getLieferant().berechneLieferkosten(0);
         double neuerPreis = alternativAngebot.berechnePreisFuerMenge(aktuellesAngebot.getMenge());
         double alterPreis = aktuellesAngebot.getPreis();
@@ -174,8 +174,8 @@ public class PurchaseListCreator {
         return liste.holeEinkaufslistenpositionenVonLieferant(aktuellerLieferant).size() == 1;
     }
 
-    private List<PreisListenPosition> findeAngeboteZuNahrungsmittel(PurchaseListPosition position) {
-        List<PreisListenPosition> angebote = lieferanten.findeDurchNahrungsmittel(position.getNahrungsmittel());
+    private List<PriceListPosition> findeAngeboteZuNahrungsmittel(PurchaseListPosition position) {
+        List<PriceListPosition> angebote = lieferanten.findeDurchNahrungsmittel(position.getNahrungsmittel());
         return angebote;
     }
 }

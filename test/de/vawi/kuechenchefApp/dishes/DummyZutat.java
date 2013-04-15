@@ -7,7 +7,7 @@ package de.vawi.kuechenchefApp.dishes;
 import de.vawi.kuechenchefApp.entities.Ingredient;
 import de.vawi.kuechenchefApp.entities.Unit;
 import de.vawi.kuechenchefApp.entities.Food;
-import de.vawi.kuechenchefApp.foods.SpeisenUndNahrungsmittelKategorie;
+import de.vawi.kuechenchefApp.entities.FoodCategory;
 
 /**
  *
@@ -37,7 +37,7 @@ public class DummyZutat {
         return this;
     }
     
-    public DummyZutat kategorie(SpeisenUndNahrungsmittelKategorie kategorie){
+    public DummyZutat kategorie(FoodCategory kategorie){
         nahrungsmittel.setKategorie(kategorie);
         return this;
     }
@@ -48,14 +48,14 @@ public class DummyZutat {
     }
     
     public static Ingredient kartoffeln(){
-        return new DummyZutat().name("Kartoffeln").einheit(Unit.GRAMM).menge(1000).kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).erstelle();
+        return new DummyZutat().name("Kartoffeln").einheit(Unit.GRAMM).menge(1000).kategorie(FoodCategory.VEGETARISCH).erstelle();
     }
     
     public static Ingredient steaks(){
-        return new DummyZutat().name("Steaks").einheit(Unit.GRAMM).menge(500).kategorie(SpeisenUndNahrungsmittelKategorie.FLEISCH).erstelle();
+        return new DummyZutat().name("Steaks").einheit(Unit.GRAMM).menge(500).kategorie(FoodCategory.FLEISCH).erstelle();
     }
     
     public static Ingredient garnelen(){
-        return new DummyZutat().name("Garnelen").einheit(Unit.GRAMM).menge(200).kategorie(SpeisenUndNahrungsmittelKategorie.FISCH).erstelle();
+        return new DummyZutat().name("Garnelen").einheit(Unit.GRAMM).menge(200).kategorie(FoodCategory.FISCH).erstelle();
     }
 }

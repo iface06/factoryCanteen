@@ -2,7 +2,7 @@
 
 package de.vawi.kuechenchefApp.purchaseList;
 
-import de.vawi.kuechenchefApp.entities.PreisListenPosition;
+import de.vawi.kuechenchefApp.entities.PriceListPosition;
 import de.vawi.kuechenchefApp.entities.Distributer;
 import de.vawi.kuechenchefApp.entities.Supplier;
 import de.vawi.kuechenchefApp.entities.Farmer;
@@ -16,7 +16,7 @@ public class DummyPreisListenPositionErsteller {
     public static final int GROSSHAENDLER = 1;
     public static final int BAUER = 2;
     
-    private PreisListenPosition position = new PreisListenPosition();
+    private PriceListPosition position = new PriceListPosition();
 
     public DummyPreisListenPositionErsteller() {
         position.setNahrungsmittel(new Food());
@@ -54,7 +54,7 @@ public class DummyPreisListenPositionErsteller {
         return this;
     }
     
-    public PreisListenPosition erstelle(){
+    public PriceListPosition erstelle(){
         return position;
     }
 }

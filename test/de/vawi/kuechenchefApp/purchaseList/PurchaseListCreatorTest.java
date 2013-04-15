@@ -3,7 +3,7 @@ package de.vawi.kuechenchefApp.purchaseList;
 
 import de.vawi.kuechenchefApp.dishes.*;
 import de.vawi.kuechenchefApp.entities.*;
-import de.vawi.kuechenchefApp.foods.SpeisenUndNahrungsmittelKategorie;
+import de.vawi.kuechenchefApp.entities.FoodCategory;
 import de.vawi.kuechenchefApp.menues.*;
 import java.util.*;
 import static org.junit.Assert.assertEquals;
@@ -19,12 +19,12 @@ public class PurchaseListCreatorTest {
 
     @BeforeClass
     public static void initLieferantenVerwaltung() {
-        PreisListenPosition kartoffelAngebotA = new DummyPreisListenPositionErsteller().nahrungsmittel("Kartoffeln", Unit.GRAMM).bauer("Müller", 10.0).angebot(5.0, 1000.0, 10000).erstelle();
-        PreisListenPosition EierA = new DummyPreisListenPositionErsteller().nahrungsmittel("Eier", Unit.STUECK).bauer("Müller", 10.0).angebot(2.5, 30.0, 10000).erstelle();
-        PreisListenPosition kartoffelAngebotB = new DummyPreisListenPositionErsteller().nahrungsmittel("Kartoffeln", Unit.GRAMM).bauer("Meier", 5.0).angebot(7.0, 1000.0, 50000).erstelle();
-        PreisListenPosition moehrenAngebotB = new DummyPreisListenPositionErsteller().nahrungsmittel("Möhren", Unit.GRAMM).bauer("Müller", 10.0).angebot(2.0, 500.0, 1).erstelle();
-        PreisListenPosition moehrenAngebotA = new DummyPreisListenPositionErsteller().nahrungsmittel("Möhren", Unit.GRAMM).bauer("Meier", 5.0).angebot(1.0, 500.0, 3).erstelle();
-        PreisListenPosition moehrenAngebotC = new DummyPreisListenPositionErsteller().nahrungsmittel("Möhren", Unit.GRAMM).grosshaendler("GRANDLER", 1.1).angebot(1.5, 1000.0, 1).erstelle();
+        PriceListPosition kartoffelAngebotA = new DummyPreisListenPositionErsteller().nahrungsmittel("Kartoffeln", Unit.GRAMM).bauer("Müller", 10.0).angebot(5.0, 1000.0, 10000).erstelle();
+        PriceListPosition EierA = new DummyPreisListenPositionErsteller().nahrungsmittel("Eier", Unit.STUECK).bauer("Müller", 10.0).angebot(2.5, 30.0, 10000).erstelle();
+        PriceListPosition kartoffelAngebotB = new DummyPreisListenPositionErsteller().nahrungsmittel("Kartoffeln", Unit.GRAMM).bauer("Meier", 5.0).angebot(7.0, 1000.0, 50000).erstelle();
+        PriceListPosition moehrenAngebotB = new DummyPreisListenPositionErsteller().nahrungsmittel("Möhren", Unit.GRAMM).bauer("Müller", 10.0).angebot(2.0, 500.0, 1).erstelle();
+        PriceListPosition moehrenAngebotA = new DummyPreisListenPositionErsteller().nahrungsmittel("Möhren", Unit.GRAMM).bauer("Meier", 5.0).angebot(1.0, 500.0, 3).erstelle();
+        PriceListPosition moehrenAngebotC = new DummyPreisListenPositionErsteller().nahrungsmittel("Möhren", Unit.GRAMM).grosshaendler("GRANDLER", 1.1).angebot(1.5, 1000.0, 1).erstelle();
 //        verwaltung.hinzufuegenPreisListenPosition(Arrays.asList(kartoffelAngebotA, kartoffelAngebotB, moehrenAngebotA, moehrenAngebotB, moehrenAngebotC, EierA));
     }
     private PurchaseListCreator ersteller;
@@ -153,18 +153,18 @@ public class PurchaseListCreatorTest {
     }
 
     private Dish erzeugeBratkartoffeln() {
-        Ingredient kartoffeln = new DummyZutat().name("Kartoffeln").einheit(Unit.STUECK).menge(2.0).kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).erstelle();
+        Ingredient kartoffeln = new DummyZutat().name("Kartoffeln").einheit(Unit.STUECK).menge(2.0).kategorie(FoodCategory.VEGETARISCH).erstelle();
         return new DummySpeise().name("Bratkaroffeln").mitZutat(kartoffeln).beliebtheit(1).erstelle();
     }
 
     protected Dish erzeugeButtermöhren() {
-        Ingredient moehren = new DummyZutat().name("Möhren").einheit(Unit.STUECK).menge(2.0).kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).erstelle();
+        Ingredient moehren = new DummyZutat().name("Möhren").einheit(Unit.STUECK).menge(2.0).kategorie(FoodCategory.VEGETARISCH).erstelle();
         Dish speise = new DummySpeise().name("Buttermöhren").mitZutat(moehren).erstelle();
         return speise;
     }
     
     protected Dish erzeugeEiersalat() {
-        Ingredient moehren = new DummyZutat().name("Eier").einheit(Unit.STUECK).menge(4.0).kategorie(SpeisenUndNahrungsmittelKategorie.VEGETARISCH).erstelle();
+        Ingredient moehren = new DummyZutat().name("Eier").einheit(Unit.STUECK).menge(4.0).kategorie(FoodCategory.VEGETARISCH).erstelle();
         Dish speise = new DummySpeise().name("Eiersalat").mitZutat(moehren).erstelle();
         return speise;
     }

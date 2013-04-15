@@ -1,7 +1,5 @@
 package de.vawi.kuechenchefApp.entities;
 
-import de.vawi.kuechenchefApp.foods.SpeisenUndNahrungsmittelKategorie;
-
 /**
  * Diese Klasse hält Informationen die für die Beschreibung eines
  * Nahrungsmittels benötigt werden.
@@ -14,7 +12,7 @@ public class Food {
     private String name;
     private Unit einheit;
     private int verfuegbareGesamtMenge;
-    private SpeisenUndNahrungsmittelKategorie kategorie;
+    private FoodCategory kategorie;
 
 
 
@@ -35,7 +33,7 @@ public class Food {
     /**
      * @return Die Kategorie des Nahrungsmittels (Fleisch, Fisch, Vegetarisch)
      */
-    public SpeisenUndNahrungsmittelKategorie getKategorie() {
+    public FoodCategory getKategorie() {
         return kategorie;
     }
 
@@ -43,7 +41,7 @@ public class Food {
      * @param kategorie Die Kategorie des Nahrungsmittels (Fleisch, Fisch,
      * Vegetarisch)
      */
-    public void setKategorie(SpeisenUndNahrungsmittelKategorie kategorie) {
+    public void setKategorie(FoodCategory kategorie) {
         this.kategorie = kategorie;
     }
 
