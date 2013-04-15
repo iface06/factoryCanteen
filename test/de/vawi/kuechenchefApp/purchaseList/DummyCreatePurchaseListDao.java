@@ -31,8 +31,6 @@ class DummyCreatePurchaseListDao implements CreatePurchaseListDao {
                 foundings.add(position);
         }
         
-        Collections.sort(foundings, new PricePerUnitComparator());
-        
         return foundings;
     }
 

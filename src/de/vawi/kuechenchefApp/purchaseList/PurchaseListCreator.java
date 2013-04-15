@@ -71,7 +71,8 @@ public class PurchaseListCreator {
     }
 
     private void findeGuenstigestenLieferantFuer(PurchaseListPosition position) {
-        List<PriceListPosition> angebote = findeAngeboteZuNahrungsmittel(position);
+        List<PriceListPosition> offers = findeAngeboteZuNahrungsmittel(position);
+        sortOffersByPricePerUnit(offers);
         // benoetigte Menge wird zwischengepeichert und auf 0 gesetzt, sobald die benoetigte Menge bestellt ist
         double benoetigteMenge = position.getMenge();
         double bestellteAnzahlGebinde;
@@ -79,7 +80,7 @@ public class PurchaseListCreator {
         int positionsNummer = 0;
         // laufe bis benotigteMenge gleich 0 ist
         while (benoetigteMenge != 0.0) {
-            PriceListPosition guenstigstesAngebot = angebote.get(positionsNummer);
+            PriceListPosition guenstigstesAngebot = offers.get(positionsNummer);
             // Berechne Anzahl an benoetigten Gebinden    
             double benoetigteAnzahlAnGebinden = benoetigteMenge / guenstigstesAngebot.getGebindeGroesse();
             // Wenn mehr angeboten als benötigt wird, muss die Nachkommastelle beachtet werden
@@ -89,10 +90,10 @@ public class PurchaseListCreator {
                 benoetigteMenge = 0.0;
             } // wenn weniger angeboten, als benoetigt wird, einfach alles bestellen, was benoetigt wird
             else {
-                bestellteAnzahlGebinde = angebote.get(positionsNummer).getVorratsBestand();
+                bestellteAnzahlGebinde = offers.get(positionsNummer).getVorratsBestand();
                 benoetigteMenge = benoetigteMenge - guenstigstesAngebot.getVorratsBestand() * guenstigstesAngebot.getGebindeGroesse();
             }
-            fuegeLieferantInEinkaufsliste(angebote.get(positionsNummer).getSupplier(), angebote.get(positionsNummer).getFood(), guenstigstesAngebot.getGebindeGroesse() * bestellteAnzahlGebinde, angebote.get(positionsNummer).getPreis() * bestellteAnzahlGebinde, position);
+            fuegeLieferantInEinkaufsliste(offers.get(positionsNummer).getSupplier(), offers.get(positionsNummer).getFood(), guenstigstesAngebot.getGebindeGroesse() * bestellteAnzahlGebinde, offers.get(positionsNummer).getPreis() * bestellteAnzahlGebinde, position);
             positionsNummer++;
         }
     }
@@ -182,6 +183,10 @@ public class PurchaseListCreator {
     private List<PriceListPosition> findeAngeboteZuNahrungsmittel(PurchaseListPosition position) {
         List<PriceListPosition> angebote = supplierDao.findeDurchNahrungsmittel(position.getNahrungsmittel());
         return angebote;
+    }
+
+    private void sortOffersByPricePerUnit(List<PriceListPosition> offers) {
+        Collections.sort(offers, new PricePerUnitComparator());
     }
     
     
