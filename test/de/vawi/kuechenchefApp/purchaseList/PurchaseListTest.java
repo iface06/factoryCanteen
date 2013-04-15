@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  *
  * @author Matthias
  */
-public class EinkaufslisteTest {
+public class PurchaseListTest {
     PurchaseList liste = new PurchaseList();
 
     @Test

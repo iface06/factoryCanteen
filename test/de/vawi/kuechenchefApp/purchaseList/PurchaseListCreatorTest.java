@@ -13,7 +13,7 @@ import org.junit.*;
  *
  * @author Matthias
  */
-public class EinkaufslistenErstellerTest {
+public class PurchaseListCreatorTest {
 
     private static CreatePurchaseListDao verwaltung;
 

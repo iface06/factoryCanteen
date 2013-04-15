@@ -10,7 +10,7 @@ import java.util.List;
  * @author Lepping
  * @version 29.01.2013
  */
-class KostenRechner {
+class CostCalculator {
 
     /**
      * 

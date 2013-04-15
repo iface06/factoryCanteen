@@ -1,12 +1,12 @@
 package de.vawi.kuechenchefApp.purchaseList;
 
-import de.vawi.kuechenchefApp.purchaseList.KostenRechner;
+import de.vawi.kuechenchefApp.purchaseList.CostCalculator;
 import de.vawi.kuechenchefApp.purchaseList.PurchaseList;
 import de.vawi.kuechenchefApp.entities.Unit;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class KostenRechnerTest {
+public class CostCalculatorTest {
 
     private PurchaseList einkaufsliste;
 
@@ -23,7 +23,7 @@ public class KostenRechnerTest {
     @Test
     public void testBerechneGesamtkostenFuerNahrungsmittel() {
 
-        KostenRechner rechner = new KostenRechner();
+        CostCalculator rechner = new CostCalculator();
         double kosten = rechner.berechneGesamtkostenFuerNahrungsmittel(einkaufsliste);
 
         assertEquals(1000.0, kosten, 0.001);
@@ -32,7 +32,7 @@ public class KostenRechnerTest {
     @Test
     public void testBerechneGesamtkostenFuerLieferung() {
 
-        KostenRechner rechner = new KostenRechner();
+        CostCalculator rechner = new CostCalculator();
         double kosten = rechner.berechneGesamtkostenFuerLieferung(einkaufsliste);
 
         assertEquals(70.0, kosten, 0.001);
@@ -41,7 +41,7 @@ public class KostenRechnerTest {
     @Test
     public void testBerechneGesamtkosten() {
 
-        KostenRechner rechner = new KostenRechner();
+        CostCalculator rechner = new CostCalculator();
         double kosten = rechner.berechneGesamtkosten(einkaufsliste);
 
         assertEquals(1070.0, kosten, 0.001);
