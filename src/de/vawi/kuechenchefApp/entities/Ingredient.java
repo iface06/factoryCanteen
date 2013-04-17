@@ -9,35 +9,35 @@ package de.vawi.kuechenchefApp.entities;
  */
 public class Ingredient {
 
-    private double menge;
-    private Food nahrungsmittel;
+    private double amount;
+    private Food food;
 
     /**
      * @return Menge die für das Zubereiten benötigt wird.
      */
-    public double getMenge() {
-        return menge;
+    public double getAmount() {
+        return amount;
     }
 
     /**
      * @param menge Menge die für das Zubereiten benötigt wird.
      */
-    public void setMenge(double menge) {
-        this.menge = menge;
+    public void setAmount(double menge) {
+        this.amount = menge;
     }
 
     /**
      * @return Das zugrundeliegende Nahrungsmittel
      */
-    public Food getNahrungsmittel() {
-        return nahrungsmittel;
+    public Food getFood() {
+        return food;
     }
 
     /**
      * @param nahrungsmittel Das zugrundeliegende Nahrungsmittel
      */
-    public void setNahrungsmittel(Food nahrungsmittel) {
-        this.nahrungsmittel = nahrungsmittel;
+    public void setFood(Food nahrungsmittel) {
+        this.food = nahrungsmittel;
     }
 /**
  * 
@@ -46,8 +46,8 @@ public class Ingredient {
  */
     @Override
     public boolean equals(Object obj) {
-        Ingredient zutat = (Ingredient) obj;
-        return nahrungsmittel.equals(zutat.nahrungsmittel);
+        Ingredient ingrediant = (Ingredient) obj;
+        return food.equals(ingrediant.food);
     }
 /**
  * 
@@ -55,27 +55,27 @@ public class Ingredient {
  */
     @Override
     public int hashCode() {
-        return nahrungsmittel.hashCode();
+        return food.hashCode();
     }
 /**
  * 
  * @return Gibt die Kategorie für ein Nahrungsmittel aus.
  */
-    public FoodCategory getKategorie() {
-        return nahrungsmittel.getKategorie();
+    public FoodCategory getCategory() {
+        return food.getKategorie();
     }
 /**
  * 
  * @return Gibt die Einheit für ein Nahrungsmittel aus.
  */
-    public Unit getEinheit() {
-        return nahrungsmittel.getEinheit();
+    public Unit getUnit() {
+        return food.getEinheit();
     }
 /**
  * 
  * @return Gibt den Namen eines Nahrungsmittels aus.
  */
     public String getName() {
-        return nahrungsmittel.getName();
+        return food.getName();
     }
 }

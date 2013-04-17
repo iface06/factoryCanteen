@@ -88,16 +88,7 @@ public class PriceListPosition {
     public void setVorratsBestand(int vorratsBestand) {
         this.vorratsBestand = vorratsBestand;
     }
-
-    /**
-     *
-     * @return Gibt einen Text aus, der besagt welches Nahrungsmittel zu welchem
-     * Preis zur Verfügung steht. Beispiel: Salami à 1000.0 GRAMM zu 4.98 €.
-     */
-    public String toString() {
-        return nahrungsmittel + " à " + gebindeGroesse + " " + nahrungsmittel.getEinheit() + " zu " + preis + " €";
-    }
-
+    
     /**
      * Diese Methode errechnet aus dem Preis eines Gebindes den Preis einer
      * Einzel-Einheit des Nahrungsmittels.

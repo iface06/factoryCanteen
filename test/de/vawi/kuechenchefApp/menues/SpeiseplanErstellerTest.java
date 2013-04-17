@@ -68,45 +68,45 @@ public class SpeiseplanErstellerTest {
 
     private void initialisiereBeliebtesteSpeisen() {
         beliebtestSpeisen = new ArrayList<>();
-        beliebtestSpeisen.add(erstelleFleischSpeise("Steaks", 1, FoodCategory.FLEISCH));
-        beliebtestSpeisen.add(erstelleFleischSpeise("Currywoscht", 2, FoodCategory.FLEISCH));
-        beliebtestSpeisen.add(erstelleFleischSpeise("Schnitzel", 3, FoodCategory.FLEISCH));
-        beliebtestSpeisen.add(erstelleFleischSpeise("Hänchen", 4, FoodCategory.FLEISCH));
-        beliebtestSpeisen.add(erstelleFleischSpeise("Hasenpfeffer", 5, FoodCategory.FLEISCH));
-        beliebtestSpeisen.add(erstelleFleischSpeise("Bismarckheringe", 6, FoodCategory.FISCH));
-        beliebtestSpeisen.add(erstelleFleischSpeise("Calamarie", 7, FoodCategory.FISCH));
-        beliebtestSpeisen.add(erstelleFleischSpeise("Spagetthi", 8, FoodCategory.VEGETARISCH));
-        beliebtestSpeisen.add(erstelleFleischSpeise("Ofenkäse", 9, FoodCategory.VEGETARISCH));
-        beliebtestSpeisen.add(erstelleFleischSpeise("Rahmspinat", 10, FoodCategory.VEGETARISCH));
-        beliebtestSpeisen.add(erstelleFleischSpeise("Omlette", 11, FoodCategory.VEGETARISCH));
-        beliebtestSpeisen.add(erstelleFleischSpeise("Zwiebelblootz", 12, FoodCategory.VEGETARISCH));
-        beliebtestSpeisen.add(erstelleFleischSpeise("Nürnberger Bratwoscht", 13, FoodCategory.FLEISCH));
-        beliebtestSpeisen.add(erstelleFleischSpeise("Bolognese", 14, FoodCategory.FLEISCH));
-        beliebtestSpeisen.add(erstelleFleischSpeise("Pilzraviolie", 15, FoodCategory.VEGETARISCH));
+        beliebtestSpeisen.add(erstelleFleischSpeise("Steaks", 1, FoodCategory.MEAT));
+        beliebtestSpeisen.add(erstelleFleischSpeise("Currywoscht", 2, FoodCategory.MEAT));
+        beliebtestSpeisen.add(erstelleFleischSpeise("Schnitzel", 3, FoodCategory.MEAT));
+        beliebtestSpeisen.add(erstelleFleischSpeise("Hänchen", 4, FoodCategory.MEAT));
+        beliebtestSpeisen.add(erstelleFleischSpeise("Hasenpfeffer", 5, FoodCategory.MEAT));
+        beliebtestSpeisen.add(erstelleFleischSpeise("Bismarckheringe", 6, FoodCategory.FISH));
+        beliebtestSpeisen.add(erstelleFleischSpeise("Calamarie", 7, FoodCategory.FISH));
+        beliebtestSpeisen.add(erstelleFleischSpeise("Spagetthi", 8, FoodCategory.VEGETARIAN));
+        beliebtestSpeisen.add(erstelleFleischSpeise("Ofenkäse", 9, FoodCategory.VEGETARIAN));
+        beliebtestSpeisen.add(erstelleFleischSpeise("Rahmspinat", 10, FoodCategory.VEGETARIAN));
+        beliebtestSpeisen.add(erstelleFleischSpeise("Omlette", 11, FoodCategory.VEGETARIAN));
+        beliebtestSpeisen.add(erstelleFleischSpeise("Zwiebelblootz", 12, FoodCategory.VEGETARIAN));
+        beliebtestSpeisen.add(erstelleFleischSpeise("Nürnberger Bratwoscht", 13, FoodCategory.MEAT));
+        beliebtestSpeisen.add(erstelleFleischSpeise("Bolognese", 14, FoodCategory.MEAT));
+        beliebtestSpeisen.add(erstelleFleischSpeise("Pilzraviolie", 15, FoodCategory.VEGETARIAN));
     }
     
     private void initialisiereUnbeliebtesteSpeisen() {
         unbeliebtesteSpeisen = new ArrayList<>();
-        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Pressfleisch", 16, FoodCategory.FLEISCH));
-        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Rohei", 17, FoodCategory.FLEISCH));
-        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Affenhirntoast", 18, FoodCategory.FLEISCH));
-        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Stierhoden", 19, FoodCategory.FLEISCH));
-        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Schlange", 20, FoodCategory.FLEISCH));
-        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Qualle", 21, FoodCategory.FISCH));
-        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Sandfisch", 22, FoodCategory.FISCH));
-        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Straußeneier", 23, FoodCategory.VEGETARISCH));
-        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Tofu", 24, FoodCategory.VEGETARISCH));
-        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Grießbrei", 25, FoodCategory.VEGETARISCH));
-        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Linsensupppe", 26, FoodCategory.VEGETARISCH));
-        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Haferschleim", 27, FoodCategory.VEGETARISCH));
-        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Thüringer Bratwoscht", 28, FoodCategory.FLEISCH));
-        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Cabonara", 29, FoodCategory.FLEISCH));
-        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Vollkornraviolie", 30, FoodCategory.VEGETARISCH));
+        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Pressfleisch", 16, FoodCategory.MEAT));
+        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Rohei", 17, FoodCategory.MEAT));
+        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Affenhirntoast", 18, FoodCategory.MEAT));
+        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Stierhoden", 19, FoodCategory.MEAT));
+        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Schlange", 20, FoodCategory.MEAT));
+        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Qualle", 21, FoodCategory.FISH));
+        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Sandfisch", 22, FoodCategory.FISH));
+        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Straußeneier", 23, FoodCategory.VEGETARIAN));
+        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Tofu", 24, FoodCategory.VEGETARIAN));
+        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Grießbrei", 25, FoodCategory.VEGETARIAN));
+        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Linsensupppe", 26, FoodCategory.VEGETARIAN));
+        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Haferschleim", 27, FoodCategory.VEGETARIAN));
+        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Thüringer Bratwoscht", 28, FoodCategory.MEAT));
+        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Cabonara", 29, FoodCategory.MEAT));
+        unbeliebtesteSpeisen.add(erstelleFleischSpeise("Vollkornraviolie", 30, FoodCategory.VEGETARIAN));
     }
 
     private Dish erstelleFleischSpeise(String name, int beliebtheit, FoodCategory kategorie) {
         Ingredient zutat = new DummyZutat().name(name + "-Zutat").kategorie(kategorie).menge(1).verfuegbareMengeAmMarkt(100000).erstelle();
-        Ingredient salz = new DummyZutat().name("Salz").kategorie(FoodCategory.VEGETARISCH).menge(1).verfuegbareMengeAmMarkt(100000).erstelle();
+        Ingredient salz = new DummyZutat().name("Salz").kategorie(FoodCategory.VEGETARIAN).menge(1).verfuegbareMengeAmMarkt(100000).erstelle();
         Dish speise = new DummySpeise().name(name).beliebtheit(beliebtheit).mitZutat(zutat).mitZutat(salz).erstelle();
         sortiereZutatenDerSpeise(speise);
         return speise;
@@ -117,7 +117,7 @@ public class SpeiseplanErstellerTest {
 
             @Override
             public int compare(Ingredient o1, Ingredient o2) {
-                return o1.getKategorie().compareTo(o2.getKategorie());
+                return o1.getCategory().compareTo(o2.getCategory());
             }
         });
     }

@@ -157,18 +157,18 @@ public class PurchaseListCreatorTest {
     }
 
     private Dish erzeugeBratkartoffeln() {
-        Ingredient kartoffeln = new DummyZutat().name("Kartoffeln").einheit(Unit.STUECK).menge(2.0).kategorie(FoodCategory.VEGETARISCH).erstelle();
+        Ingredient kartoffeln = new DummyZutat().name("Kartoffeln").einheit(Unit.STUECK).menge(2.0).kategorie(FoodCategory.VEGETARIAN).erstelle();
         return new DummySpeise().name("Bratkaroffeln").mitZutat(kartoffeln).beliebtheit(1).erstelle();
     }
 
     protected Dish erzeugeButtermöhren() {
-        Ingredient moehren = new DummyZutat().name("Möhren").einheit(Unit.STUECK).menge(2.0).kategorie(FoodCategory.VEGETARISCH).erstelle();
+        Ingredient moehren = new DummyZutat().name("Möhren").einheit(Unit.STUECK).menge(2.0).kategorie(FoodCategory.VEGETARIAN).erstelle();
         Dish speise = new DummySpeise().name("Buttermöhren").mitZutat(moehren).erstelle();
         return speise;
     }
     
     protected Dish erzeugeEiersalat() {
-        Ingredient moehren = new DummyZutat().name("Eier").einheit(Unit.STUECK).menge(4.0).kategorie(FoodCategory.VEGETARISCH).erstelle();
+        Ingredient moehren = new DummyZutat().name("Eier").einheit(Unit.STUECK).menge(4.0).kategorie(FoodCategory.VEGETARIAN).erstelle();
         Dish speise = new DummySpeise().name("Eiersalat").mitZutat(moehren).erstelle();
         return speise;
     }

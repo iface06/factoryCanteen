@@ -60,8 +60,8 @@ public class ZutatenKalkulatorTest {
     private Ingredient erzeugeZutat() {
         Ingredient zutat = new Ingredient();
         Food nahrungsmittel = erzeugeNahrungsmittel(zutat);
-        zutat.setMenge(2.0);
-        zutat.setNahrungsmittel(nahrungsmittel);
+        zutat.setAmount(2.0);
+        zutat.setFood(nahrungsmittel);
         return zutat;
     }
 

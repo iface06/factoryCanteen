@@ -86,7 +86,7 @@ public class Dish implements Iterable<Ingredient> {
      */
     public FoodCategory getKategorie() {
         Iterator<Ingredient> iterator = zutaten.iterator();
-        return iterator.hasNext() ? iterator.next().getKategorie() : FoodCategory.VEGETARISCH;
+        return iterator.hasNext() ? iterator.next().getCategory() : FoodCategory.VEGETARIAN;
     }
 
     /**

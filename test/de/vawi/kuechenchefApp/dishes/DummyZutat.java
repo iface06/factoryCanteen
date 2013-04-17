@@ -33,7 +33,7 @@ public class DummyZutat {
     }
     
     public DummyZutat menge(double menge){
-        zutat.setMenge(menge);
+        zutat.setAmount(menge);
         return this;
     }
     
@@ -43,19 +43,19 @@ public class DummyZutat {
     }
     
     public Ingredient erstelle(){
-        zutat.setNahrungsmittel(nahrungsmittel);
+        zutat.setFood(nahrungsmittel);
         return zutat;
     }
     
     public static Ingredient kartoffeln(){
-        return new DummyZutat().name("Kartoffeln").einheit(Unit.GRAMM).menge(1000).kategorie(FoodCategory.VEGETARISCH).erstelle();
+        return new DummyZutat().name("Kartoffeln").einheit(Unit.GRAMM).menge(1000).kategorie(FoodCategory.VEGETARIAN).erstelle();
     }
     
     public static Ingredient steaks(){
-        return new DummyZutat().name("Steaks").einheit(Unit.GRAMM).menge(500).kategorie(FoodCategory.FLEISCH).erstelle();
+        return new DummyZutat().name("Steaks").einheit(Unit.GRAMM).menge(500).kategorie(FoodCategory.MEAT).erstelle();
     }
     
     public static Ingredient garnelen(){
-        return new DummyZutat().name("Garnelen").einheit(Unit.GRAMM).menge(200).kategorie(FoodCategory.FISCH).erstelle();
+        return new DummyZutat().name("Garnelen").einheit(Unit.GRAMM).menge(200).kategorie(FoodCategory.FISH).erstelle();
     }
 }

@@ -37,9 +37,9 @@ public class IngredientCalculator {
     private void berechneSpeise(Dish speise, int anzahlGerichte) {
         List<Ingredient> zutaten = speise.getZutaten();
         for (Ingredient zutat : zutaten) {
-            Double gesamtMenge = getGesamtMengeFuer(zutat.getNahrungsmittel());
-            gesamtMenge += zutat.getMenge() * anzahlGerichte;
-            mengen.put(zutat.getNahrungsmittel(), Math.ceil(gesamtMenge));
+            Double gesamtMenge = getGesamtMengeFuer(zutat.getFood());
+            gesamtMenge += zutat.getAmount() * anzahlGerichte;
+            mengen.put(zutat.getFood(), Math.ceil(gesamtMenge));
         }
     }
 

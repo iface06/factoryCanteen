@@ -10,7 +10,7 @@ import java.util.*;
  */
 public enum FoodCategory {
 
-    FLEISCH("m"), FISCH("f"), VEGETARISCH("");
+    MEAT("m"), FISH("f"), VEGETARIAN("");
     private String abkuerzung;
 
     private FoodCategory(String abkuerzung) {
@@ -34,13 +34,13 @@ public enum FoodCategory {
      * @param abkuerzung die Abkürzung, die aus der Datei gelesen wird.
      * @return Gibt die vom Programm vorgegebene Kategorie wider.
      */
-    public static FoodCategory nachAbkuerzung(String abkuerzung) {
+    public static FoodCategory byAbbrevation(String abkuerzung) {
         for (FoodCategory kategorie : values()) {
             if (kategorie.getAbkuerzung().equals(abkuerzung)) {
                 return kategorie;
             }
         }
-        return FoodCategory.VEGETARISCH;
+        return FoodCategory.VEGETARIAN;
     }
 
     /**
@@ -49,7 +49,7 @@ public enum FoodCategory {
      * @param kategorie eine Speisen- und Nahrungsmittel-Kategorie.
      * @return Die Kategorien, die nicht eingegeben wurden.
      */
-    public static List<FoodCategory> holeAndereKategorien(FoodCategory kategorie) {
+    public static List<FoodCategory> getOtherOwnTo(FoodCategory kategorie) {
         List<FoodCategory> andereKategorien = new ArrayList<>();
         for (FoodCategory kategoriee : values()) {
             if (!kategoriee.equals(kategorie)) {
