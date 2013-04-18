@@ -2,7 +2,7 @@
 package de.vawi.kuechenchefApp.currentMenu;
 
 
-class CurrentMenuRequest {
+public class CurrentMenuRequest {
     private int kw;
     private int year;
 
