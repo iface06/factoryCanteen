@@ -5,7 +5,7 @@ import de.vawi.kuechenchefApp.Periode;
 import de.vawi.kuechenchefApp.dishes.*;
 import de.vawi.kuechenchefApp.entities.*;
 import de.vawi.kuechenchefApp.entities.FoodCategory;
-import de.vawi.kuechenchefApp.menues.MenuCreator.KeineAusreichendeAnzahlAnSpeisen;
+import de.vawi.kuechenchefApp.menues.MenusCreator.KeineAusreichendeAnzahlAnSpeisen;
 import java.util.*;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  *
  * @author Max
  */
-public class SpeiseplanErstellerTest {
+public class MenusCreatorTest {
 
     private Periode planungsperiode;
     private List<Dish> beliebtestSpeisen;
@@ -39,7 +39,7 @@ public class SpeiseplanErstellerTest {
      */
     @Test
     public void testSpeiseplanErstellungOhneVerfügbarkeitsProbleme() {
-        MenuCreator ersteller = new TestbarerSpeiseplanErsteller();
+        MenusCreator ersteller = new TestbarerSpeiseplanErsteller();
         ersteller.setPlanungsperiode(planungsperiode);
         List<Menu> plaene = ersteller.erzeuge();
 
@@ -55,7 +55,7 @@ public class SpeiseplanErstellerTest {
     @Test(expected=KeineAusreichendeAnzahlAnSpeisen.class)
     public void testSpeiseplanErstellungZuWenigVegetarischSpeisen() {
         ausreichendSpeisenVorhanden = false;
-        MenuCreator ersteller = new TestbarerSpeiseplanErsteller();
+        MenusCreator ersteller = new TestbarerSpeiseplanErsteller();
         ersteller.setPlanungsperiode(planungsperiode);
         List<Menu> plaene = ersteller.erzeuge();
         fail();
@@ -134,7 +134,7 @@ public class SpeiseplanErstellerTest {
 
     
 
-    class TestbarerSpeiseplanErsteller extends MenuCreator {
+    class TestbarerSpeiseplanErsteller extends MenusCreator {
         
 
         @Override

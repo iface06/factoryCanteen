@@ -1,30 +1,23 @@
 package de.vawi.kuechenchefApp.menues;
 
-import de.vawi.kuechenchefApp.entities.Ingredient;
 import de.vawi.kuechenchefApp.Periode;
 import de.vawi.kuechenchefApp.entities.*;
-import de.vawi.kuechenchefApp.dishes.IngredientCalculator;
-import de.vawi.kuechenchefApp.entities.FoodCategory;
 import java.util.*;
 
 /**
  * Diese Klasse ist für das Erstellen eines Speiseplans verantwortlich.
  * Hier werden die beliebtesten Speisen auf die Harten Kriterien geprueft und ggf. angepasst.
- * Im Anschluss daran werden diese auf die auf dem Markt vorhandene Verfuegbarkeit geprueft und ggf angepasst.
- * Sollten diese Schritte erfolgreich sein, werden die finalen Plaene erzeugt.
  *
  * @author Beer
  * @version (a version number or a date)
  */
-public class MenuCreator {
+public class MenusCreator {
 
-    private CreateMenuDao speisen;
+    private CreateMenuDao dao;
     private List<Dish> beliebtesteSpeisen;
     private List<Dish> uebrigenSpeisen;
     private List<Dish> speisenFuerEssen;
-    private List<Dish> uebrigeSpeiesenEssen;
     private List<Dish> speisenFuerMuehlheim;
-    private List<Dish> uebrigeSpeisenMuehlheim;
     private Menu speiseplanEssen;
     private Menu speiseplanMuehlheim;
     private Periode planungsperiode = new Periode();
@@ -39,9 +32,15 @@ public class MenuCreator {
         ladeUnbeliebtesteSpeisen();
         beliebtesteSpeisenPruefenUndAnpassen();
         erstelleSpeiseplaene();
-        pruefeVerfuegbarkeit();
         sortiereTageSpeisseplaene();
         return Arrays.asList(speiseplanEssen, speiseplanMuehlheim);
+    }
+    
+    /**
+     * setzt das benötigte Data Access Object das für die erzeugen der Speisepläne benötigt wird.
+     */
+    protected void setDao(CreateMenuDao dao) {
+        this.dao = dao;
     }
 
     private void validiereSpeisenAnzahl() {
@@ -59,7 +58,7 @@ public class MenuCreator {
      * @return liefert eine Liste mit den gefundenen Speisen
      */
     protected List<Dish> findeBeliebtesteSpeisenFuerPlanungsperiode() {
-        return speisen.findeBeliebtesteSpeisenFuerPlanungsPeriode(planungsperiode);
+        return dao.findeBeliebtesteSpeisenFuerPlanungsPeriode(planungsperiode);
     }
 
     private void ladeUnbeliebtesteSpeisen() {
@@ -71,7 +70,7 @@ public class MenuCreator {
      * @return liefert eine Liste mit den gefundenen Speisen
      */
     protected List<Dish> findeUnbeliebtesteSpeisen() {
-        return speisen.findeUnbeliebtesteSpeisen(this.planungsperiode);
+        return dao.findeUnbeliebtesteSpeisen(this.planungsperiode);
     }
     
     /**
@@ -200,117 +199,13 @@ public class MenuCreator {
         return nachKategorie.get(0);
     }
 
-    private void pruefeVerfuegbarkeit() {
-        IngredientCalculator kalkulator = new IngredientCalculator();
-        Map<Food, Double> mengenEssen = kalkulator.berechneGesamtMengen(speiseplanEssen);
-        Map<Food, Double> mengenMuehlheim = kalkulator.berechneGesamtMengen(speiseplanMuehlheim);
-
-        List<Food> problematischeNahrungsmittelEssen = new ArrayList<Food>();
-        List<Food> problematischeNahrungsmittelMuehl = new ArrayList<Food>();
-
-        for (Food nahrungsmittel : mengenEssen.keySet()) {
-
-            Double gesamtMenge = mengenEssen.get(nahrungsmittel) + (mengenMuehlheim.containsKey(nahrungsmittel) ? mengenMuehlheim.get(nahrungsmittel) : 0.0);
-            if (gesamtMenge > nahrungsmittel.getVerfuegbareGesamtMenge()) {
-                if (mengenEssen.get(nahrungsmittel) > nahrungsmittel.getVerfuegbareGesamtMenge()) {
-                    problematischeNahrungsmittelEssen.add(nahrungsmittel);
-                }
-                if ((mengenMuehlheim.containsKey(nahrungsmittel) ? mengenMuehlheim.get(nahrungsmittel) : 0.0) > nahrungsmittel.getVerfuegbareGesamtMenge()) {
-                    problematischeNahrungsmittelMuehl.add(nahrungsmittel);
-                }
-            }
-        }
-
-        if (problematischeNahrungsmittelEssen.size() != 0 || problematischeNahrungsmittelMuehl.size() != 0) {
-            passeSpeisenDerVerfügbarkeitAn(problematischeNahrungsmittelEssen, problematischeNahrungsmittelMuehl);
-        }
-
-    }
-
-    private void passeSpeisenDerVerfügbarkeitAn(List<Food> problematischeNahrungsmittelEssen, List<Food> problematischeNahrungsmittelMuehl) {
-        if (!problematischeNahrungsmittelEssen.isEmpty()) {
-            passeSpeisenFuerEssenAn(problematischeNahrungsmittelEssen);
-        }
-        if (!problematischeNahrungsmittelMuehl.isEmpty()) {
-            passeSpeisenFuerMuehlaheimAn(problematischeNahrungsmittelMuehl);
-        }
-
-        erstelleSpeiseplaene();
-        pruefeVerfuegbarkeit();
-
-    }
-
-    private void passeSpeisenFuerEssenAn(List<Food> problematischeNahrungsmittelEssen) {
-        List<Dish> problematischeSpeisen = findeSpeisenMitNahrungsmittel(problematischeNahrungsmittelEssen, speisenFuerEssen);
-        List<Dish> moeglicheErsatzSpeisen = findeSpeisenOhneNahrungsmittel(problematischeNahrungsmittelEssen, uebrigeSpeiesenEssen);
-
-        ersetzeSpeisen(problematischeSpeisen, moeglicheErsatzSpeisen, speisenFuerEssen, uebrigeSpeiesenEssen);
-
-    }
-
-    private void passeSpeisenFuerMuehlaheimAn(List<Food> problematischeNahrungsmittelMuehl) {
-        List<Dish> problematischeSpeisen = findeSpeisenMitNahrungsmittel(problematischeNahrungsmittelMuehl, speisenFuerMuehlheim);
-        List<Dish> moeglicheErsatzSpeisen = findeSpeisenOhneNahrungsmittel(problematischeNahrungsmittelMuehl, uebrigeSpeisenMuehlheim);
-
-        ersetzeSpeisen(problematischeSpeisen, moeglicheErsatzSpeisen, speisenFuerMuehlheim, uebrigeSpeisenMuehlheim);
-    }
-
-    private List<Dish> findeSpeisenMitNahrungsmittel(List<Food> problematischeNahrungsmittelEssen, List<Dish> speisenFuerEssen) {
-        List<Dish> gefundeneSpeisen = new ArrayList<Dish>();
-
-        for (Food nahrungsmittel : problematischeNahrungsmittelEssen) {
-            List<Dish> potentielleSpeisen = new ArrayList<Dish>();
-            for (Dish speise : speisenFuerEssen) {
-                for (Ingredient zutat : speise.getZutaten()) {
-                    if (zutat.getFood().equals(nahrungsmittel)) {
-                        potentielleSpeisen.add(speise);
-                    }
-                }
-            }
-            if (!potentielleSpeisen.isEmpty()) {
-                gefundeneSpeisen.add(findeUnbeliebtesteSpeise(potentielleSpeisen));
-            }
-        }
-        return gefundeneSpeisen;
-    }
-
-    private List<Dish> findeSpeisenOhneNahrungsmittel(List<Food> problematischeNahrungsmittelEssen, List<Dish> uebrigeSpeiesenEssen) {
-        List<Dish> gefundeneSpeisen = new ArrayList<>(uebrigeSpeiesenEssen);
-
-        for (Food nahrungsmittel : problematischeNahrungsmittelEssen) {
-            List<Dish> potentielleSpeisen = new ArrayList<>();
-            for (Dish speise : uebrigeSpeiesenEssen) {
-                for (Ingredient zutat : speise.getZutaten()) {
-                    if (zutat.getFood().equals(nahrungsmittel)) {
-                        potentielleSpeisen.add(speise);
-                    }
-                }
-            }
-            gefundeneSpeisen.removeAll(potentielleSpeisen);
-        }
-        return gefundeneSpeisen;
-    }
-
-    private void ersetzeSpeisen(List<Dish> problematischeSpeisen, List<Dish> moeglicheErsatzSpeisen, List<Dish> speisenFuerEssen, List<Dish> uebrigeSpeiesenEssen) {
-        int i = 0;
-        sortiereSpeisen(moeglicheErsatzSpeisen);
-        for (Dish probSpeise : problematischeSpeisen) {
-            speisenFuerEssen.remove(probSpeise);
-            uebrigeSpeiesenEssen.add(probSpeise);
-            speisenFuerEssen.add(moeglicheErsatzSpeisen.get(i));
-            i++;
-        }
-    }
-
     private void erstelleSpeiseplaene() {
         if (speisenFuerEssen == null || speisenFuerEssen.isEmpty()) {
             speisenFuerEssen = new ArrayList<>(beliebtesteSpeisen);
-            uebrigeSpeiesenEssen = new ArrayList<>(uebrigenSpeisen);
         }
 
         if (speisenFuerMuehlheim == null || speisenFuerMuehlheim.isEmpty()) {
             speisenFuerMuehlheim = new ArrayList<>(beliebtesteSpeisen);
-            uebrigeSpeisenMuehlheim = new ArrayList<>(uebrigenSpeisen);
         }
 
         speiseplanEssen = erstelleSpeiseplan(Canteen.ESSEN);
@@ -320,11 +215,11 @@ public class MenuCreator {
     private Menu erstelleSpeiseplan(Canteen kantine) {
         List<Dish> speisenFuerPlan;
         if (kantine.equals(Canteen.ESSEN)) {
-            speisenFuerPlan = new ArrayList<Dish>(speisenFuerEssen);
+            speisenFuerPlan = new ArrayList<>(speisenFuerEssen);
         } else {
-            speisenFuerPlan = new ArrayList<Dish>(speisenFuerMuehlheim);
+            speisenFuerPlan = new ArrayList<>(speisenFuerMuehlheim);
         }
-        List<Day> tage = new ArrayList<Day>();
+        List<Day> tage = new ArrayList<>();
 
         //zuerst müssen die Fischtage erstellt werden!!
         for (int i = 1; i <= planungsperiode.getAnzahlWochen(); i++) {
@@ -342,7 +237,7 @@ public class MenuCreator {
 
     private Day erstelleNormalenTag(List<Dish> speisenFuerPlan, int nummer) {
         Day tag = new Day(nummer);
-        List<Dish> tagesSpeisen = new ArrayList<Dish>();
+        List<Dish> tagesSpeisen = new ArrayList<>();
         tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.VEGETARIAN));
         tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.MEAT));
         tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.MEAT));
@@ -352,7 +247,7 @@ public class MenuCreator {
 
     private Day erstelleFischTag(List<Dish> speisenFuerPlan, int nummer) {
         Day tag = new Day(nummer);
-        List<Dish> tagesSpeisen = new ArrayList<Dish>();
+        List<Dish> tagesSpeisen = new ArrayList<>();
         tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.FISH));
         tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.VEGETARIAN));
         tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.MEAT));
@@ -362,9 +257,6 @@ public class MenuCreator {
 
     private Day verteileSpeisenAufTag(Day tag, List<Dish> tagesSpeisen) {
         Dish speise1 = findeBeliebtesteSpeise(tagesSpeisen);
-        if (speise1.getName() == null) {
-            int test = 1;
-        }
         tag.setBeliebtesteSpeise(speise1);
         tagesSpeisen.remove(speise1);
         tag.setZweitbeliebtesteSpeise(findeBeliebtesteSpeise(tagesSpeisen));
@@ -436,7 +328,7 @@ public class MenuCreator {
      * @return liefert true wenn genug Speisen vorhanden sind, andernfalls false
      */
     protected boolean sindAusreichendSpeisenInSpeisenVerwaltungVorhanden() {
-        return speisen.sindAusreichendSpeisenFuerSpeiseplanErstellungVorhanden();
+        return dao.sindAusreichendSpeisenFuerSpeiseplanErstellungVorhanden();
     }
 
     private void sortiereTageSpeisseplaene() {
@@ -455,4 +347,6 @@ public class MenuCreator {
      */
     public static class KeineAusreichendeAnzahlAnSpeisen extends RuntimeException {
     }
+    
+    
 }

@@ -1,6 +1,6 @@
 package de.vawi.kuechenchefApp;
 
-import de.vawi.kuechenchefApp.menues.MenuCreator;
+import de.vawi.kuechenchefApp.menues.MenusCreator;
 import de.vawi.kuechenchefApp.menues.Menu;
 import de.vawi.kuechenchefApp.purchaseList.PurchaseListCreator;
 import de.vawi.kuechenchefApp.purchaseList.PurchaseList;
@@ -15,7 +15,7 @@ import java.util.*;
  */
 class ProzessSteuerung{
 
-    private MenuCreator speiseplanErsteller;
+    private MenusCreator speiseplanErsteller;
     private PurchaseListCreator einkaufslistenErsteller;
     private CostReportCreator kostanaufstellungErsteller;
     
@@ -29,7 +29,7 @@ class ProzessSteuerung{
      * @param  ersteller    Ersteller-Klasse für den Speiseplan Sonja, Tobias, Matthias
      * 
      */
-    public void setSpeiseplanErsteller(MenuCreator ersteller){
+    public void setSpeiseplanErsteller(MenusCreator ersteller){
         this.speiseplanErsteller = ersteller;
     }
     
