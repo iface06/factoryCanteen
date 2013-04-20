@@ -24,7 +24,7 @@ public class CurrentMenuInteractorTest {
 
             @Override
             public Menu findCurrentMenu() {
-                throw new UnsupportedOperationException("Not supported yet.");
+                return new Menu();
             }
         });
         cmi.execute();
