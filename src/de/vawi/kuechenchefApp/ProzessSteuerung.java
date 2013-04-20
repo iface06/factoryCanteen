@@ -1,7 +1,7 @@
 package de.vawi.kuechenchefApp;
 
-import de.vawi.kuechenchefApp.menues.MenusCreator;
-import de.vawi.kuechenchefApp.menues.Menu;
+import de.vawi.kuechenchefApp.createMenues.MenusCreator;
+import de.vawi.kuechenchefApp.entities.Menu;
 import de.vawi.kuechenchefApp.purchaseList.PurchaseListCreator;
 import de.vawi.kuechenchefApp.purchaseList.PurchaseList;
 import de.vawi.kuechenchefApp.costs.CostReportCreator;

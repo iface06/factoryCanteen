@@ -5,9 +5,9 @@
 package de.vawi.kuechenchefApp.dishes;
 
 import de.vawi.kuechenchefApp.entities.Dish;
-import de.vawi.kuechenchefApp.menues.Canteen;
-import de.vawi.kuechenchefApp.menues.Menu;
-import de.vawi.kuechenchefApp.menues.Day;
+import de.vawi.kuechenchefApp.entities.Canteen;
+import de.vawi.kuechenchefApp.entities.Menu;
+import de.vawi.kuechenchefApp.entities.Day;
 
 /**
  *
@@ -27,7 +27,7 @@ public class DummySpeiseplan {
         t.setBeliebtesteSpeise(erste);
         t.setZweitbeliebtesteSpeise(zweite);
         t.setDrittbeliebtesteSpeise(dritte);
-        plan.fuegeTagHinzu(t);
+        plan.addDay(t);
         return this;
     }
     

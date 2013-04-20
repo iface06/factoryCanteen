@@ -2,7 +2,7 @@ package de.vawi.kuechenchefApp.purchaseList;
 
 import de.vawi.kuechenchefApp.dishes.IngredientCalculator;
 import de.vawi.kuechenchefApp.entities.*;
-import de.vawi.kuechenchefApp.menues.Menu;
+import de.vawi.kuechenchefApp.entities.Menu;
 import java.util.*;
 
 /**

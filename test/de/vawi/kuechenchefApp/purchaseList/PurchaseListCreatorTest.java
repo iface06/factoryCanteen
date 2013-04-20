@@ -1,10 +1,12 @@
 package de.vawi.kuechenchefApp.purchaseList;
 
 
+import de.vawi.kuechenchefApp.entities.Canteen;
+import de.vawi.kuechenchefApp.entities.Menu;
+import de.vawi.kuechenchefApp.entities.Day;
 import de.vawi.kuechenchefApp.dishes.*;
 import de.vawi.kuechenchefApp.entities.*;
 import de.vawi.kuechenchefApp.entities.FoodCategory;
-import de.vawi.kuechenchefApp.menues.*;
 import java.util.*;
 import static org.junit.Assert.assertEquals;
 import org.junit.*;
@@ -137,10 +139,10 @@ public class PurchaseListCreatorTest {
     }
     
     private Menu erzeugeDummySpeiseplan(Canteen kantine) {
-        List<Day> tage = new ArrayList<Day>();
+        Menu plan = new Menu();
+        plan.setKantine(kantine);
         Day tag = erzeugeTag();
-        tage.add(tag);
-        Menu plan = new Menu(kantine, tage);
+        plan.addDay(tag);
 
         return plan;
     }

@@ -1,4 +1,4 @@
-package de.vawi.kuechenchefApp.menues;
+package de.vawi.kuechenchefApp.createMenues;
 
 import de.vawi.kuechenchefApp.Periode;
 

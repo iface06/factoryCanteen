@@ -14,8 +14,8 @@ import org.junit.runners.Suite;
     de.vawi.kuechenchefApp.costs.CostReportCreatorTest.class,
     de.vawi.kuechenchefApp.entities.DishTest.class,
     de.vawi.kuechenchefApp.dishes.ZutatenKalkulatorTest.class,
-    de.vawi.kuechenchefApp.menues.MenusCreatorTest.class,
-    de.vawi.kuechenchefApp.menues.KantineTest.class
+    de.vawi.kuechenchefApp.createMenues.MenusCreatorTest.class,
+    de.vawi.kuechenchefApp.createMenues.KantineTest.class
 })
 public class UnitTests {
 }

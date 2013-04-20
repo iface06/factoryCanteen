@@ -1,11 +1,11 @@
 
 package de.vawi.kuechenchefApp.currentMenu;
 
-import de.vawi.kuechenchefApp.menues.Menu;
+import de.vawi.kuechenchefApp.entities.*;
 
 
 public interface CurrentMenuDao {
 
-    public Menu findCurrentMenu();
+    public Menu findCurrentMenuFor(Canteen c);
 
 }

@@ -1,8 +1,8 @@
 package de.vawi.kuechenchefApp.dishes;
 
 import de.vawi.kuechenchefApp.entities.*;
-import de.vawi.kuechenchefApp.menues.Menu;
-import de.vawi.kuechenchefApp.menues.Day;
+import de.vawi.kuechenchefApp.entities.Menu;
+import de.vawi.kuechenchefApp.entities.Day;
 import java.util.*;
 
 

@@ -1,7 +1,7 @@
 
-package de.vawi.kuechenchefApp.menues;
+package de.vawi.kuechenchefApp.createMenues;
 
-import de.vawi.kuechenchefApp.menues.Canteen;
+import de.vawi.kuechenchefApp.entities.Canteen;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

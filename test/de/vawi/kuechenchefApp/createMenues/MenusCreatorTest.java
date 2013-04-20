@@ -1,11 +1,14 @@
-package de.vawi.kuechenchefApp.menues;
+package de.vawi.kuechenchefApp.createMenues;
 
+import de.vawi.kuechenchefApp.createMenues.MenusCreator;
+import de.vawi.kuechenchefApp.entities.Canteen;
+import de.vawi.kuechenchefApp.entities.Menu;
 import de.vawi.kuechenchefApp.entities.Ingredient;
 import de.vawi.kuechenchefApp.Periode;
 import de.vawi.kuechenchefApp.dishes.*;
 import de.vawi.kuechenchefApp.entities.*;
 import de.vawi.kuechenchefApp.entities.FoodCategory;
-import de.vawi.kuechenchefApp.menues.MenusCreator.KeineAusreichendeAnzahlAnSpeisen;
+import de.vawi.kuechenchefApp.createMenues.MenusCreator.KeineAusreichendeAnzahlAnSpeisen;
 import java.util.*;
 import org.junit.*;
 import static org.junit.Assert.*;

@@ -2,7 +2,7 @@
 
 package de.vawi.kuechenchefApp.currentMenu;
 
-import de.vawi.kuechenchefApp.menues.Menu;
+import de.vawi.kuechenchefApp.entities.Menu;
 
 
 public class CurrentMenuResponse {

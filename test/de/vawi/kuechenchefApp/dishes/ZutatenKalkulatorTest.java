@@ -2,9 +2,9 @@ package de.vawi.kuechenchefApp.dishes;
 
 import de.vawi.kuechenchefApp.dishes.IngredientCalculator;
 import de.vawi.kuechenchefApp.entities.*;
-import de.vawi.kuechenchefApp.menues.Canteen;
-import de.vawi.kuechenchefApp.menues.Menu;
-import de.vawi.kuechenchefApp.menues.Day;
+import de.vawi.kuechenchefApp.entities.Canteen;
+import de.vawi.kuechenchefApp.entities.Menu;
+import de.vawi.kuechenchefApp.entities.Day;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,10 +31,11 @@ public class ZutatenKalkulatorTest {
     }
     
     private Menu erzeugeDummySpeiseplan() {
-        List<Day> tage = new ArrayList<Day>();
+        Menu plan = new Menu();
+        plan.setKantine(Canteen.ESSEN);
+        
         Day tag = erzeugeTag();
-        tage.add(tag);
-        Menu plan = new Menu(Canteen.ESSEN, tage);
+        plan.addDay(tag);
 
         return plan;
     }

@@ -1,5 +1,8 @@
-package de.vawi.kuechenchefApp.menues;
+package de.vawi.kuechenchefApp.createMenues;
 
+import de.vawi.kuechenchefApp.entities.Menu;
+import de.vawi.kuechenchefApp.entities.Day;
+import de.vawi.kuechenchefApp.entities.Canteen;
 import de.vawi.kuechenchefApp.Periode;
 import de.vawi.kuechenchefApp.entities.*;
 import java.util.*;
@@ -213,26 +216,30 @@ public class MenusCreator {
     }
 
     private Menu erstelleSpeiseplan(Canteen kantine) {
+        Menu menu = new Menu();
+        menu.setKantine(kantine);
+        menu.setCalendarWeek(CalendarWeek.current());
         List<Dish> speisenFuerPlan;
         if (kantine.equals(Canteen.ESSEN)) {
             speisenFuerPlan = new ArrayList<>(speisenFuerEssen);
         } else {
             speisenFuerPlan = new ArrayList<>(speisenFuerMuehlheim);
         }
-        List<Day> tage = new ArrayList<>();
+        
 
         //zuerst müssen die Fischtage erstellt werden!!
         for (int i = 1; i <= planungsperiode.getAnzahlWochen(); i++) {
-            tage.add(erstelleFischTag(speisenFuerPlan, i * 5));
+            menu.addDay(erstelleFischTag(speisenFuerPlan, i * 5));
         }
 
         //Dann die "normalen" Tage
         for (int i = 1; i <= planungsperiode.getAnzahlWochen() * planungsperiode.getAnzahlTageProWoche(); i++) {
             if ((i % 5) != 0) {
-                tage.add(erstelleNormalenTag(speisenFuerPlan, i));
+                menu.addDay(erstelleNormalenTag(speisenFuerPlan, i));
             }
         }
-        return new Menu(kantine, tage);
+        
+        return menu;
     }
 
     private Day erstelleNormalenTag(List<Dish> speisenFuerPlan, int nummer) {
