@@ -2,11 +2,12 @@
 
 package de.vawi.kuechenchefApp.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import org.joda.time.DateTime;
 
 
-public class CalendarWeek implements Comparable<CalendarWeek> {
+public class CalendarWeek implements Comparable<CalendarWeek>,Serializable {
 
 
     private int week;

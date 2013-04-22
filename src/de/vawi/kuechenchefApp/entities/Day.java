@@ -1,12 +1,13 @@
 package de.vawi.kuechenchefApp.entities;
 
 import de.vawi.kuechenchefApp.entities.Dish;
+import java.io.Serializable;
 
 /**
  * Diese Klasse repraensntiert einen Tag innerhalb eines Speiseplans
  * @author Max
  */
-public class Day{
+public class Day implements Serializable {
 
     private int nummer;
     private Dish beliebtesteSpeise;

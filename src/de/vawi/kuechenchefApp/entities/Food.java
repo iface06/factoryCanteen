@@ -1,5 +1,7 @@
 package de.vawi.kuechenchefApp.entities;
 
+import java.io.Serializable;
+
 /**
  * Diese Klasse hält Informationen die für die Beschreibung eines
  * Nahrungsmittels benötigt werden.
@@ -7,7 +9,7 @@ package de.vawi.kuechenchefApp.entities;
  * @author Struebe
  * @version 30.12.2012
  */
-public class Food {
+public class Food implements Serializable{
 
     private String name;
     private Unit einheit;

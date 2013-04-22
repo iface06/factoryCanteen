@@ -1,5 +1,7 @@
 package de.vawi.kuechenchefApp.entities;
 
+import java.io.Serializable;
+
 /**
  * Diese Klasse repräsentiert eine Zutat eines Gerichtes. Dementsprechend hält
  * diese die Informationen über Art und Menge des Nahrungsmittels.
@@ -7,7 +9,7 @@ package de.vawi.kuechenchefApp.entities;
  * @author Tatsch
  * @version 29.01.2013
  */
-public class Ingredient {
+public class Ingredient implements Serializable{
 
     private double amount;
     private Food food;

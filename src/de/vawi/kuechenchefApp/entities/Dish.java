@@ -1,5 +1,6 @@
 package de.vawi.kuechenchefApp.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -8,7 +9,7 @@ import java.util.*;
  * @author Tatsch
  * @version 28.01.2013
  */
-public class Dish implements Iterable<Ingredient> {
+public class Dish implements Iterable<Ingredient>, Serializable{
 
     private String name;
     private int beliebtheit;

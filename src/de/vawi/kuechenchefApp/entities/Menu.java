@@ -1,5 +1,6 @@
 package de.vawi.kuechenchefApp.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -10,7 +11,7 @@ import java.util.*;
  * @author Beer
  * @version 30.01.2013
  */
-public class Menu implements Iterable<Day> {
+public class Menu implements Iterable<Day>, Serializable{
 
     public static Menu emptyFor(Canteen c) {
         Menu emptyMenu = new Menu();
