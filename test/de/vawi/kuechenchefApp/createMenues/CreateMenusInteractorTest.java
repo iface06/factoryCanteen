@@ -1,23 +1,18 @@
-
 package de.vawi.kuechenchefApp.createMenues;
 
-import de.vawi.kuechenchefApp.createMenues.CreateMenuDao;
-import de.vawi.kuechenchefApp.createMenues.CreateMenusRequest;
-import de.vawi.kuechenchefApp.createMenues.CreateMenusInteractor;
 import de.vawi.kuechenchefApp.entities.Menu;
 import de.vawi.kuechenchefApp.*;
 import de.vawi.kuechenchefApp.dishes.*;
 import de.vawi.kuechenchefApp.entities.Dish;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
+
 /**
  * Component Test für das Erstellen von Speiseplänen
+ *
  * @author iface06
  */
 public class CreateMenusInteractorTest {
@@ -25,29 +20,29 @@ public class CreateMenusInteractorTest {
     private List<Menu> storedMenues;
     private Periode periode;
     private CreateMenuDao dao;
-    
+
     @Before
-    public void before(){
+    public void before() {
         storedMenues = new ArrayList<>();
     }
-    
+
     @Test
     public void testSomeMethod() {
-        
+
         createPeriode();
         RequestBoundary<CreateMenusRequest> requestBoundary = createRequestMock();
         createDao();
-        
+
         CreateMenusInteractor interactor = new CreateMenusInteractor(requestBoundary);
         interactor.setDao(dao);
         interactor.execute();
-        
+
         assertEquals(2, interactor.getResponse().size());
         assertEquals(2, storedMenues.size());
     }
 
     private RequestBoundary<CreateMenusRequest> createRequestMock() {
-        
+
         CreateMenusRequest request = mock(CreateMenusRequest.class);
         when(request.getPeriode()).thenReturn(periode);
         RequestBoundary<CreateMenusRequest> requestBoundary = mock(RequestBoundary.class);
@@ -60,15 +55,14 @@ public class CreateMenusInteractorTest {
         periode.setAnzahlGerichteProTag(3);
         periode.setAnzahlTageProWoche(5);
         periode.setAnzahlWochen(1);
-        
+
     }
 
     private void createDao() {
         final List<Dish> favoriteDishes = createFavoritDishes();
         final List<Dish> unfavoriteDishes = createUnfavoriteDishes();
-        
-        dao = new CreateMenuDao() {
 
+        dao = new CreateMenuDao() {
             @Override
             public List<Dish> findeBeliebtesteSpeisenFuerPlanungsPeriode(Periode periode) {
                 return favoriteDishes;
@@ -89,7 +83,7 @@ public class CreateMenusInteractorTest {
                 storedMenues.addAll(menues);
             }
         };
-        
+
     }
 
     private List<Dish> createFavoritDishes() {
@@ -137,5 +131,4 @@ public class CreateMenusInteractorTest {
         unfavorites.add(knoblauchgarnelen);
         return unfavorites;
     }
-    
 }
