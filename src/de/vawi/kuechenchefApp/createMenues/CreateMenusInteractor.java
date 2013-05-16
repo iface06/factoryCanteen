@@ -1,23 +1,19 @@
-
-
 package de.vawi.kuechenchefApp.createMenues;
 
 import de.vawi.kuechenchefApp.entities.Menu;
 import de.vawi.kuechenchefApp.*;
 import java.util.List;
 
-
-public class CreateMenusInteractor implements Interactor, ResponseBoundary<List<Menu>>{
+public class CreateMenusInteractor implements Interactor, ResponseBoundary<List<Menu>> {
 
     private final RequestBoundary<CreateMenusRequest> requestBoundary;
-    
     private CreateMenuDao dao;
     private List<Menu> menues;
 
     public CreateMenusInteractor(RequestBoundary<CreateMenusRequest> requestBoundary) {
         this.requestBoundary = requestBoundary;
     }
-    
+
     @Override
     public void execute() {
         createMenues();
@@ -27,9 +23,9 @@ public class CreateMenusInteractor implements Interactor, ResponseBoundary<List<
     @Override
     public List<Menu> getResponse() {
         return menues;
-    }    
+    }
 
-    protected void setDao(CreateMenuDao dao) {
+    public void setDao(CreateMenuDao dao) {
         this.dao = dao;
     }
 
