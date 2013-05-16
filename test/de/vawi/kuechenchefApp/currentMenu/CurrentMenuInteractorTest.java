@@ -22,7 +22,7 @@ public class CurrentMenuInteractorTest {
         request.setCanteen(Canteen.ESSEN);
         RequestBoundary<CurrentMenuRequest> cmr = new RequestBoundary<CurrentMenuRequest>() {
             @Override
-            public CurrentMenuRequest getRequest() {
+            public CurrentMenuRequest passRequest() {
                 return request;
             }
         };

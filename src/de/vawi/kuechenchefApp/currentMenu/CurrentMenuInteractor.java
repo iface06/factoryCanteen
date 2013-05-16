@@ -1,5 +1,3 @@
-
-
 package de.vawi.kuechenchefApp.currentMenu;
 
 import de.vawi.kuechenchefApp.ResponseBoundary;
@@ -7,9 +5,8 @@ import de.vawi.kuechenchefApp.RequestBoundary;
 import de.vawi.kuechenchefApp.Interactor;
 import de.vawi.kuechenchefApp.entities.*;
 
-
 public class CurrentMenuInteractor implements ResponseBoundary<CurrentMenuResponse>, Interactor {
-    
+
     private final RequestBoundary<CurrentMenuRequest> requestBoundary;
     private CurrentMenuResponse response;
     private CurrentMenuDao dao;
@@ -20,7 +17,7 @@ public class CurrentMenuInteractor implements ResponseBoundary<CurrentMenuRespon
 
     @Override
     public void execute() {
-        Canteen c = requestBoundary.getRequest().getCanteen();
+        Canteen c = requestBoundary.passRequest().getCanteen();
         Menu menu = dao.findCurrentMenuFor(c);
         response = new CurrentMenuResponse();
         response.setMenu(menu);
@@ -31,7 +28,7 @@ public class CurrentMenuInteractor implements ResponseBoundary<CurrentMenuRespon
         return response;
     }
 
-    void setDao(CurrentMenuDao dao) {
+    public void setDao(CurrentMenuDao dao) {
         this.dao = dao;
     }
 }

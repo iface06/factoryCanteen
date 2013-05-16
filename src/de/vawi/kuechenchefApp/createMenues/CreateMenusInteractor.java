@@ -30,7 +30,7 @@ public class CreateMenusInteractor implements Interactor, ResponseBoundary<List<
     }
 
     private Periode getPeriodeFromRequest() {
-        return requestBoundary.getRequest().getPeriode();
+        return requestBoundary.passRequest().getPeriode();
     }
 
     private void createMenues() {

@@ -46,7 +46,7 @@ public class CreateMenusInteractorTest {
         CreateMenusRequest request = mock(CreateMenusRequest.class);
         when(request.getPeriode()).thenReturn(periode);
         RequestBoundary<CreateMenusRequest> requestBoundary = mock(RequestBoundary.class);
-        when(requestBoundary.getRequest()).thenReturn(request);
+        when(requestBoundary.passRequest()).thenReturn(request);
         return requestBoundary;
     }
 
