@@ -2,8 +2,8 @@
 
 package de.vawi.kuechenchefApp.entities;
 
-import de.vawi.kuechenchefApp.dishes.DummySpeise;
-import de.vawi.kuechenchefApp.dishes.DummyZutat;
+import de.vawi.kuechenchefApp.dummies.DummySpeise;
+import de.vawi.kuechenchefApp.dummies.DummyZutat;
 import de.vawi.kuechenchefApp.entities.*;
 import de.vawi.kuechenchefApp.entities.FoodCategory;
 import java.util.*;
@@ -43,7 +43,7 @@ public class DishTest {
         
         sortiereZutatzenDerSpeise(speise);
         
-        assertEquals(FoodCategory.MEAT, speise.getKategorie());   
+        assertEquals(FoodCategory.MEAT, speise.getCategory());   
     }
     
     @Test
@@ -54,7 +54,7 @@ public class DishTest {
         
         sortiereZutatzenDerSpeise(speise);
         
-        assertEquals(FoodCategory.VEGETARIAN, speise.getKategorie());   
+        assertEquals(FoodCategory.VEGETARIAN, speise.getCategory());   
     }
     
     @Test
@@ -65,11 +65,11 @@ public class DishTest {
         
         sortiereZutatzenDerSpeise(speise);
         
-        assertEquals(FoodCategory.FISH, speise.getKategorie());   
+        assertEquals(FoodCategory.FISH, speise.getCategory());   
     }
 
     private void sortiereZutatzenDerSpeise(Dish speise) {
-        Collections.sort(speise.getZutaten(), new Comparator<Ingredient>() {
+        Collections.sort(speise.getIngredients(), new Comparator<Ingredient>() {
                 @Override
                 public int compare(Ingredient o1, Ingredient o2) {
                     FoodCategory kategorie1 = o1.getFood().getKategorie();

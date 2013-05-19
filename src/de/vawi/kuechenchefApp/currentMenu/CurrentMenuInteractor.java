@@ -1,8 +1,8 @@
 package de.vawi.kuechenchefApp.currentMenu;
 
-import de.vawi.kuechenchefApp.ResponseBoundary;
-import de.vawi.kuechenchefApp.RequestBoundary;
-import de.vawi.kuechenchefApp.Interactor;
+import de.vawi.kuechenchefApp.interactorspec.ResponseBoundary;
+import de.vawi.kuechenchefApp.interactorspec.RequestBoundary;
+import de.vawi.kuechenchefApp.interactorspec.Interactor;
 import de.vawi.kuechenchefApp.entities.*;
 
 public class CurrentMenuInteractor implements ResponseBoundary<CurrentMenuResponse>, Interactor {

@@ -8,8 +8,9 @@ import de.vawi.kuechenchefApp.entities.*;
 import java.util.*;
 
 /**
- * Diese Klasse ist für das Erstellen eines Speiseplans verantwortlich.
- * Hier werden die beliebtesten Speisen auf die Harten Kriterien geprueft und ggf. angepasst.
+ * Diese Klasse ist für das Erstellen eines Speiseplans verantwortlich. Hier
+ * werden die beliebtesten Speisen auf die Harten Kriterien geprueft und ggf.
+ * angepasst.
  *
  * @author Beer
  * @version (a version number or a date)
@@ -27,7 +28,8 @@ public class MenusCreator {
 
     /**
      * Stoesst den Pruefungs und Anpassungsprozess an.
-     * @return liefert eine Liste mit den erzeugten Plaene 
+     *
+     * @return liefert eine Liste mit den erzeugten Plaene
      */
     public List<Menu> erzeuge() {
         validiereSpeisenAnzahl();
@@ -38,9 +40,10 @@ public class MenusCreator {
         sortiereTageSpeisseplaene();
         return Arrays.asList(speiseplanEssen, speiseplanMuehlheim);
     }
-    
+
     /**
-     * setzt das benötigte Data Access Object das für die erzeugen der Speisepläne benötigt wird.
+     * setzt das benötigte Data Access Object das für die erzeugen der
+     * Speisepläne benötigt wird.
      */
     protected void setDao(CreateMenuDao dao) {
         this.dao = dao;
@@ -51,13 +54,14 @@ public class MenusCreator {
             throw new KeineAusreichendeAnzahlAnSpeisen();
         }
     }
-    
+
     private void ladeBeliebtesteSpeisen() {
         beliebtesteSpeisen = findeBeliebtesteSpeisenFuerPlanungsperiode();
     }
-    
+
     /**
      * Findet die beliebtesten Speisen fuer die Planungsperiode
+     *
      * @return liefert eine Liste mit den gefundenen Speisen
      */
     protected List<Dish> findeBeliebtesteSpeisenFuerPlanungsperiode() {
@@ -67,19 +71,21 @@ public class MenusCreator {
     private void ladeUnbeliebtesteSpeisen() {
         uebrigenSpeisen = findeUnbeliebtesteSpeisen();
     }
-    
+
     /**
      * Findet die ubeliebtesten Speisen fuer die Planungsperiode
+     *
      * @return liefert eine Liste mit den gefundenen Speisen
      */
     protected List<Dish> findeUnbeliebtesteSpeisen() {
         return dao.findeUnbeliebtesteSpeisen(this.planungsperiode);
     }
-    
+
     /**
-     * Diese Methode prueft auf die Kriterien wie viele Fleisch-, Fisch- und vegetarischen Gerichte
-     * midestens in einem Plan vorkommen muessen. Sollten diese Kriterien nicht eingehalten sein leitet diese 
-     * Methode noetige Anpassungen ein.
+     * Diese Methode prueft auf die Kriterien wie viele Fleisch-, Fisch- und
+     * vegetarischen Gerichte midestens in einem Plan vorkommen muessen. Sollten
+     * diese Kriterien nicht eingehalten sein leitet diese Methode noetige
+     * Anpassungen ein.
      */
     protected void beliebtesteSpeisenPruefenUndAnpassen() {
         if (beliebtesteSpeisenBeinhaltenGenugFischgerichte()) {
@@ -135,7 +141,7 @@ public class MenusCreator {
     private boolean beliebtesteSpeisenBeinhaltenGenugFleischgerichte() {
         int counter = 0;
         for (Dish speise : beliebtesteSpeisen) {
-            if (speise.getKategorie().equals(FoodCategory.MEAT)) {
+            if (speise.getCategory().equals(FoodCategory.MEAT)) {
                 counter++;
             }
         }
@@ -153,7 +159,7 @@ public class MenusCreator {
     private boolean beliebtesteSpeisenBeinhaltenGenugFischgerichte() {
         int gezaehlteSpeisen = 0;
         for (Dish speise : beliebtesteSpeisen) {
-            if (speise.getKategorie().equals(FoodCategory.FISH)) {
+            if (speise.getCategory().equals(FoodCategory.FISH)) {
                 gezaehlteSpeisen++;
             }
         }
@@ -172,7 +178,7 @@ public class MenusCreator {
     private boolean beliebtesteSpeisenBeinhaltenGenugVegGerichte() {
         int counter = 0;
         for (Dish speise : beliebtesteSpeisen) {
-            if (speise.getKategorie().equals(FoodCategory.VEGETARIAN)) {
+            if (speise.getCategory().equals(FoodCategory.VEGETARIAN)) {
                 counter++;
             }
         }
@@ -225,7 +231,7 @@ public class MenusCreator {
         } else {
             speisenFuerPlan = new ArrayList<>(speisenFuerMuehlheim);
         }
-        
+
 
         //zuerst müssen die Fischtage erstellt werden!!
         for (int i = 1; i <= planungsperiode.getAnzahlWochen(); i++) {
@@ -238,12 +244,12 @@ public class MenusCreator {
                 menu.addDay(erstelleNormalenTag(speisenFuerPlan, i));
             }
         }
-        
+
         return menu;
     }
 
     private Day erstelleNormalenTag(List<Dish> speisenFuerPlan, int nummer) {
-        Day tag = new Day(nummer);
+        Day tag = new Day(new Date());
         List<Dish> tagesSpeisen = new ArrayList<>();
         tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.VEGETARIAN));
         tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.MEAT));
@@ -253,7 +259,7 @@ public class MenusCreator {
     }
 
     private Day erstelleFischTag(List<Dish> speisenFuerPlan, int nummer) {
-        Day tag = new Day(nummer);
+        Day tag = new Day(new Date());
         List<Dish> tagesSpeisen = new ArrayList<>();
         tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.FISH));
         tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.VEGETARIAN));
@@ -264,11 +270,11 @@ public class MenusCreator {
 
     private Day verteileSpeisenAufTag(Day tag, List<Dish> tagesSpeisen) {
         Dish speise1 = findeBeliebtesteSpeise(tagesSpeisen);
-        tag.setBeliebtesteSpeise(speise1);
+        tag.insert(speise1);
         tagesSpeisen.remove(speise1);
-        tag.setZweitbeliebtesteSpeise(findeBeliebtesteSpeise(tagesSpeisen));
+        tag.insert(findeBeliebtesteSpeise(tagesSpeisen));
         tagesSpeisen.remove(findeBeliebtesteSpeise(tagesSpeisen));
-        tag.setDrittbeliebtesteSpeise(findeBeliebtesteSpeise(tagesSpeisen));
+        tag.insert(findeBeliebtesteSpeise(tagesSpeisen));
 
         return tag;
     }
@@ -276,11 +282,6 @@ public class MenusCreator {
     private Dish findeBeliebtesteSpeise(List<Dish> speisen) {
         sortiereSpeisen(speisen);
         return speisen.get(0);
-    }
-
-    private Dish findeUnbeliebtesteSpeise(List<Dish> speisen) {
-        sortiereSpeisen(speisen);
-        return speisen.get(speisen.size() - 1);
     }
 
     private Dish nimmEinGerichtAusListe(List<Dish> speisen, FoodCategory kategorie) {
@@ -307,7 +308,7 @@ public class MenusCreator {
         Collections.sort(speisen, new Comparator<Dish>() {
             @Override
             public int compare(Dish o1, Dish o2) {
-                return Integer.valueOf(o1.getBeliebtheit()).compareTo(Integer.valueOf(o2.getBeliebtheit()));
+                return Integer.valueOf(o1.getPopularity()).compareTo(Integer.valueOf(o2.getPopularity()));
             }
         });
     }
@@ -315,23 +316,27 @@ public class MenusCreator {
     private List<Dish> extrahiereSpeisenNachKategorie(List<Dish> speisen, FoodCategory kategorie) {
         List<Dish> nachKategorie = new ArrayList<>();
         for (Dish speise : speisen) {
-            if (speise.getKategorie().equals(kategorie)) {
+            if (speise.getCategory().equals(kategorie)) {
                 nachKategorie.add(speise);
             }
         }
         return nachKategorie;
     }
-    
+
     /**
      * Setzt die PlaungsPeriode
-     * @param planungsperiode die entsprechende PlanungsPeriode, die gesetzt werden soll
+     *
+     * @param planungsperiode die entsprechende PlanungsPeriode, die gesetzt
+     * werden soll
      */
     protected void setPlanungsperiode(Periode planungsperiode) {
         this.planungsperiode = planungsperiode;
     }
-    
+
     /**
-     * Prueft ob grundsaetzlich genug Speisen vorhanden sind um einen Plan zu erstellen
+     * Prueft ob grundsaetzlich genug Speisen vorhanden sind um einen Plan zu
+     * erstellen
+     *
      * @return liefert true wenn genug Speisen vorhanden sind, andernfalls false
      */
     protected boolean sindAusreichendSpeisenInSpeisenVerwaltungVorhanden() {
@@ -339,21 +344,14 @@ public class MenusCreator {
     }
 
     private void sortiereTageSpeisseplaene() {
-        Comparator<Day> c = new Comparator<Day>() {
-            @Override
-            public int compare(Day o1, Day o2) {
-                return Integer.valueOf(o1.getNummer()).compareTo(Integer.valueOf(o2.getNummer()));
-            }
-        };
-        Collections.sort(speiseplanEssen.getTageMitGerichten(), c);
-        Collections.sort(speiseplanMuehlheim.getTageMitGerichten(), c);
+        Collections.sort(speiseplanEssen.getTageMitGerichten());
+        Collections.sort(speiseplanMuehlheim.getTageMitGerichten());
     }
-    
+
     /**
-     * Die Exception die geworfen wird, sollten zu wenig Speisen zum Erstellen eines Planes vorhanden sind.s
+     * Die Exception die geworfen wird, sollten zu wenig Speisen zum Erstellen
+     * eines Planes vorhanden sind.s
      */
     public static class KeineAusreichendeAnzahlAnSpeisen extends RuntimeException {
     }
-    
-    
 }

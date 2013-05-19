@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.vawi.kuechenchefApp.dishes;
+package de.vawi.kuechenchefApp.dummies;
 
 import de.vawi.kuechenchefApp.entities.Ingredient;
 import de.vawi.kuechenchefApp.entities.Unit;

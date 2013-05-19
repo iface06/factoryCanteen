@@ -11,7 +11,7 @@ package de.vawi.kuechenchefApp;
  */
 public class Periode {
 
-    private int anzahlWochen = 1;
+    private int anzahlWochen = 3;
     private int anzahlTageProWoche = 5;
     private int anzahlGerichteProTag = 3;
 

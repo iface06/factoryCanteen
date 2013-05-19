@@ -5,10 +5,10 @@ import de.vawi.kuechenchefApp.entities.Canteen;
 import de.vawi.kuechenchefApp.entities.Menu;
 import de.vawi.kuechenchefApp.entities.Ingredient;
 import de.vawi.kuechenchefApp.Periode;
-import de.vawi.kuechenchefApp.dishes.*;
 import de.vawi.kuechenchefApp.entities.*;
 import de.vawi.kuechenchefApp.entities.FoodCategory;
 import de.vawi.kuechenchefApp.createMenues.MenusCreator.KeineAusreichendeAnzahlAnSpeisen;
+import de.vawi.kuechenchefApp.dummies.*;
 import java.util.*;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -33,11 +33,8 @@ public class MenusCreatorTest {
     }
 
     /**
-     * 45 beliebtesten Gerichte sich holt
-     * davon 3 Fischgerichte
-     * davon 15 vegetarische
-     * Rest Fleisch
-     * Waren müssen ausreichend verfügbar sein
+     * 45 beliebtesten Gerichte sich holt davon 3 Fischgerichte davon 15
+     * vegetarische Rest Fleisch Waren müssen ausreichend verfügbar sein
      *
      */
     @Test
@@ -54,8 +51,8 @@ public class MenusCreatorTest {
             assertEquals(5, plan.getTageMitGerichten().size());
         }
     }
-    
-    @Test(expected=KeineAusreichendeAnzahlAnSpeisen.class)
+
+    @Test(expected = KeineAusreichendeAnzahlAnSpeisen.class)
     public void testSpeiseplanErstellungZuWenigVegetarischSpeisen() {
         ausreichendSpeisenVorhanden = false;
         MenusCreator ersteller = new TestbarerSpeiseplanErsteller();
@@ -87,7 +84,7 @@ public class MenusCreatorTest {
         beliebtestSpeisen.add(erstelleFleischSpeise("Bolognese", 14, FoodCategory.MEAT));
         beliebtestSpeisen.add(erstelleFleischSpeise("Pilzraviolie", 15, FoodCategory.VEGETARIAN));
     }
-    
+
     private void initialisiereUnbeliebtesteSpeisen() {
         unbeliebtesteSpeisen = new ArrayList<>();
         unbeliebtesteSpeisen.add(erstelleFleischSpeise("Pressfleisch", 16, FoodCategory.MEAT));
@@ -116,8 +113,7 @@ public class MenusCreatorTest {
     }
 
     private void sortiereZutatenDerSpeise(Dish speise) {
-        Collections.sort(speise.getZutaten(), new Comparator<Ingredient>() {
-
+        Collections.sort(speise.getIngredients(), new Comparator<Ingredient>() {
             @Override
             public int compare(Ingredient o1, Ingredient o2) {
                 return o1.getCategory().compareTo(o2.getCategory());
@@ -128,17 +124,14 @@ public class MenusCreatorTest {
     private List<Dish> loescheSpeisenMitKategorie(List<Dish> beliebtestSpeisen, FoodCategory kategorie) {
         List<Dish> ohneKategorie = new ArrayList<>();
         for (Dish speise : beliebtestSpeisen) {
-            if(!speise.getKategorie().equals(kategorie)){
+            if (!speise.getCategory().equals(kategorie)) {
                 ohneKategorie.add(speise);
             }
         }
         return ohneKategorie;
     }
 
-    
-
     class TestbarerSpeiseplanErsteller extends MenusCreator {
-        
 
         @Override
         protected List<Dish> findeBeliebtesteSpeisenFuerPlanungsperiode() {
@@ -154,7 +147,5 @@ public class MenusCreatorTest {
         protected boolean sindAusreichendSpeisenInSpeisenVerwaltungVorhanden() {
             return ausreichendSpeisenVorhanden;
         }
-        
-        
     }
 }

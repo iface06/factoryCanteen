@@ -2,7 +2,7 @@
 
 package de.vawi.kuechenchefApp.entities;
 
-import de.vawi.kuechenchefApp.dishes.DummyZutat;
+import de.vawi.kuechenchefApp.dummies.DummyZutat;
 import org.junit.*;
 import static org.junit.Assert.*;
 

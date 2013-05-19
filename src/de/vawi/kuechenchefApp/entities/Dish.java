@@ -9,24 +9,24 @@ import java.util.*;
  * @author Tatsch
  * @version 28.01.2013
  */
-public class Dish implements Iterable<Ingredient>, Serializable{
+public class Dish implements Iterable<Ingredient>, Serializable {
 
     private String name;
-    private int beliebtheit;
-    private List<Ingredient> zutaten = new ArrayList<>();
+    private Integer popularity;
+    private List<Ingredient> Ingredients = new ArrayList<>();
 
     /**
      * @return Beliebtheit bei den Gästen
      */
-    public int getBeliebtheit() {
-        return beliebtheit;
+    public Integer getPopularity() {
+        return popularity;
     }
 
     /**
      * @param beliebtheit Beliebtheit bei den Gästen
      */
-    public void setBeliebtheit(int beliebtheit) {
-        this.beliebtheit = beliebtheit;
+    public void setPopularity(Integer beliebtheit) {
+        this.popularity = beliebtheit;
     }
 
     /**
@@ -46,16 +46,16 @@ public class Dish implements Iterable<Ingredient>, Serializable{
     /**
      * @return Alle Zutaten einer Speise
      */
-    public List<Ingredient> getZutaten() {
-        return this.zutaten;
+    public List<Ingredient> getIngredients() {
+        return this.Ingredients;
     }
 
     /**
      *
      * @param zutat Zutat einer Speise
      */
-    public void addZutat(Ingredient zutat) {
-        zutaten.add(zutat);
+    public void addIngredient(Ingredient zutat) {
+        Ingredients.add(zutat);
     }
 
     /**
@@ -85,8 +85,8 @@ public class Dish implements Iterable<Ingredient>, Serializable{
      *
      * @return Gibt die Kategorie der Speise wieder.
      */
-    public FoodCategory getKategorie() {
-        Iterator<Ingredient> iterator = zutaten.iterator();
+    public FoodCategory getCategory() {
+        Iterator<Ingredient> iterator = Ingredients.iterator();
         return iterator.hasNext() ? iterator.next().getCategory() : FoodCategory.VEGETARIAN;
     }
 
@@ -96,6 +96,6 @@ public class Dish implements Iterable<Ingredient>, Serializable{
      */
     @Override
     public Iterator<Ingredient> iterator() {
-        return zutaten.iterator();
+        return Ingredients.iterator();
     }
 }
