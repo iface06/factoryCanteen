@@ -4,7 +4,7 @@ package de.vawi.kuechenchefApp.currentMenu;
 import de.vawi.kuechenchefApp.entities.*;
 
 
-public interface CurrentMenuDao {
+public interface FindMenuDao {
 
     public Menu findCurrentMenuFor(Canteen c);
 

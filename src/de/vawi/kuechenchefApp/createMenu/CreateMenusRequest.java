@@ -1,6 +1,6 @@
-package de.vawi.kuechenchefApp.createMenues;
+package de.vawi.kuechenchefApp.createMenu;
 
-import de.vawi.kuechenchefApp.Periode;
+import de.vawi.kuechenchefApp.entities.Periode;
 
 public class CreateMenusRequest {
 

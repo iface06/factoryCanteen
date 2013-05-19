@@ -9,20 +9,20 @@ public class CurrentMenuInteractorTest {
 
     @Test
     public void test() {
-        RequestBoundary<CurrentMenuRequest> cmr = createRequestBoundary();
-        CurrentMenuInteractor cmi = new CurrentMenuInteractor(cmr);
+        RequestBoundary<FindMenuRequest> cmr = createRequestBoundary();
+        FindMenuInteractor cmi = new FindMenuInteractor(cmr);
         cmi.setDao(createDao());
         cmi.execute();
 
         assertNotNull(cmi.getResponse().getMenu());
     }
 
-    private RequestBoundary<CurrentMenuRequest> createRequestBoundary() {
-        final CurrentMenuRequest request = new CurrentMenuRequest();
+    private RequestBoundary<FindMenuRequest> createRequestBoundary() {
+        final FindMenuRequest request = new FindMenuRequest();
         request.setCanteen(Canteen.ESSEN);
-        RequestBoundary<CurrentMenuRequest> cmr = new RequestBoundary<CurrentMenuRequest>() {
+        RequestBoundary<FindMenuRequest> cmr = new RequestBoundary<FindMenuRequest>() {
             @Override
-            public CurrentMenuRequest passRequest() {
+            public FindMenuRequest passRequest() {
                 return request;
             }
         };
@@ -30,8 +30,8 @@ public class CurrentMenuInteractorTest {
         return cmr;
     }
 
-    private CurrentMenuDao createDao() {
-        return new CurrentMenuDao() {
+    private FindMenuDao createDao() {
+        return new FindMenuDao() {
             @Override
             public Menu findCurrentMenuFor(Canteen c) {
                 return new Menu();

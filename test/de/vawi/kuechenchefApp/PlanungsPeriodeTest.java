@@ -1,6 +1,7 @@
 
 package de.vawi.kuechenchefApp;
 
+import de.vawi.kuechenchefApp.entities.Periode;
 import org.junit.*;
 import static org.junit.Assert.*;
 

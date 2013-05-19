@@ -5,7 +5,7 @@ package de.vawi.kuechenchefApp.currentMenu;
 import de.vawi.kuechenchefApp.entities.Menu;
 
 
-public class CurrentMenuResponse {
+public class FindMenuResponse {
     
     private Menu menu;
 

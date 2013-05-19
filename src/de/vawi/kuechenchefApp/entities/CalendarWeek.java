@@ -1,23 +1,25 @@
-
-
 package de.vawi.kuechenchefApp.entities;
 
 import java.io.Serializable;
 import java.util.Date;
 import org.joda.time.DateTime;
 
-
-public class CalendarWeek implements Comparable<CalendarWeek>,Serializable {
-
+public class CalendarWeek implements Comparable<CalendarWeek>, Serializable {
 
     private int week;
     private int year;
-    
-    
+
     public static CalendarWeek current() {
         return fromDate(new Date());
     }
-    
+
+    public static CalendarWeek fromWeekAndYear(int week, int year) {
+        CalendarWeek cw = new CalendarWeek();
+        cw.setWeek(week);
+        cw.setYear(year);
+        return cw;
+    }
+
     public static CalendarWeek fromDate(Date d) {
         CalendarWeek week = new CalendarWeek();
         DateTime dt = new DateTime(d);
@@ -44,9 +46,9 @@ public class CalendarWeek implements Comparable<CalendarWeek>,Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj.getClass().equals(CalendarWeek.class)){
+        if (obj.getClass().equals(CalendarWeek.class)) {
             CalendarWeek cw = (CalendarWeek) obj;
-            return this.year == cw.year && this.week == cw.week; 
+            return this.year == cw.year && this.week == cw.week;
         }
         return false;
     }
@@ -61,9 +63,9 @@ public class CalendarWeek implements Comparable<CalendarWeek>,Serializable {
 
     @Override
     public int compareTo(CalendarWeek o) {
-        if(this.year < o.year){
+        if (this.year < o.year) {
             return -1;
-        } else if(this. year > o.year){
+        } else if (this.year > o.year) {
             return 1;
         } else {
             return compareWeeks(o);
@@ -71,9 +73,9 @@ public class CalendarWeek implements Comparable<CalendarWeek>,Serializable {
     }
 
     private int compareWeeks(CalendarWeek o) {
-        if(this.week < o.week){
+        if (this.week < o.week) {
             return -1;
-        } else if(this.week > o.week){
+        } else if (this.week > o.week) {
             return 1;
         } else {
             return 0;

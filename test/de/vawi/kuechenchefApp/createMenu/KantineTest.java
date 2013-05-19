@@ -1,5 +1,5 @@
 
-package de.vawi.kuechenchefApp.createMenues;
+package de.vawi.kuechenchefApp.createMenu;
 
 import de.vawi.kuechenchefApp.entities.Canteen;
 import org.junit.Test;

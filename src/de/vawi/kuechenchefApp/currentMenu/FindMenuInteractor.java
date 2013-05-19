@@ -5,13 +5,13 @@ import de.vawi.kuechenchefApp.interactorspec.RequestBoundary;
 import de.vawi.kuechenchefApp.interactorspec.Interactor;
 import de.vawi.kuechenchefApp.entities.*;
 
-public class CurrentMenuInteractor implements ResponseBoundary<CurrentMenuResponse>, Interactor {
+public class FindMenuInteractor implements ResponseBoundary<FindMenuResponse>, Interactor {
 
-    private final RequestBoundary<CurrentMenuRequest> requestBoundary;
-    private CurrentMenuResponse response;
-    private CurrentMenuDao dao;
+    private final RequestBoundary<FindMenuRequest> requestBoundary;
+    private FindMenuResponse response;
+    private FindMenuDao dao;
 
-    public CurrentMenuInteractor(RequestBoundary<CurrentMenuRequest> cmr) {
+    public FindMenuInteractor(RequestBoundary<FindMenuRequest> cmr) {
         this.requestBoundary = cmr;
     }
 
@@ -19,16 +19,16 @@ public class CurrentMenuInteractor implements ResponseBoundary<CurrentMenuRespon
     public void execute() {
         Canteen c = requestBoundary.passRequest().getCanteen();
         Menu menu = dao.findCurrentMenuFor(c);
-        response = new CurrentMenuResponse();
+        response = new FindMenuResponse();
         response.setMenu(menu);
     }
 
     @Override
-    public CurrentMenuResponse getResponse() {
+    public FindMenuResponse getResponse() {
         return response;
     }
 
-    public void setDao(CurrentMenuDao dao) {
+    public void setDao(FindMenuDao dao) {
         this.dao = dao;
     }
 }

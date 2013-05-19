@@ -1,9 +1,9 @@
 
 
-package de.vawi.kuechenchefApp.createMenues;
+package de.vawi.kuechenchefApp.createMenu;
 
 import de.vawi.kuechenchefApp.entities.Menu;
-import de.vawi.kuechenchefApp.Periode;
+import de.vawi.kuechenchefApp.entities.Periode;
 import de.vawi.kuechenchefApp.entities.Dish;
 import java.util.List;
 

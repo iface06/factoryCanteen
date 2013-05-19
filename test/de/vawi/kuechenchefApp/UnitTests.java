@@ -7,8 +7,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
     PlanungsPeriodeTest.class,
     de.vawi.kuechenchefApp.entities.DishTest.class,
-    de.vawi.kuechenchefApp.createMenues.MenusCreatorTest.class,
-    de.vawi.kuechenchefApp.createMenues.KantineTest.class
+    de.vawi.kuechenchefApp.createMenu.MenusCreatorTest.class,
+    de.vawi.kuechenchefApp.createMenu.KantineTest.class
 })
 public class UnitTests {
 }

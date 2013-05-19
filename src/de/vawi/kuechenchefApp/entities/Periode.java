@@ -1,4 +1,4 @@
-package de.vawi.kuechenchefApp;
+package de.vawi.kuechenchefApp.entities;
 
 /**
  *
