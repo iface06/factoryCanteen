@@ -1,4 +1,4 @@
-package de.vawi.kuechenchefApp.interactorspec;
+package de.vawi.kuechenchefApp.interactors;
 
 public interface Interactor {
 

@@ -6,7 +6,7 @@ import de.vawi.kuechenchefApp.createMenu.CreateMenuDao;
 import de.vawi.kuechenchefApp.entities.Periode;
 import de.vawi.kuechenchefApp.dummies.DummyZutat;
 import de.vawi.kuechenchefApp.dummies.DummySpeise;
-import de.vawi.kuechenchefApp.interactorspec.RequestBoundary;
+import de.vawi.kuechenchefApp.interactors.RequestBoundary;
 import de.vawi.kuechenchefApp.entities.Menu;
 import de.vawi.kuechenchefApp.*;
 import de.vawi.kuechenchefApp.entities.Dish;

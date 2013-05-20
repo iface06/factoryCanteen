@@ -1,9 +1,9 @@
 package de.vawi.kuechenchefApp.createMenu;
 
 import de.vawi.kuechenchefApp.entities.Periode;
-import de.vawi.kuechenchefApp.interactorspec.Interactor;
-import de.vawi.kuechenchefApp.interactorspec.ResponseBoundary;
-import de.vawi.kuechenchefApp.interactorspec.RequestBoundary;
+import de.vawi.kuechenchefApp.interactors.Interactor;
+import de.vawi.kuechenchefApp.interactors.ResponseBoundary;
+import de.vawi.kuechenchefApp.interactors.RequestBoundary;
 import de.vawi.kuechenchefApp.entities.Menu;
 import de.vawi.kuechenchefApp.*;
 import java.util.List;

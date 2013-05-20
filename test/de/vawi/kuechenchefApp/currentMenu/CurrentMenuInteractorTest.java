@@ -1,6 +1,6 @@
 package de.vawi.kuechenchefApp.currentMenu;
 
-import de.vawi.kuechenchefApp.interactorspec.RequestBoundary;
+import de.vawi.kuechenchefApp.interactors.RequestBoundary;
 import de.vawi.kuechenchefApp.entities.*;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
