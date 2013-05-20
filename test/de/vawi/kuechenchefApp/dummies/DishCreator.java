@@ -10,26 +10,26 @@ import de.vawi.kuechenchefApp.entities.*;
  *
  * @author Tatsch
  */
-public class DummySpeise {
+public class DishCreator {
 
     private Dish speise = new Dish();
 
-    public DummySpeise beliebtheit(int beliebtheit) {
+    public DishCreator beliebtheit(int beliebtheit) {
         speise.setPopularity(beliebtheit);
         return this;
     }
 
-    public DummySpeise name(String name) {
+    public DishCreator name(String name) {
         speise.setName(name);
         return this;
     }
 
-    public DummySpeise mitZutat(Ingredient zutat) {
-        speise.addIngredient(zutat);
+    public DishCreator category(DishCategory category) {
+        speise.setCategory(category);
         return this;
     }
 
-    public Dish erstelle() {
+    public Dish create() {
         return speise;
     }
 }

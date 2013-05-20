@@ -8,12 +8,12 @@ import java.util.*;
  * @author Struebe
  * @version 30.12.2012
  */
-public enum FoodCategory {
+public enum DishCategory {
 
-    MEAT("m"), FISH("f"), VEGETARIAN("");
+    MEAT("m"), FISH("f"), VEGETARIAN("v");
     private String abkuerzung;
 
-    private FoodCategory(String abkuerzung) {
+    private DishCategory(String abkuerzung) {
         this.abkuerzung = abkuerzung;
     }
 
@@ -22,7 +22,7 @@ public enum FoodCategory {
      * @return Die Abkürzung die aus der Datei für die Speisen- und
      * Nahrungsmittel-Kategorie eingelesen wird.
      */
-    public String getAbkuerzung() {
+    public String getAbbrevation() {
         return abkuerzung;
     }
 
@@ -31,16 +31,16 @@ public enum FoodCategory {
      * Speisen- und Nahrungsmittelkategorie in eine vom Programm vorgegebene
      * Einheit.
      *
-     * @param abkuerzung die Abkürzung, die aus der Datei gelesen wird.
+     * @param abbr die Abkürzung, die aus der Datei gelesen wird.
      * @return Gibt die vom Programm vorgegebene Kategorie wider.
      */
-    public static FoodCategory byAbbrevation(String abkuerzung) {
-        for (FoodCategory kategorie : values()) {
-            if (kategorie.getAbkuerzung().equals(abkuerzung)) {
+    public static DishCategory byAbbrevation(String abbr) {
+        for (DishCategory kategorie : values()) {
+            if (kategorie.abkuerzung.equals(abbr)) {
                 return kategorie;
             }
         }
-        return FoodCategory.VEGETARIAN;
+        return DishCategory.VEGETARIAN;
     }
 
     /**
@@ -49,9 +49,9 @@ public enum FoodCategory {
      * @param kategorie eine Speisen- und Nahrungsmittel-Kategorie.
      * @return Die Kategorien, die nicht eingegeben wurden.
      */
-    public static List<FoodCategory> getOtherOwnTo(FoodCategory kategorie) {
-        List<FoodCategory> andereKategorien = new ArrayList<>();
-        for (FoodCategory kategoriee : values()) {
+    public static List<DishCategory> getOtherOwnTo(DishCategory kategorie) {
+        List<DishCategory> andereKategorien = new ArrayList<>();
+        for (DishCategory kategoriee : values()) {
             if (!kategoriee.equals(kategorie)) {
                 andereKategorien.add(kategoriee);
             }

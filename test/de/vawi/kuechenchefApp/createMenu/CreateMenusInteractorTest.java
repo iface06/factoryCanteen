@@ -1,15 +1,11 @@
 package de.vawi.kuechenchefApp.createMenu;
 
-import de.vawi.kuechenchefApp.createMenu.CreateMenusRequest;
-import de.vawi.kuechenchefApp.createMenu.CreateMenusInteractor;
-import de.vawi.kuechenchefApp.createMenu.CreateMenuDao;
 import de.vawi.kuechenchefApp.entities.Periode;
-import de.vawi.kuechenchefApp.dummies.DummyZutat;
-import de.vawi.kuechenchefApp.dummies.DummySpeise;
+import de.vawi.kuechenchefApp.dummies.DishCreator;
 import de.vawi.kuechenchefApp.interactors.RequestBoundary;
 import de.vawi.kuechenchefApp.entities.Menu;
-import de.vawi.kuechenchefApp.*;
 import de.vawi.kuechenchefApp.entities.Dish;
+import de.vawi.kuechenchefApp.entities.DishCategory;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.*;
@@ -94,21 +90,21 @@ public class CreateMenusInteractorTest {
 
     private List<Dish> createFavoritDishes() {
         List<Dish> favorites = new ArrayList<>();
-        Dish bratkartoffeln = new DummySpeise().beliebtheit(1).mitZutat(DummyZutat.kartoffeln()).name("Bratkartoffeln").erstelle();
-        Dish kartoffelsalat = new DummySpeise().beliebtheit(4).mitZutat(DummyZutat.kartoffeln()).name("Kartoffelsalat").erstelle();
-        Dish pellkartoffeln = new DummySpeise().beliebtheit(7).mitZutat(DummyZutat.kartoffeln()).name("Pellkartoffeln").erstelle();
-        Dish kartoffeln = new DummySpeise().beliebtheit(10).mitZutat(DummyZutat.kartoffeln()).name("Kartoffeln").erstelle();
-        Dish kartoffelEierSalat = new DummySpeise().beliebtheit(11).mitZutat(DummyZutat.kartoffeln()).name("kartoffelEierSalat").erstelle();
-        Dish pommes = new DummySpeise().beliebtheit(12).mitZutat(DummyZutat.kartoffeln()).name("Pommes").erstelle();
-        Dish ofenkartoffeln = new DummySpeise().beliebtheit(13).mitZutat(DummyZutat.kartoffeln()).name("ofenkartoffeln").erstelle();
-        Dish steak = new DummySpeise().beliebtheit(2).mitZutat(DummyZutat.steaks()).name("Pfeffersteaks").erstelle();
-        Dish filet = new DummySpeise().beliebtheit(5).mitZutat(DummyZutat.steaks()).name("Filet").erstelle();
-        Dish ribEye = new DummySpeise().beliebtheit(8).mitZutat(DummyZutat.steaks()).name("Rib-eye").erstelle();
-        Dish rinderKotlett = new DummySpeise().beliebtheit(14).mitZutat(DummyZutat.steaks()).name("rinderKotlett").erstelle();
-        Dish rinderNackenSteaks = new DummySpeise().beliebtheit(15).mitZutat(DummyZutat.steaks()).name("rinderNackenSteaks").erstelle();
-        Dish knoblauchgarnelen = new DummySpeise().beliebtheit(3).mitZutat(DummyZutat.garnelen()).name("Knoblauchgarnelen").erstelle();
-        Dish garnelenCocktail = new DummySpeise().beliebtheit(6).mitZutat(DummyZutat.garnelen()).name("garnelenCocktail").erstelle();
-        Dish garnelensalat = new DummySpeise().beliebtheit(9).mitZutat(DummyZutat.garnelen()).name("garnelensalat").erstelle();
+        Dish bratkartoffeln = new DishCreator().beliebtheit(1).category(DishCategory.VEGETARIAN).name("Bratkartoffeln").create();
+        Dish kartoffelsalat = new DishCreator().beliebtheit(4).category(DishCategory.VEGETARIAN).name("Kartoffelsalat").create();
+        Dish pellkartoffeln = new DishCreator().beliebtheit(7).category(DishCategory.VEGETARIAN).name("Pellkartoffeln").create();
+        Dish kartoffeln = new DishCreator().beliebtheit(10).category(DishCategory.VEGETARIAN).name("Kartoffeln").create();
+        Dish kartoffelEierSalat = new DishCreator().beliebtheit(11).category(DishCategory.VEGETARIAN).name("kartoffelEierSalat").create();
+        Dish pommes = new DishCreator().beliebtheit(12).category(DishCategory.VEGETARIAN).name("Pommes").create();
+        Dish ofenkartoffeln = new DishCreator().beliebtheit(13).category(DishCategory.VEGETARIAN).name("ofenkartoffeln").create();
+        Dish steak = new DishCreator().beliebtheit(2).category(DishCategory.MEAT).name("Pfeffersteaks").create();
+        Dish filet = new DishCreator().beliebtheit(5).category(DishCategory.MEAT).name("Filet").create();
+        Dish ribEye = new DishCreator().beliebtheit(8).category(DishCategory.MEAT).name("Rib-eye").create();
+        Dish rinderKotlett = new DishCreator().beliebtheit(14).category(DishCategory.MEAT).name("rinderKotlett").create();
+        Dish rinderNackenSteaks = new DishCreator().beliebtheit(15).category(DishCategory.MEAT).name("rinderNackenSteaks").create();
+        Dish knoblauchgarnelen = new DishCreator().beliebtheit(3).category(DishCategory.FISH).name("Knoblauchgarnelen").create();
+        Dish garnelenCocktail = new DishCreator().beliebtheit(6).category(DishCategory.FISH).name("garnelenCocktail").create();
+        Dish garnelensalat = new DishCreator().beliebtheit(9).category(DishCategory.FISH).name("garnelensalat").create();
         favorites.add(bratkartoffeln);
         favorites.add(kartoffelsalat);
         favorites.add(pellkartoffeln);
@@ -129,9 +125,9 @@ public class CreateMenusInteractorTest {
 
     private List<Dish> createUnfavoriteDishes() {
         List<Dish> unfavorites = new ArrayList<>();
-        Dish bratkartoffeln = new DummySpeise().beliebtheit(4).mitZutat(DummyZutat.kartoffeln()).name("Salzkartoffeln").erstelle();
-        Dish steak = new DummySpeise().beliebtheit(5).mitZutat(DummyZutat.steaks()).name("Schuhsohlen").erstelle();
-        Dish knoblauchgarnelen = new DummySpeise().beliebtheit(6).mitZutat(DummyZutat.garnelen()).name("Garnelendärme").erstelle();
+        Dish bratkartoffeln = new DishCreator().beliebtheit(4).category(DishCategory.VEGETARIAN).name("Salzkartoffeln").create();
+        Dish steak = new DishCreator().beliebtheit(5).category(DishCategory.MEAT).name("Schuhsohlen").create();
+        Dish knoblauchgarnelen = new DishCreator().beliebtheit(6).category(DishCategory.FISH).name("Garnelendärme").create();
         unfavorites.add(bratkartoffeln);
         unfavorites.add(steak);
         unfavorites.add(knoblauchgarnelen);

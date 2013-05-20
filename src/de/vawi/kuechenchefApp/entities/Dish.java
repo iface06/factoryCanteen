@@ -9,11 +9,11 @@ import java.util.*;
  * @author Tatsch
  * @version 28.01.2013
  */
-public class Dish implements Iterable<Ingredient>, Serializable {
+public class Dish implements Serializable {
 
     private String name;
     private Integer popularity;
-    private List<Ingredient> Ingredients = new ArrayList<>();
+    private DishCategory category;
 
     /**
      * @return Beliebtheit bei den Gästen
@@ -44,21 +44,6 @@ public class Dish implements Iterable<Ingredient>, Serializable {
     }
 
     /**
-     * @return Alle Zutaten einer Speise
-     */
-    public List<Ingredient> getIngredients() {
-        return this.Ingredients;
-    }
-
-    /**
-     *
-     * @param zutat Zutat einer Speise
-     */
-    public void addIngredient(Ingredient zutat) {
-        Ingredients.add(zutat);
-    }
-
-    /**
      * Überprüft per Name, ob die Speise existiert.
      *
      * @param obj Objekt
@@ -66,8 +51,8 @@ public class Dish implements Iterable<Ingredient>, Serializable {
      */
     @Override
     public boolean equals(Object obj) {
-        Dish speise = (Dish) obj;
-        return speise.name.equals(this.name);
+        Dish d = (Dish) obj;
+        return d.name.equals(this.name);
     }
 
     /**
@@ -85,17 +70,16 @@ public class Dish implements Iterable<Ingredient>, Serializable {
      *
      * @return Gibt die Kategorie der Speise wieder.
      */
-    public FoodCategory getCategory() {
-        Iterator<Ingredient> iterator = Ingredients.iterator();
-        return iterator.hasNext() ? iterator.next().getCategory() : FoodCategory.VEGETARIAN;
+    public DishCategory getCategory() {
+        return category;
     }
 
     /**
+     * setzt die Kategory der Speise (Vegetarisch, Fish, Fleich)
      *
-     * @return Ein Iterator-Objekt, um die Zutaten zu iterieren.
+     * @param category
      */
-    @Override
-    public Iterator<Ingredient> iterator() {
-        return Ingredients.iterator();
+    public void setCategory(DishCategory category) {
+        this.category = category;
     }
 }

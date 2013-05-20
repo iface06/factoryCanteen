@@ -92,25 +92,25 @@ public class MenusCreator {
             if (beliebtesteSpeisenBeinhaltenGenugVegGerichte()) {
                 if (beliebtesteSpeisenBeinhaltenGenugFleischgerichte()) {
                 } else {
-                    fuegeNeuesGerichtHinzu(FoodCategory.MEAT);
+                    fuegeNeuesGerichtHinzu(DishCategory.MEAT);
                     beliebtesteSpeisenPruefenUndAnpassen();
                 }
 
                 //else Zweig für "zu wenig Vegetarische Gerichte in den beliebtesten Speisen"
             } else {
-                fuegeNeuesGerichtHinzu(FoodCategory.VEGETARIAN);
+                fuegeNeuesGerichtHinzu(DishCategory.VEGETARIAN);
                 beliebtesteSpeisenPruefenUndAnpassen();
             }
             //else Zweig für "zu wenig Fischgerichte in den beliebtesten Speisen"
         } else {
-            fuegeNeuesGerichtHinzu(FoodCategory.FISH);
+            fuegeNeuesGerichtHinzu(DishCategory.FISH);
             beliebtesteSpeisenPruefenUndAnpassen();
         }
     }
 
-    private void fuegeNeuesGerichtHinzu(FoodCategory speiseKategorie) {
-        if (speiseKategorie.equals(FoodCategory.MEAT)) {
-            Dish unbeliebtestesVegGericht = ermittleUnbeliebtestesGericht(FoodCategory.VEGETARIAN);
+    private void fuegeNeuesGerichtHinzu(DishCategory speiseKategorie) {
+        if (speiseKategorie.equals(DishCategory.MEAT)) {
+            Dish unbeliebtestesVegGericht = ermittleUnbeliebtestesGericht(DishCategory.VEGETARIAN);
             Dish neuesFleischGericht = ermittlebeliebtestesGericht(speiseKategorie);
             beliebtesteSpeisen.add(neuesFleischGericht);
             uebrigenSpeisen.add(unbeliebtestesVegGericht);
@@ -118,7 +118,7 @@ public class MenusCreator {
             uebrigenSpeisen.remove(neuesFleischGericht);
 
         } else {
-            Dish unbeliebtestesFleischGericht = ermittleUnbeliebtestesGericht(FoodCategory.MEAT);
+            Dish unbeliebtestesFleischGericht = ermittleUnbeliebtestesGericht(DishCategory.MEAT);
             Dish neuesGericht = ermittlebeliebtestesGericht(speiseKategorie);
             beliebtesteSpeisen.add(neuesGericht);
             beliebtesteSpeisen.remove(unbeliebtestesFleischGericht);
@@ -141,7 +141,7 @@ public class MenusCreator {
     private boolean beliebtesteSpeisenBeinhaltenGenugFleischgerichte() {
         int counter = 0;
         for (Dish speise : beliebtesteSpeisen) {
-            if (speise.getCategory().equals(FoodCategory.MEAT)) {
+            if (speise.getCategory().equals(DishCategory.MEAT)) {
                 counter++;
             }
         }
@@ -159,7 +159,7 @@ public class MenusCreator {
     private boolean beliebtesteSpeisenBeinhaltenGenugFischgerichte() {
         int gezaehlteSpeisen = 0;
         for (Dish speise : beliebtesteSpeisen) {
-            if (speise.getCategory().equals(FoodCategory.FISH)) {
+            if (speise.getCategory().equals(DishCategory.FISH)) {
                 gezaehlteSpeisen++;
             }
         }
@@ -178,7 +178,7 @@ public class MenusCreator {
     private boolean beliebtesteSpeisenBeinhaltenGenugVegGerichte() {
         int counter = 0;
         for (Dish speise : beliebtesteSpeisen) {
-            if (speise.getCategory().equals(FoodCategory.VEGETARIAN)) {
+            if (speise.getCategory().equals(DishCategory.VEGETARIAN)) {
                 counter++;
             }
         }
@@ -196,13 +196,13 @@ public class MenusCreator {
         return planungsperiode.berechneAnzahlBenoetigteVegetarischeSpeisen();
     }
 
-    private Dish ermittleUnbeliebtestesGericht(FoodCategory kategorie) {
+    private Dish ermittleUnbeliebtestesGericht(DishCategory kategorie) {
         List<Dish> nachKategorie = extrahiereSpeisenNachKategorie(beliebtesteSpeisen, kategorie);
         sortiereSpeisen(nachKategorie);
         return nachKategorie.get(nachKategorie.size() - 1);
     }
 
-    private Dish ermittlebeliebtestesGericht(FoodCategory speiseKategorie) {
+    private Dish ermittlebeliebtestesGericht(DishCategory speiseKategorie) {
         List<Dish> nachKategorie = extrahiereSpeisenNachKategorie(uebrigenSpeisen, speiseKategorie);
         sortiereSpeisen(nachKategorie);
         return nachKategorie.get(0);
@@ -251,9 +251,9 @@ public class MenusCreator {
     private Day erstelleNormalenTag(List<Dish> speisenFuerPlan, int nummer) {
         Day tag = new Day(new Date());
         List<Dish> tagesSpeisen = new ArrayList<>();
-        tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.VEGETARIAN));
-        tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.MEAT));
-        tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.MEAT));
+        tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, DishCategory.VEGETARIAN));
+        tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, DishCategory.MEAT));
+        tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, DishCategory.MEAT));
 
         return verteileSpeisenAufTag(tag, tagesSpeisen);
     }
@@ -261,9 +261,9 @@ public class MenusCreator {
     private Day erstelleFischTag(List<Dish> speisenFuerPlan, int nummer) {
         Day tag = new Day(new Date());
         List<Dish> tagesSpeisen = new ArrayList<>();
-        tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.FISH));
-        tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.VEGETARIAN));
-        tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, FoodCategory.MEAT));
+        tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, DishCategory.FISH));
+        tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, DishCategory.VEGETARIAN));
+        tagesSpeisen.add(nimmEinGerichtAusListe(speisenFuerPlan, DishCategory.MEAT));
 
         return verteileSpeisenAufTag(tag, tagesSpeisen);
     }
@@ -284,15 +284,15 @@ public class MenusCreator {
         return speisen.get(0);
     }
 
-    private Dish nimmEinGerichtAusListe(List<Dish> speisen, FoodCategory kategorie) {
+    private Dish nimmEinGerichtAusListe(List<Dish> speisen, DishCategory kategorie) {
         List<Dish> gefundenesGericht = extrahiereSpeisenNachKategorie(speisen, kategorie);
         if (!gefundenesGericht.isEmpty()) {
             speisen.remove(gefundenesGericht.get(0));
             return gefundenesGericht.get(0);
         } else {
             List<Dish> listeMitMehrSpeisen = new ArrayList<>();
-            List<FoodCategory> andereKategorien = FoodCategory.getOtherOwnTo(kategorie);
-            for (FoodCategory andereKategorie : andereKategorien) {
+            List<DishCategory> andereKategorien = DishCategory.getOtherOwnTo(kategorie);
+            for (DishCategory andereKategorie : andereKategorien) {
                 List<Dish> andereSpeisen = extrahiereSpeisenNachKategorie(speisen, andereKategorie);
                 if (listeMitMehrSpeisen.size() <= andereSpeisen.size()) {
                     listeMitMehrSpeisen = andereSpeisen;
@@ -313,7 +313,7 @@ public class MenusCreator {
         });
     }
 
-    private List<Dish> extrahiereSpeisenNachKategorie(List<Dish> speisen, FoodCategory kategorie) {
+    private List<Dish> extrahiereSpeisenNachKategorie(List<Dish> speisen, DishCategory kategorie) {
         List<Dish> nachKategorie = new ArrayList<>();
         for (Dish speise : speisen) {
             if (speise.getCategory().equals(kategorie)) {
