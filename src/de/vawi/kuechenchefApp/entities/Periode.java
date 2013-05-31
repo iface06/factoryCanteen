@@ -19,6 +19,7 @@ public class Periode {
     private static int numberOfDaysPerWeek = 5;
     private static int anzahlGerichteProTag = 3;
     private static Date nextStartDate;
+    private int numberOfMealsPerDay;
 
     /**
      *
@@ -84,6 +85,14 @@ public class Periode {
         this.anzahlGerichteProTag = anzahlGerichteProTag;
     }
 
+    public void setNumberOfMealsPerDay(int numberOfMealsPerDay) {
+        this.numberOfMealsPerDay = numberOfMealsPerDay;
+    }
+
+    public int getNumberOfMealsPerDay() {
+        return numberOfMealsPerDay;
+    }
+
     /**
      *
      * Gibt Anzahl von benötigten Fischspeisen zurück
@@ -112,6 +121,10 @@ public class Periode {
      */
     public int berechneAnzahlBenoetigteFleischSpeisen() {
         return numberOfWeeks * numberOfDaysPerWeek;
+    }
+
+    public int calculateNumberOfMealsForPeriode() {
+        return numberOfWeeks * numberOfDaysPerWeek * numberOfMealsPerDay;
     }
 
     public Date nextStartDate() {
