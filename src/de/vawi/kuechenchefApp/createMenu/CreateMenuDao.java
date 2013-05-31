@@ -12,7 +12,7 @@ public interface CreateMenuDao {
     
     public List<Dish> findeBeliebtesteSpeisenFuerPlanungsPeriode(Periode periode);
     public List<Dish> findeUnbeliebtesteSpeisen(Periode periode);
-    public boolean sindAusreichendSpeisenFuerSpeiseplanErstellungVorhanden();
+    public boolean areEnoughtDishesAvailable();
     public void storeMenues(List<Menu> menues);
 
 }

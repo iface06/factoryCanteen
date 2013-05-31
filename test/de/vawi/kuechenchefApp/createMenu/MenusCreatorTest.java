@@ -61,7 +61,7 @@ public class MenusCreatorTest {
 
     private void initialisierePlanunsperiode() {
         planungsperiode = new Periode();
-        planungsperiode.setAnzahlWochen(1);
+        planungsperiode.setNumberOfWeek(1);
     }
 
     private void initialisiereBeliebtesteSpeisen() {

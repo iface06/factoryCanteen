@@ -10,7 +10,7 @@ public class PlanungsPeriodeTest {
     @Test
     public void testAnzahlBenoetigerGerichte() {
         Periode periode = new Periode();
-        assertEquals(45, periode.berechneAnzahlBenoetigterSpeisen());
+        assertEquals(45, periode.quantityOfRequiredDishes());
     }
     
     @Test

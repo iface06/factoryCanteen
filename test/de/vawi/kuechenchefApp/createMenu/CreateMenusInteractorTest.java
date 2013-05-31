@@ -54,9 +54,9 @@ public class CreateMenusInteractorTest {
 
     private void createPeriode() {
         periode = new Periode();
-        periode.setAnzahlGerichteProTag(3);
-        periode.setAnzahlTageProWoche(5);
-        periode.setAnzahlWochen(1);
+        periode.setNumberOfOfferedDishesPerDay(3);
+        periode.setNumberOfDaysPerWeek(5);
+        periode.setNumberOfWeek(1);
 
     }
 
@@ -76,7 +76,7 @@ public class CreateMenusInteractorTest {
             }
 
             @Override
-            public boolean sindAusreichendSpeisenFuerSpeiseplanErstellungVorhanden() {
+            public boolean areEnoughtDishesAvailable() {
                 return true;
             }
 

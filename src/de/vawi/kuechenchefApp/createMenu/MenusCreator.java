@@ -340,7 +340,7 @@ public class MenusCreator {
      * @return liefert true wenn genug Speisen vorhanden sind, andernfalls false
      */
     protected boolean sindAusreichendSpeisenInSpeisenVerwaltungVorhanden() {
-        return dao.sindAusreichendSpeisenFuerSpeiseplanErstellungVorhanden();
+        return dao.areEnoughtDishesAvailable();
     }
 
     private void sortiereTageSpeisseplaene() {
