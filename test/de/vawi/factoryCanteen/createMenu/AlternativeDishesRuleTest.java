@@ -24,8 +24,7 @@ public class AlternativeDishesRuleTest {
     @Test
     public void test() {
         initRule();
-        rule.setOffers(offers);
-        rule.execute();
+        rule.execute(offers);
 
         assertEquals(15, offers.size());
     }
@@ -33,9 +32,7 @@ public class AlternativeDishesRuleTest {
     @Test
     public void testAddNoDishIfNoMoreRequired() {
         addDayWith3DishesToOffers();
-
-        rule.setOffers(offers);
-        rule.execute();
+        rule.execute(offers);
 
         assertEquals("3 Dishes already added to the first day, so only 14 alternatives are required. (3 + 14 = 17)",
                 17, offers.size());
@@ -44,9 +41,7 @@ public class AlternativeDishesRuleTest {
     @Test
     public void testNoDishIsMultiply() {
         offers.add(createOffer("Dish-0", startDate));
-
-        rule.setOffers(offers);
-        rule.execute();
+        rule.execute(offers);
 
         assertThatNoDishIsMultiply();
     }
@@ -54,8 +49,7 @@ public class AlternativeDishesRuleTest {
     @Test(expected = NotEnoughDishesForMenuCreationAvailable.class)
     public void testNotEnoughDishesAvailable() {
         dishes = new ArrayList<>();
-        rule.setOffers(offers);
-        rule.execute();
+        rule.execute(offers);
     }
 
     private void assertThatNoDishIsMultiply() {
@@ -81,7 +75,7 @@ public class AlternativeDishesRuleTest {
 
     public void initRule() {
         rule = new AlternativeDihesRule();
-        rule.setPeriode(new Periode());
+        rule.setPeriode(new PeriodeConfiguration());
         rule.setDao(new OfferCreatorDao());
         rule.setStartDate(startDate);
     }
@@ -89,7 +83,7 @@ public class AlternativeDishesRuleTest {
     private void initDishes() {
         dishes = new ArrayList<>();
         List<DishCategory> categories = Arrays.asList(DishCategory.values());
-        for (int i = 0; i < new Periode().calculateRequiredMealsForPeriode(); i++) {
+        for (int i = 0; i < new PeriodeConfiguration().calculateRequiredMealsForPeriode(); i++) {
             Dish d = new Dish();
             d.setName("Dish-" + i);
             d.setPopularity(i);
@@ -130,24 +124,7 @@ public class AlternativeDishesRuleTest {
     private static class OfferCreatorDao implements CreateMenuDao {
 
         @Override
-        public List<Dish> findFavorDishesForPeriode(Periode periode) {
-
-
-            return dishes;
-        }
-
-        @Override
-        public List<Dish> findeUnbeliebtesteSpeisen(Periode periode) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public boolean areEnoughtDishesAvailable() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public void storeMenues(List<Menu> menues) {
+        public Date findDateOfLastOffer() {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
@@ -155,6 +132,16 @@ public class AlternativeDishesRuleTest {
         public List<Dish> findDishesByCategory(DishCategory category) {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
+        }
+
+        @Override
+        public List<Dish> findFavorDishesForPeriode() {
+            return dishes;
+        }
+
+        @Override
+        public void storeOffers(List<Offer> offers) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     }
 }

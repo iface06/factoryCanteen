@@ -63,16 +63,6 @@ public class OffersForNextPeriodeCreatorTest {
     public static class OffersCreatorDao implements CreateMenuDao {
 
         @Override
-        public List<Dish> findFavorDishesForPeriode(PeriodeConfiguration periode) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public void storeMenues(List<Menu> menues) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
         public List<Dish> findDishesByCategory(DishCategory category) {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
@@ -80,6 +70,16 @@ public class OffersForNextPeriodeCreatorTest {
         @Override
         public Date findDateOfLastOffer() {
             return lastDate;
+        }
+
+        @Override
+        public List<Dish> findFavorDishesForPeriode() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void storeOffers(List<Offer> offers) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     }
 }

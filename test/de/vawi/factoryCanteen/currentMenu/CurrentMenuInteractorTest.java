@@ -5,7 +5,10 @@ import de.vawi.factoryCanteen.entities.Canteen;
 import de.vawi.factoryCanteen.currentMenu.FindMenuDao;
 import de.vawi.factoryCanteen.currentMenu.FindMenuRequest;
 import de.vawi.factoryCanteen.currentMenu.FindMenuInteractor;
+import de.vawi.factoryCanteen.entities.*;
 import de.vawi.factoryCanteen.interactors.RequestBoundary;
+import java.util.ArrayList;
+import java.util.List;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
@@ -18,7 +21,7 @@ public class CurrentMenuInteractorTest {
         cmi.setDao(createDao());
         cmi.execute();
 
-        assertNotNull(cmi.getResponse().getMenu());
+        assertNotNull(cmi.getResponse().getOffers());
     }
 
     private RequestBoundary<FindMenuRequest> createRequestBoundary() {
@@ -37,8 +40,8 @@ public class CurrentMenuInteractorTest {
     private FindMenuDao createDao() {
         return new FindMenuDao() {
             @Override
-            public Menu findCurrentMenuFor(Canteen c) {
-                return new Menu();
+            public List<Offer> findCurrentMenuFor() {
+                return new ArrayList<>();
             }
         };
     }

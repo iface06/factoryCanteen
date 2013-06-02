@@ -22,15 +22,15 @@ public class ThereIsFishOnFridayRuleTest {
     @Test
     public void testRequiredNumberOfFishDishes() {
 
-        rule.execute();
-        assertEquals(new Periode().calculateRequiredFishDishes(), offers.size());
+        rule.execute(offers);
+        assertEquals(new PeriodeConfiguration().calculateRequiredFishDishes(), offers.size());
         assertDishCategoryIs(DishCategory.FISH);
     }
 
     @Test
     public void testRequiredNumberOfFishDishesIsOfferedOnFriday() {
 
-        rule.execute();
+        rule.execute(offers);
         assertEachFishDishIsOfferedOnFriday();
     }
 
@@ -42,10 +42,10 @@ public class ThereIsFishOnFridayRuleTest {
 
     private void initRule() {
         rule = new ThereIsFishOnFridayRule();
-        rule.setOffers(offers);
+
         rule.setDao(new OfferCreatorDao());
         rule.setStartDate(new DateTime().withDate(2012, 12, 31).withTime(0, 0, 0, 0).toDate());
-        rule.setPeriode(new Periode());
+        rule.setPeriode(new PeriodeConfiguration());
 
     }
 
@@ -72,29 +72,19 @@ public class ThereIsFishOnFridayRuleTest {
     private static class OfferCreatorDao implements CreateMenuDao {
 
         @Override
-        public List<Dish> findFavorDishesForPeriode(Periode periode) {
+        public List<Dish> findFavorDishesForPeriode() {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
         @Override
-        public List<Dish> findeUnbeliebtesteSpeisen(Periode periode) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public boolean areEnoughtDishesAvailable() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public void storeMenues(List<Menu> menues) {
+        public void storeOffers(List<Offer> offers) {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
         @Override
         public List<Dish> findDishesByCategory(DishCategory category) {
             List<Dish> dishes = new ArrayList<>();
-            for (int i = 0; i < new Periode().calculateRequiredMealsForPeriode(); i++) {
+            for (int i = 0; i < new PeriodeConfiguration().calculateRequiredMealsForPeriode(); i++) {
                 Dish d = new Dish();
                 d.setName("Dish-" + i);
                 d.setPopularity(i);
@@ -103,6 +93,11 @@ public class ThereIsFishOnFridayRuleTest {
             }
 
             return dishes;
+        }
+
+        @Override
+        public Date findDateOfLastOffer() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     }
 }

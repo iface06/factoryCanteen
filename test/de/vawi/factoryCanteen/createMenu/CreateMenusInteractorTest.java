@@ -1,13 +1,10 @@
 package de.vawi.factoryCanteen.createMenu;
 
-import de.vawi.factoryCanteen.entities.Periode;
+import de.vawi.factoryCanteen.entities.PeriodeConfiguration;
 import de.vawi.factoryCanteen.dummies.DishCreator;
+import de.vawi.factoryCanteen.entities.*;
 import de.vawi.factoryCanteen.interactors.RequestBoundary;
-import de.vawi.factoryCanteen.entities.Menu;
-import de.vawi.factoryCanteen.entities.Dish;
-import de.vawi.factoryCanteen.entities.DishCategory;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -19,13 +16,13 @@ import static org.mockito.Mockito.*;
  */
 public class CreateMenusInteractorTest {
 
-    private List<Menu> storedMenues;
-    private Periode periode;
+    private List<Offer> storedOffers;
+    private PeriodeConfiguration periode;
     private CreateMenuDao dao;
 
     @Before
     public void before() {
-        storedMenues = new ArrayList<>();
+        storedOffers = new ArrayList<>();
     }
 
     @Test
@@ -40,7 +37,7 @@ public class CreateMenusInteractorTest {
         interactor.execute();
 
         assertEquals(2, interactor.getResponse().size());
-        assertEquals(2, storedMenues.size());
+        assertEquals(2, storedOffers.size());
     }
 
     private RequestBoundary<CreateMenusRequest> createRequestMock() {
@@ -53,7 +50,7 @@ public class CreateMenusInteractorTest {
     }
 
     private void createPeriode() {
-        periode = new Periode();
+        periode = new PeriodeConfiguration();
         periode.setNumberOfOfferedDishesPerDay(3);
         periode.setNumberOfDaysPerWeek(5);
         periode.setNumberOfWeek(1);
@@ -66,28 +63,23 @@ public class CreateMenusInteractorTest {
 
         dao = new CreateMenuDao() {
             @Override
-            public List<Dish> findFavorDishesForPeriode(Periode periode) {
-                return favoriteDishes;
-            }
-
-            @Override
-            public List<Dish> findeUnbeliebtesteSpeisen(Periode periode) {
-                return unfavoriteDishes;
-            }
-
-            @Override
-            public boolean areEnoughtDishesAvailable() {
-                return true;
-            }
-
-            @Override
-            public void storeMenues(List<Menu> menues) {
-                storedMenues.addAll(menues);
+            public Date findDateOfLastOffer() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
             public List<Dish> findDishesByCategory(DishCategory category) {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public List<Dish> findFavorDishesForPeriode() {
+                return favoriteDishes;
+            }
+
+            @Override
+            public void storeOffers(List<Offer> offers) {
+                storedOffers.addAll(offers);
             }
         };
 

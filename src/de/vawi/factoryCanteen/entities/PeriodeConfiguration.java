@@ -34,7 +34,7 @@ public class PeriodeConfiguration {
      *
      * @return Gibt die Anzahl an Tagen pro Woche zurück
      */
-    public int getAnzahlTageProWoche() {
+    public int getDaysPerWeek() {
         return numberOfDaysPerWeek;
     }
 

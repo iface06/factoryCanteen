@@ -1,6 +1,6 @@
 package de.vawi.factoryCanteen.acceptanceTest.createMenu;
 
-import de.vawi.factoryCanteen.entities.Periode;
+import de.vawi.factoryCanteen.entities.PeriodeConfiguration;
 import de.vawi.factoryCanteen.entities.Offer;
 import de.vawi.factoryCanteen.entities.DishCategory;
 import de.vawi.factoryCanteen.createMenu.CreateMenuDao;
@@ -17,13 +17,13 @@ import org.jbehave.core.io.StoryPathResolver;
 
 public class EnoughtMealsPerPeriode {
 
-    private Periode periode;
+    private PeriodeConfiguration periode;
     private List<Offer> offers;
     private OffersCreator creator;
 
     @Given("a menu contains $numberOfMealsPerDay meals per day for the next $numberOfDayPerWeek days")
     public void pressCreateButton(int numberOfMealsPerDay, int numberOfDayPerWeek) {
-        periode = new Periode();
+        periode = new PeriodeConfiguration();
         periode.setNumberOfDaysPerWeek(numberOfDayPerWeek);
         periode.setNumberOfMealsPerDay(numberOfMealsPerDay);
     }
