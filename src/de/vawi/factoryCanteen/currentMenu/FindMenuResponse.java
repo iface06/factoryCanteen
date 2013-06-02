@@ -1,22 +1,17 @@
-
-
 package de.vawi.factoryCanteen.currentMenu;
 
-import de.vawi.factoryCanteen.entities.Menu;
-
+import de.vawi.factoryCanteen.entities.*;
+import java.util.List;
 
 public class FindMenuResponse {
-    
-    private Menu menu;
 
-    public Menu getMenu() {
-        return menu;
+    private List<Offer> offers;
+
+    public List<Offer> getOffers() {
+        return offers;
     }
 
-    public void setMenu(Menu menu) {
-        this.menu = menu;
+    public void setOffers(List<Offer> offers) {
+        this.offers = offers;
     }
-    
-    
-
 }

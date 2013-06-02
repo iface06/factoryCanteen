@@ -9,16 +9,18 @@ import org.joda.time.DateTime;
  *
  * @author Tobias
  */
-class AlternativeDihesRule {
+class AlternativeDihesRule implements MenuCreationRule {
 
     private List<Offer> offers;
-    private Periode periode;
+    private PeriodeConfiguration periode;
     private Date startDate;
     private List<Dish> favorDishes;
     private CreateMenuDao dao;
 
-    void execute() {
-        favorDishes = dao.findFavorDishesForPeriode(periode);
+    @Override
+    public void execute(List<Offer> offers) {
+        this.offers = offers;
+        favorDishes = dao.findFavorDishesForPeriode();
         for (int days = 0; days < periode.getNumberOfDays(); days++) {
             Date today = new DateTime(startDate).plus(days).toDate();
             if (isAlternativeMealStillRequired(today)) {
@@ -63,18 +65,17 @@ class AlternativeDihesRule {
         return true;
     }
 
-    void setOffers(List<Offer> offers) {
-        this.offers = offers;
-    }
-
-    public void setPeriode(Periode periode) {
+    @Override
+    public void setPeriode(PeriodeConfiguration periode) {
         this.periode = periode;
     }
 
+    @Override
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
+    @Override
     public void setDao(CreateMenuDao dao) {
         this.dao = dao;
     }

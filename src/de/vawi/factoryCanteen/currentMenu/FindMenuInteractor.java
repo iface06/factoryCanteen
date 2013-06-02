@@ -1,10 +1,10 @@
 package de.vawi.factoryCanteen.currentMenu;
 
-import de.vawi.factoryCanteen.entities.Canteen;
-import de.vawi.factoryCanteen.entities.Menu;
+import de.vawi.factoryCanteen.entities.*;
 import de.vawi.factoryCanteen.interactors.ResponseBoundary;
 import de.vawi.factoryCanteen.interactors.RequestBoundary;
 import de.vawi.factoryCanteen.interactors.Interactor;
+import java.util.List;
 
 public class FindMenuInteractor implements ResponseBoundary<FindMenuResponse>, Interactor {
 
@@ -19,9 +19,9 @@ public class FindMenuInteractor implements ResponseBoundary<FindMenuResponse>, I
     @Override
     public void execute() {
         Canteen c = requestBoundary.passRequest().getCanteen();
-        Menu menu = dao.findCurrentMenuFor(c);
+        List<Offer> menu = dao.findCurrentMenuFor();
         response = new FindMenuResponse();
-        response.setMenu(menu);
+
     }
 
     @Override

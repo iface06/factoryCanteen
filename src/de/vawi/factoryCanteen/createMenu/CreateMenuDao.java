@@ -1,17 +1,15 @@
 package de.vawi.factoryCanteen.createMenu;
 
 import de.vawi.factoryCanteen.entities.*;
-import java.util.List;
+import java.util.*;
 
 public interface CreateMenuDao {
 
-    public List<Dish> findFavorDishesForPeriode(Periode periode);
+    public List<Dish> findFavorDishesForPeriode();
 
-    public List<Dish> findeUnbeliebtesteSpeisen(Periode periode);
-
-    public boolean areEnoughtDishesAvailable();
-
-    public void storeMenues(List<Menu> menues);
+    public void storeOffers(List<Offer> offers);
 
     public List<Dish> findDishesByCategory(DishCategory category);
+
+    public Date findDateOfLastOffer();
 }

@@ -1,13 +1,14 @@
 package de.vawi.factoryCanteen.entities;
 
 import de.vawi.factoryCanteen.entities.Dish;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Tobias
  */
-public class Offer {
+public class Offer implements Serializable {
 
     private Date date;
     private Dish dish;

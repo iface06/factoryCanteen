@@ -1,12 +1,9 @@
-
 package de.vawi.factoryCanteen.currentMenu;
 
-import de.vawi.factoryCanteen.entities.Canteen;
-import de.vawi.factoryCanteen.entities.Menu;
-
+import de.vawi.factoryCanteen.entities.*;
+import java.util.List;
 
 public interface FindMenuDao {
 
-    public Menu findCurrentMenuFor(Canteen c);
-
+    public List<Offer> findCurrentMenuFor();
 }

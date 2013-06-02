@@ -3,6 +3,7 @@ package de.vawi.factoryCanteen.createMenu;
 import de.vawi.factoryCanteen.entities.*;
 import java.util.*;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeConstants;
 
 /**
  *
@@ -11,41 +12,21 @@ import org.joda.time.DateTime;
 public class OffersCreator {
 
     private List<Offer> offers = new ArrayList<>();
-    private Periode periode;
+    private PeriodeConfiguration periode;
     private CreateMenuDao dao;
-    private List<Dish> orderedFavoriteDishes;
-    private DateTime startDateOfPeriode;
+    private Date startDateOfPeriode;
+    private Queue<MenuCreationRule> rules = new LinkedList();
 
     public List<Offer> create() {
-        orderedFavoriteDishes = dao.findFavorDishesForPeriode(periode);
-        if (enoughtDishesAvailable()) {
-            startDateOfPeriode = new DateTime(periode.nextStartDate());
-            for (int dishNumber = 0; dishNumber < periode.quantityOfRequiredDishes(); dishNumber++) {
-                Offer offer = createOffer(dishNumber);
-                offers.add(offer);
-            }
+        calculateStartDateForNextPeriode();
+        while (!rules.isEmpty()) {
+            MenuCreationRule rule = rules.poll();
+            rule.setDao(dao);
+            rule.setPeriode(periode);
+            rule.setStartDate(startDateOfPeriode);
         }
-        sortOffersByDate();
 
         return offers;
-    }
-
-    private boolean enoughtDishesAvailable() {
-        return dao.areEnoughtDishesAvailable();
-    }
-
-    private Offer createOffer(int dishNumber) {
-        Offer offer = new Offer();
-        Date offerDate = calculateOfferDate(dishNumber);
-        offer.setDate(offerDate);
-        offer.setDish(orderedFavoriteDishes.get(dishNumber));
-        return offer;
-    }
-
-    private Date calculateOfferDate(int dishNumber) {
-        int days = dishNumber % periode.calculateNumberOfDishesPerWeek();
-        Date offerDate = startDateOfPeriode.plusDays(days).toDate();
-        return offerDate;
     }
 
     private void sortOffersByDate() {
@@ -57,11 +38,20 @@ public class OffersCreator {
         });
     }
 
-    public void setPeriode(Periode periode) {
+    public void setPeriode(PeriodeConfiguration periode) {
         this.periode = periode;
     }
 
     public void setDao(CreateMenuDao dao) {
         this.dao = dao;
+    }
+
+    void addRule(MenuCreationRule everyDayDishMenuRule) {
+        rules.offer(everyDayDishMenuRule);
+    }
+
+    private void calculateStartDateForNextPeriode() {
+        Date date = dao.findDateOfLastOffer();
+        startDateOfPeriode = new DateTime(date).plusWeeks(1).withDayOfWeek(DateTimeConstants.MONDAY).toDate();
     }
 }

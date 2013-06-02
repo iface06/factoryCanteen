@@ -8,41 +8,36 @@ import org.joda.time.DateTime;
  *
  * @author Tobias
  */
-class EveryDayDishMenuRule {
+class EveryDayDishMenuRule implements MenuCreationRule {
 
-    private List<Offer> offers;
     private List<Dish> dishesByCategory;
-    private Periode periode;
+    private PeriodeConfiguration periode;
     private Date startDate;
     private CreateMenuDao dao;
     private DishCategory dishCategory;
 
-    void setDishCategory(DishCategory dishCategory) {
+    public EveryDayDishMenuRule(DishCategory dishCategory) {
         this.dishCategory = dishCategory;
     }
 
-    void setOffers(List<Offer> offers) {
-        this.offers = offers;
-    }
-
-    void setPeriode(Periode periode) {
-        this.periode = periode;
-    }
-
-    void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    void setDao(CreateMenuDao dao) {
-        this.dao = dao;
-    }
-
-    void execute() {
+    public void execute(List<Offer> offers) {
         dishesByCategory = dao.findDishesByCategory(dishCategory);
         for (int dishNumber = 0; dishNumber < periode.calculateNumberOfRequiredMeatDishes(); dishNumber++) {
             Offer offer = createOffer(dishNumber);
             offers.add(offer);
         }
+    }
+
+    public void setPeriode(PeriodeConfiguration periode) {
+        this.periode = periode;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setDao(CreateMenuDao dao) {
+        this.dao = dao;
     }
 
     private Offer createOffer(int dishNumber) {

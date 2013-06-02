@@ -1,16 +1,16 @@
 package de.vawi.factoryCanteen.createMenu;
 
-import de.vawi.factoryCanteen.entities.Periode;
+import de.vawi.factoryCanteen.entities.PeriodeConfiguration;
 
 public class CreateMenusRequest {
 
-    private Periode periode;
+    private PeriodeConfiguration periode;
 
-    public Periode getPeriode() {
+    public PeriodeConfiguration getPeriode() {
         return periode;
     }
 
-    public void setPeriode(Periode periode) {
+    public void setPeriode(PeriodeConfiguration periode) {
         this.periode = periode;
     }
 }

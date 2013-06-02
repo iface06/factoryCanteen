@@ -14,7 +14,7 @@ import org.joda.time.DateTime;
  * @author Lepping
  * @version 29.01.2013
  */
-public class Periode {
+public class PeriodeConfiguration {
 
     private static int numberOfWeeks = 3;
     private static int numberOfDaysPerWeek = 5;

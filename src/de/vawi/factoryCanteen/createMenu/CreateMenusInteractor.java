@@ -1,17 +1,16 @@
 package de.vawi.factoryCanteen.createMenu;
 
-import de.vawi.factoryCanteen.entities.Periode;
+import de.vawi.factoryCanteen.entities.*;
 import de.vawi.factoryCanteen.interactors.Interactor;
 import de.vawi.factoryCanteen.interactors.ResponseBoundary;
 import de.vawi.factoryCanteen.interactors.RequestBoundary;
-import de.vawi.factoryCanteen.entities.Menu;
 import java.util.List;
 
-public class CreateMenusInteractor implements Interactor, ResponseBoundary<List<Menu>> {
+public class CreateMenusInteractor implements Interactor, ResponseBoundary<List<Offer>> {
 
     private final RequestBoundary<CreateMenusRequest> requestBoundary;
     private CreateMenuDao dao;
-    private List<Menu> menues;
+    private List<Offer> offers;
 
     public CreateMenusInteractor(RequestBoundary<CreateMenusRequest> requestBoundary) {
         this.requestBoundary = requestBoundary;
@@ -20,30 +19,37 @@ public class CreateMenusInteractor implements Interactor, ResponseBoundary<List<
     @Override
     public void execute() {
         createMenues();
-        storeMenues();
+        storeOffers();
     }
 
     @Override
-    public List<Menu> getResponse() {
-        return menues;
+    public List<Offer> getResponse() {
+        return offers;
     }
 
     public void setDao(CreateMenuDao dao) {
         this.dao = dao;
     }
 
-    private Periode getPeriodeFromRequest() {
+    private void createMenues() {
+        OffersCreator creator = new OffersCreator();
+        creator.setDao(dao);
+        creator.setPeriode(getPeriodeFromRequest());
+
+        creator.addRule(new EveryDayDishMenuRule(DishCategory.MEAT));
+        creator.addRule(new EveryDayDishMenuRule(DishCategory.VEGETARIAN));
+        creator.addRule(new ThereIsFishOnFridayRule());
+        creator.addRule(new AlternativeDihesRule());
+
+        offers = creator.create();
+
+    }
+
+    private PeriodeConfiguration getPeriodeFromRequest() {
         return requestBoundary.passRequest().getPeriode();
     }
 
-    private void createMenues() {
-//        MenusCreator creator = new MenusCreator();
-//        creator.setPlanungsperiode(getPeriodeFromRequest());
-//        creator.setDao(dao);
-//        menues = creator.erzeuge();
-    }
-
-    private void storeMenues() {
-        dao.storeMenues(menues);
+    private void storeOffers() {
+        dao.storeOffers(offers);
     }
 }
