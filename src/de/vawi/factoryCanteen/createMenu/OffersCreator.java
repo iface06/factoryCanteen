@@ -17,7 +17,7 @@ public class OffersCreator {
     private DateTime startDateOfPeriode;
 
     public List<Offer> create() {
-        orderedFavoriteDishes = dao.findFavoriteDishesForPeriode(periode);
+        orderedFavoriteDishes = dao.findFavorDishesForPeriode(periode);
         if (enoughtDishesAvailable()) {
             startDateOfPeriode = new DateTime(periode.nextStartDate());
             for (int dishNumber = 0; dishNumber < periode.quantityOfRequiredDishes(); dishNumber++) {

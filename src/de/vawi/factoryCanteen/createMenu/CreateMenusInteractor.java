@@ -37,10 +37,10 @@ public class CreateMenusInteractor implements Interactor, ResponseBoundary<List<
     }
 
     private void createMenues() {
-        MenusCreator creator = new MenusCreator();
-        creator.setPlanungsperiode(getPeriodeFromRequest());
-        creator.setDao(dao);
-        menues = creator.erzeuge();
+//        MenusCreator creator = new MenusCreator();
+//        creator.setPlanungsperiode(getPeriodeFromRequest());
+//        creator.setDao(dao);
+//        menues = creator.erzeuge();
     }
 
     private void storeMenues() {

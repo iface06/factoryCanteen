@@ -52,7 +52,7 @@ public class OffersForNextPeriodeCreatorTest {
             }
 
         }
-        assertEquals(new Periode().numberOfDays(), countedDaysOfPeriode);
+        assertEquals(new Periode().getNumberOfDays(), countedDaysOfPeriode);
 
     }
 
@@ -91,20 +91,16 @@ public class OffersForNextPeriodeCreatorTest {
     private static class OfferCreatorDao implements CreateMenuDao {
 
         @Override
-        public List<Dish> findFavoriteDishesForPeriode(Periode periode) {
+        public List<Dish> findFavorDishesForPeriode(Periode periode) {
             List<Dish> dishes = new ArrayList<>();
             List<DishCategory> categories = Arrays.asList(DishCategory.values());
-            for (int i = 0; i < periode.calculateNumberOfMealsForPeriode(); i++) {
+            for (int i = 0; i < periode.calculateRequiredMealsForPeriode(); i++) {
                 Dish d = new Dish();
                 d.setName("Dish-" + i);
                 d.setPopularity(i);
                 d.setCategory(categories.get(i % 3));
                 dishes.add(d);
             }
-
-            countAndPrint(dishes, DishCategory.MEAT);
-            countAndPrint(dishes, DishCategory.VEGETARIAN);
-            countAndPrint(dishes, DishCategory.FISH);
 
             return dishes;
         }
@@ -124,15 +120,9 @@ public class OffersForNextPeriodeCreatorTest {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
-        private void countAndPrint(List<Dish> dishes, DishCategory category) {
-            int count = 0;
-            for (Dish dish : dishes) {
-                if (dish.getCategory().equals(category)) {
-                    count++;
-                }
-            }
-
-            System.out.println(category.toString() + ": " + count);
+        @Override
+        public List<Dish> findDishesByCategory(DishCategory category) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     }
 }

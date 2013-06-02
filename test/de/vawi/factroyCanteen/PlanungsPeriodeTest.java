@@ -16,7 +16,7 @@ public class PlanungsPeriodeTest {
     @Test
     public void testAnzahlBenoetigteFischGerichte() {
         Periode periode = new Periode();
-        assertEquals(3, periode.berechneAnzahlBenoetigterFischSpeisen());
+        assertEquals(3, periode.calculateRequiredFishDishes());
     }
     
     @Test

@@ -40,7 +40,7 @@ public class EnoughtMealsPerPeriode {
 
     @Then("expect $days days with $expectedNumberOfMeals meals")
     public void menusContainsEnoughtMealsForThePeriode(int days, int expectedNumberOfMeals) {
-        assertThat(periode.calculateNumberOfMealsForPeriode(), equalTo(offers.size()));
+        assertThat(periode.calculateRequiredMealsForPeriode(), equalTo(offers.size()));
     }
 
     @Then("each day with 3 dishes")

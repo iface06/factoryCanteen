@@ -26,7 +26,7 @@ public class Periode {
      *
      * @return Gibt die Anzahl an Wochen zurück
      */
-    public int getAnzahlWochen() {
+    public int getNumberOfWeeks() {
         return numberOfWeeks;
     }
 
@@ -54,7 +54,7 @@ public class Periode {
         return anzahlGerichteProTag * numberOfDaysPerWeek * numberOfWeeks;
     }
 
-    public int numberOfDays() {
+    public int getNumberOfDays() {
         return numberOfDaysPerWeek * numberOfWeeks;
     }
 
@@ -100,7 +100,7 @@ public class Periode {
      *
      * @return Anzahl an benötigten Fischpeisen
      */
-    public int berechneAnzahlBenoetigterFischSpeisen() {
+    public int calculateRequiredFishDishes() {
         return numberOfWeeks;
     }
 
@@ -124,7 +124,7 @@ public class Periode {
         return numberOfWeeks * numberOfDaysPerWeek;
     }
 
-    public int calculateNumberOfMealsForPeriode() {
+    public int calculateRequiredMealsForPeriode() {
         return numberOfWeeks * numberOfDaysPerWeek * numberOfDishes;
     }
 

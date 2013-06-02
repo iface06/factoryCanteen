@@ -1,8 +1,5 @@
 package de.vawi.factoryCanteen.createMenu;
 
-import de.vawi.factoryCanteen.createMenu.CreateMenusRequest;
-import de.vawi.factoryCanteen.createMenu.CreateMenuDao;
-import de.vawi.factoryCanteen.createMenu.CreateMenusInteractor;
 import de.vawi.factoryCanteen.entities.Periode;
 import de.vawi.factoryCanteen.dummies.DishCreator;
 import de.vawi.factoryCanteen.interactors.RequestBoundary;
@@ -69,7 +66,7 @@ public class CreateMenusInteractorTest {
 
         dao = new CreateMenuDao() {
             @Override
-            public List<Dish> findFavoriteDishesForPeriode(Periode periode) {
+            public List<Dish> findFavorDishesForPeriode(Periode periode) {
                 return favoriteDishes;
             }
 
@@ -86,6 +83,11 @@ public class CreateMenusInteractorTest {
             @Override
             public void storeMenues(List<Menu> menues) {
                 storedMenues.addAll(menues);
+            }
+
+            @Override
+            public List<Dish> findDishesByCategory(DishCategory category) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         };
 
