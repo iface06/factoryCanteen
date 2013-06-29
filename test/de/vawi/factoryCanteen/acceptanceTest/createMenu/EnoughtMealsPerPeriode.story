@@ -1,7 +1,7 @@
 Narrative:
 This acceptance test should demonstrate that the creation of a
 menu for the given periode comply with all given rules
-Some intressting information...
+
 
 Scenario: Take care that menu contains enought dishes
 Given a menu contains 3 meals per day for the next 5 days

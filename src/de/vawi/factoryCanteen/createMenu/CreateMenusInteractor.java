@@ -11,6 +11,7 @@ public class CreateMenusInteractor implements Interactor, ResponseBoundary<List<
     private final RequestBoundary<CreateMenusRequest> requestBoundary;
     private CreateMenuDao dao;
     private List<Offer> offers;
+    private MenuCreator creator;
 
     public CreateMenusInteractor(RequestBoundary<CreateMenusRequest> requestBoundary) {
         this.requestBoundary = requestBoundary;
@@ -31,18 +32,13 @@ public class CreateMenusInteractor implements Interactor, ResponseBoundary<List<
         this.dao = dao;
     }
 
+    public void setOfferCreator(MenuCreator creator) {
+        this.creator = creator;
+    }
+
     private void createMenues() {
-        OffersCreator creator = new OffersCreator();
-        creator.setDao(dao);
-        creator.setPeriode(getPeriodeFromRequest());
-
-        creator.addRule(new EveryDayDishMenuRule(DishCategory.MEAT));
-        creator.addRule(new EveryDayDishMenuRule(DishCategory.VEGETARIAN));
-        creator.addRule(new ThereIsFishOnFridayRule());
-        creator.addRule(new AlternativeDihesRule());
-
-        offers = creator.create();
-
+        setupOffersCreator();
+        createOffers();
     }
 
     private PeriodeConfiguration getPeriodeFromRequest() {
@@ -51,5 +47,19 @@ public class CreateMenusInteractor implements Interactor, ResponseBoundary<List<
 
     private void storeOffers() {
         dao.storeOffers(offers);
+    }
+
+    protected void setupOffersCreator() {
+        creator.setDao(dao);
+        creator.setPeriode(getPeriodeFromRequest());
+
+        creator.addRule(new EveryDayDishMenuRule(DishCategory.MEAT));
+        creator.addRule(new EveryDayDishMenuRule(DishCategory.VEGETARIAN));
+        creator.addRule(new ThereIsFishOnFridayRule());
+        creator.addRule(new AlternativeDihesRule(getPeriodeFromRequest().getNumberOfDishesPerDay()));
+    }
+
+    public void createOffers() {
+        offers = creator.create();
     }
 }

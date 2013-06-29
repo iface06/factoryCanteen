@@ -5,6 +5,7 @@ import de.vawi.factoryCanteen.dummies.DishCreator;
 import de.vawi.factoryCanteen.entities.*;
 import de.vawi.factoryCanteen.interactors.RequestBoundary;
 import java.util.*;
+import org.joda.time.DateTime;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -34,6 +35,7 @@ public class CreateMenusInteractorTest {
 
         CreateMenusInteractor interactor = new CreateMenusInteractor(requestBoundary);
         interactor.setDao(dao);
+        interactor.setOfferCreator(new MenuCreator());
         interactor.execute();
 
         assertEquals(2, interactor.getResponse().size());
@@ -64,12 +66,12 @@ public class CreateMenusInteractorTest {
         dao = new CreateMenuDao() {
             @Override
             public Date findDateOfLastOffer() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                return new DateTime().withDate(2013, 1, 3).withTime(0, 0, 0, 0).toDate();
             }
 
             @Override
             public List<Dish> findDishesByCategory(DishCategory category) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                return new ArrayList<>();
             }
 
             @Override

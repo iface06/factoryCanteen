@@ -1,5 +1,5 @@
 
-package de.vawi.factroyCanteen;
+package de.vawi.factoryCanteen;
 
 import de.vawi.factoryCanteen.entities.PeriodeConfiguration;
 import org.junit.*;

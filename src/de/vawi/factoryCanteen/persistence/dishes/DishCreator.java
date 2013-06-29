@@ -26,9 +26,9 @@ class DishCreator {
      */
     Dish create(String hitlisteZeile) {
         List<String> cells = seperatLine(hitlisteZeile);
-        Dish speise = createDish(cells);
+        Dish dish = createDish(cells);
 
-        return speise;
+        return dish;
     }
 
     /**

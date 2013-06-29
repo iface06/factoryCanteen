@@ -18,30 +18,30 @@ public class AlternativeDishesRuleTest {
 
     private List<Offer> offers;
     private static List<Dish> dishes;
-    private Date startDate;
+    private Date offerDate;
     private AlternativeDihesRule rule;
 
     @Test
     public void test() {
         initRule();
-        rule.execute(offers);
+        addDayWithGivenNumberOfDishes(2);
+        rule.execute(offers, offerDate);
 
-        assertEquals(15, offers.size());
+        assertEquals(3, offers.size());
     }
 
     @Test
     public void testAddNoDishIfNoMoreRequired() {
-        addDayWith3DishesToOffers();
-        rule.execute(offers);
+        addDayWithGivenNumberOfDishes(3);
+        rule.execute(offers, offerDate);
 
-        assertEquals("3 Dishes already added to the first day, so only 14 alternatives are required. (3 + 14 = 17)",
-                17, offers.size());
+        assertEquals(3, offers.size());
     }
 
     @Test
     public void testNoDishIsMultiply() {
-        offers.add(createOffer("Dish-0", startDate));
-        rule.execute(offers);
+        offers.add(createOffer("Dish-0", offerDate));
+        rule.execute(offers, offerDate);
 
         assertThatNoDishIsMultiply();
     }
@@ -49,7 +49,7 @@ public class AlternativeDishesRuleTest {
     @Test(expected = NotEnoughDishesForMenuCreationAvailable.class)
     public void testNotEnoughDishesAvailable() {
         dishes = new ArrayList<>();
-        rule.execute(offers);
+        rule.execute(offers, offerDate);
     }
 
     private void assertThatNoDishIsMultiply() {
@@ -67,17 +67,15 @@ public class AlternativeDishesRuleTest {
 
     @Before
     public void before() {
-        startDate = new DateTime().withDate(2012, 12, 31).withTime(0, 0, 0, 0).toDate();
+        offerDate = new DateTime().withDate(2012, 12, 31).withTime(0, 0, 0, 0).toDate();
         offers = new ArrayList<>();
         initRule();
         initDishes();
     }
 
     public void initRule() {
-        rule = new AlternativeDihesRule();
-        rule.setPeriode(new PeriodeConfiguration());
+        rule = new AlternativeDihesRule(3);
         rule.setDao(new OfferCreatorDao());
-        rule.setStartDate(startDate);
     }
 
     private void initDishes() {
@@ -98,12 +96,11 @@ public class AlternativeDishesRuleTest {
         });
     }
 
-    private void addDayWith3DishesToOffers() {
-
-        Offer offer = createOffer("Dish A", startDate);
-        offers.add(offer);
-        offers.add(offer);
-        offers.add(offer);
+    private void addDayWithGivenNumberOfDishes(int numberOfDishes) {
+        for (int i = 0; i < numberOfDishes; i++) {
+            Offer offer = createOffer("Dish " + i, offerDate);
+            offers.add(offer);
+        }
     }
 
     private Offer createOffer(String name, Date day) {

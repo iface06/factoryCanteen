@@ -9,11 +9,7 @@ import java.util.*;
  */
 public interface MenuCreationRule {
 
-    public void execute(List<Offer> offers);
-
-    public void setPeriode(PeriodeConfiguration periode);
-
-    public void setStartDate(Date startDate);
+    public void execute(List<Offer> offers, Date offerDate);
 
     public void setDao(CreateMenuDao dao);
 }

@@ -4,6 +4,8 @@ import de.vawi.factoryCanteen.entities.*;
 import java.io.*;
 import java.util.*;
 import java.util.logging.*;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeConstants;
 
 /**
  * Die Klasse Verwaltet die erstellen Menues
@@ -122,7 +124,7 @@ public class OffersDB {
             }
         }
 
-        return lastOffer.getDate();
+        return lastOffer != null ? lastOffer.getDate() : new DateTime().withDayOfWeek(DateTimeConstants.FRIDAY).toDate();
     }
 
     public List<Offer> findCurrentMenu(PeriodeConfiguration periode) {

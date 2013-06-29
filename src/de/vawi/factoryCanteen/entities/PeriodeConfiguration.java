@@ -42,7 +42,7 @@ public class PeriodeConfiguration {
      *
      * @return Gibt die Anzahl an Gerichten pro Tag zurück
      */
-    public int getAnzahlGerichteProTag() {
+    public int getNumberOfDishesPerDay() {
         return anzahlGerichteProTag;
     }
 

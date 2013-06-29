@@ -1,4 +1,4 @@
-package de.vawi.factroyCanteen;
+package de.vawi.factoryCanteen;
 
 import de.vawi.factoryCanteen.createMenu.*;
 import org.junit.runner.RunWith;
@@ -12,7 +12,7 @@ import org.junit.runners.Suite;
     AlternativeDishesRuleTest.class,
     CreateMenusInteractorTest.class,
     EveryDayDishMenuRuleTest.class,
-    OffersForNextPeriodeCreatorTest.class,
+    MenuCreatorTest.class,
     ThereIsFishOnFridayRuleTest.class
 })
 public class UnitTests {

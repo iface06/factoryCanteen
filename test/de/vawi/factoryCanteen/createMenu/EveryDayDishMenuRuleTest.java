@@ -9,16 +9,17 @@ import static org.junit.Assert.*;
 public class EveryDayDishMenuRuleTest {
 
     List<Offer> offers;
-    private PeriodeConfiguration periode;
     private EveryDayDishMenuRule rule;
+    private Date offerDate;
 
     @Test
     public void testThatEveryDayOffersMeatDish() {
 
         initRuleFor(DishCategory.MEAT);
-        rule.execute(offers);
 
-        assertEquals(15, offers.size());
+        rule.execute(offers, offerDate);
+
+        assertEquals(1, offers.size());
         assertDishCategoryIs(DishCategory.MEAT);
     }
 
@@ -26,9 +27,9 @@ public class EveryDayDishMenuRuleTest {
     public void testThatEveryDayOffersVegetarianDish() {
 
         initRuleFor(DishCategory.VEGETARIAN);
-        rule.execute(offers);
+        rule.execute(offers, offerDate);
 
-        assertEquals(15, offers.size());
+        assertEquals(1, offers.size());
         assertDishCategoryIs(DishCategory.VEGETARIAN);
 
     }
@@ -36,15 +37,13 @@ public class EveryDayDishMenuRuleTest {
     @Before
     public void before() {
         offers = new ArrayList<>();
-        periode = new PeriodeConfiguration();
+        offerDate = new DateTime().withDate(2013, 7, 1).withTime(0, 0, 0, 0).toDate();
 
     }
 
     private void initRuleFor(DishCategory category) {
         rule = new EveryDayDishMenuRule(category);
         rule.setDao(new OfferCreatorDao());
-        rule.setPeriode(periode);
-        rule.setStartDate(new DateTime().withDate(2012, 12, 31).withTime(0, 0, 0, 0).toDate());
     }
 
     private void assertDishCategoryIs(DishCategory category) {

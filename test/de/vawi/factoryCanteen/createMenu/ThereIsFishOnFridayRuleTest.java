@@ -18,20 +18,20 @@ public class ThereIsFishOnFridayRuleTest {
 
     List<Offer> offers;
     private ThereIsFishOnFridayRule rule;
+    private Date offerDate;
 
     @Test
-    public void testRequiredNumberOfFishDishes() {
-
-        rule.execute(offers);
-        assertEquals(new PeriodeConfiguration().calculateRequiredFishDishes(), offers.size());
-        assertDishCategoryIs(DishCategory.FISH);
+    public void testItIsFriday() {
+        offerDate = new DateTime().withDayOfWeek(DateTimeConstants.FRIDAY).toDate();
+        rule.execute(offers, offerDate);
+        assertEquals(1, offers.size());
     }
 
     @Test
-    public void testRequiredNumberOfFishDishesIsOfferedOnFriday() {
-
-        rule.execute(offers);
-        assertEachFishDishIsOfferedOnFriday();
+    public void testItIsNotFriday() {
+        offerDate = new DateTime().withDayOfWeek(DateTimeConstants.MONDAY).toDate();
+        rule.execute(offers, offerDate);
+        assertTrue(offers.isEmpty());
     }
 
     @Before
@@ -42,10 +42,7 @@ public class ThereIsFishOnFridayRuleTest {
 
     private void initRule() {
         rule = new ThereIsFishOnFridayRule();
-
         rule.setDao(new OfferCreatorDao());
-        rule.setStartDate(new DateTime().withDate(2012, 12, 31).withTime(0, 0, 0, 0).toDate());
-        rule.setPeriode(new PeriodeConfiguration());
 
     }
 

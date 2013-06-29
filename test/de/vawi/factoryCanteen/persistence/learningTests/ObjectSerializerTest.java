@@ -9,8 +9,8 @@ import static org.junit.Assert.*;
 
 public class ObjectSerializerTest {
 
-    public static final String DISHES_FILE_NAME = "test/de/vawi/kuechenchefPersistence/learningTests/dishes.ser";
-    public static final String DISH_FILE_NAME = "test/de/vawi/kuechenchefPersistence/learningTests/dish.ser";
+    public static final String DISHES_FILE_NAME = "test/de/vawi/factoryCanteen/learningTests/dishes.ser";
+    public static final String DISH_FILE_NAME = "test/de/vawi/factoryCanteen/learningTests/dish.ser";
     private Dish dish;
     private FileOutputStream outputFile;
     private ObjectOutputStream objectWriter;

@@ -12,25 +12,21 @@ import org.joda.time.DateTimeConstants;
  */
 class ThereIsFishOnFridayRule implements MenuCreationRule {
 
-    private List<Offer> offers;
     private CreateMenuDao dao;
-    private Date startDate;
     private List<Dish> fishDishes;
-    private PeriodeConfiguration periode;
+    private int dishNumber = 0;
 
     @Override
-    public void execute(List<Offer> offers) {
+    public void execute(List<Offer> offers, Date offerDate) {
         fishDishes = dao.findDishesByCategory(DishCategory.FISH);
-        for (int weekNumber = 0; weekNumber < periode.getNumberOfWeeks(); weekNumber++) {
+        if (isOfferDateAFriday(offerDate)) {
             Offer fishDish = new Offer();
-            fishDish.setDish(fishDishes.get(weekNumber));
-            fishDish.setDate(nextFriday(weekNumber));
+            fishDish.setDish(fishDishes.get(dishNumber));
+            fishDish.setDate(offerDate);
             offers.add(fishDish);
+            dishNumber++;
         }
-    }
 
-    private Date nextFriday(int weekNumber) {
-        return new DateTime(startDate).plusWeeks(weekNumber).withDayOfWeek(DateTimeConstants.FRIDAY).toDate();
     }
 
     @Override
@@ -38,13 +34,7 @@ class ThereIsFishOnFridayRule implements MenuCreationRule {
         this.dao = offerCreatorDao;
     }
 
-    @Override
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    @Override
-    public void setPeriode(PeriodeConfiguration periode) {
-        this.periode = periode;
+    private boolean isOfferDateAFriday(Date offerDate) {
+        return new DateTime(offerDate).getDayOfWeek() == DateTimeConstants.FRIDAY;
     }
 }

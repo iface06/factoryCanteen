@@ -4,7 +4,14 @@ import de.vawi.factoryCanteen.entities.PeriodeConfiguration;
 import de.vawi.factoryCanteen.entities.Offer;
 import de.vawi.factoryCanteen.entities.DishCategory;
 import de.vawi.factoryCanteen.createMenu.CreateMenuDao;
-import de.vawi.factoryCanteen.createMenu.OffersCreator;
+import de.vawi.factoryCanteen.createMenu.CreateMenusInteractor;
+import de.vawi.factoryCanteen.createMenu.CreateMenusRequest;
+import de.vawi.factoryCanteen.createMenu.MenuCreator;
+import de.vawi.factoryCanteen.daoFactory.DaoFactory;
+import de.vawi.factoryCanteen.interactors.RequestBoundary;
+import de.vawi.factoryCanteen.persistence.dishes.DishesImport;
+import de.vawi.factoryCanteen.persistence.interactorDaos.CreateMenuesFileDao;
+import de.vawi.factoryCanteen.persistence.interactorDaos.FileDaoFactory;
 import java.util.*;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Pending;
@@ -19,7 +26,6 @@ public class EnoughtMealsPerPeriode {
 
     private PeriodeConfiguration periode;
     private List<Offer> offers;
-    private OffersCreator creator;
 
     @Given("a menu contains $numberOfMealsPerDay meals per day for the next $numberOfDayPerWeek days")
     public void pressCreateButton(int numberOfMealsPerDay, int numberOfDayPerWeek) {
@@ -31,73 +37,77 @@ public class EnoughtMealsPerPeriode {
     @When("the periode is $weeks weeks")
     public void offeredThreeMenusForTheNextThreeWeeks(int weeks) {
         periode.setNumberOfWeek(weeks);
-        creator = new OffersCreator();
-        //creator.setDao(new CreateMenuesFileDao());
-        creator.setPeriode(periode);
-        offers = creator.create();
+        DishesImport importer = new DishesImport();
+        importer.importFiles();
+        DaoFactory.INSTANCE = new FileDaoFactory();
+        CreateMenusInteractor interactor = new CreateMenusInteractor(new RequestBoundary<CreateMenusRequest>() {
+            @Override
+            public CreateMenusRequest passRequest() {
+                CreateMenusRequest request = new CreateMenusRequest();
+                request.setPeriode(periode);
+                return request;
+            }
+        });
+        interactor.setDao(DaoFactory.INSTANCE.makeCreateMenuDao());
+        interactor.setOfferCreator(new MenuCreator());
+        interactor.execute();
+
+        offers = interactor.getResponse();
 
     }
 
     @Then("expect $days days with $expectedNumberOfMeals meals")
     public void menusContainsEnoughtMealsForThePeriode(int days, int expectedNumberOfMeals) {
-        assertThat(periode.calculateRequiredMealsForPeriode(), equalTo(offers.size()));
+        assertThat(offers.size(), equalTo(periode.calculateRequiredMealsForPeriode()));
     }
 
     @Then("each day with 3 dishes")
     public void requiredNumberOfDishesPerDayAreOffered() {
-        if (!offers.isEmpty()) {
-            int countedDishesPerDay = 1;
-            Iterator<Offer> offersIterator = offers.iterator();
-            Offer firstOffer = offersIterator.next();
-            Date currentDate = firstOffer.getDate();
-            while (offersIterator.hasNext()) {
-                Offer currentOffer = offersIterator.next();
-                if (currentDate.equals(currentOffer.getDate())) {
-                    countedDishesPerDay++;
-                } else {
-                    assertThat(periode.getNumberOfMealsPerDay(), equalTo(countedDishesPerDay));
-                    currentDate = currentOffer.getDate();
-                    countedDishesPerDay = 1;
-                }
-            }
+
+        Map<Date, List<Offer>> groupedOffersPerDay = groupOfferByDate();
+        for (Date date : groupedOffersPerDay.keySet()) {
+            List<Offer> offersPerDay = groupedOffersPerDay.get(date);
+            assertThat(offersPerDay.size(), equalTo(periode.getNumberOfDishesPerDay()));
         }
+
     }
 
     @Then("each day contains a vegetarian dish, a dish with meat and a third alternativ")
-    public void menusContainsEnoughtMealsForThePeriodeC() {
-        if (!offers.isEmpty()) {
-            int countedVegetarianMeal = 0;
-            int countedMeatMeals = 0;
-            Iterator<Offer> offersIterator = offers.iterator();
-            Offer firstOffer = offersIterator.next();
-            Date currentDate = firstOffer.getDate();
-            if (firstOffer.getDish().getCategory().equals(DishCategory.MEAT)) {
-                countedMeatMeals++;
-            } else if (firstOffer.getDish().equals(DishCategory.VEGETARIAN) || firstOffer.getDish().equals(DishCategory.FISH)) {
-                countedVegetarianMeal++;
-            }
-            while (offersIterator.hasNext()) {
-                Offer currentOffer = offersIterator.next();
-                if (currentDate.equals(currentOffer.getDate())) {
-                    if (firstOffer.getDish().getCategory().equals(DishCategory.MEAT)) {
-                        countedMeatMeals++;
-                    } else if (firstOffer.getDish().equals(DishCategory.VEGETARIAN) || firstOffer.getDish().equals(DishCategory.FISH)) {
-                        countedVegetarianMeal++;
-                    }
-                } else {
-                    assertThat(countedVegetarianMeal, greaterThanOrEqualTo(1));
-                    assertThat(countedMeatMeals, greaterThanOrEqualTo(1));
-                    currentDate = currentOffer.getDate();
-                    countedMeatMeals = 0;
-                    countedVegetarianMeal = 0;
-                    if (firstOffer.getDish().getCategory().equals(DishCategory.MEAT)) {
-                        countedMeatMeals++;
-                    } else if (firstOffer.getDish().equals(DishCategory.VEGETARIAN) || firstOffer.getDish().equals(DishCategory.FISH)) {
-                        countedVegetarianMeal++;
-                    }
-                }
+    public void menusContainsEnoughtMealsForThePeriode() {
+        Map<Date, List<Offer>> groupedOffersPerDay = groupOfferByDate();
+        for (Date date : groupedOffersPerDay.keySet()) {
+            List<Offer> offersPerDay = groupedOffersPerDay.get(date);
+            int numberOfMeatDishes = countDishesByDishCategory(offersPerDay, DishCategory.MEAT);
+            int numberOfVegetarian = countDishesByDishCategory(offersPerDay, DishCategory.VEGETARIAN);
+
+            assertThat(offersPerDay.size(), equalTo(periode.getNumberOfDishesPerDay()));
+            assertThat(numberOfMeatDishes, greaterThan(0));
+            assertThat(numberOfVegetarian, greaterThan(0));
+        }
+    }
+
+    private Map<Date, List<Offer>> groupOfferByDate() {
+        Map<Date, List<Offer>> groupdOffers = new HashMap<>();
+        for (Offer offer : offers) {
+            List<Offer> offersPerDay = groupdOffers.get(offer.getDate());
+            if (offersPerDay != null) {
+                offersPerDay.add(offer);
+            } else {
+                offersPerDay = new ArrayList<>();
+                offersPerDay.add(offer);
+                groupdOffers.put(offer.getDate(), offersPerDay);
             }
         }
+        return groupdOffers;
+    }
 
+    public int countDishesByDishCategory(List<Offer> offersAday, DishCategory category) {
+        int numberOfMeatDishes = 0;
+        for (Offer offer : offersAday) {
+            if (offer.getDishCategory().equals(category)) {
+                numberOfMeatDishes++;
+            }
+        }
+        return numberOfMeatDishes;
     }
 }

@@ -11,45 +11,37 @@ import org.joda.time.DateTime;
 class EveryDayDishMenuRule implements MenuCreationRule {
 
     private List<Dish> dishesByCategory;
-    private PeriodeConfiguration periode;
-    private Date startDate;
     private CreateMenuDao dao;
     private DishCategory dishCategory;
+    private int dishNumber = 0;
 
     public EveryDayDishMenuRule(DishCategory dishCategory) {
         this.dishCategory = dishCategory;
     }
 
-    public void execute(List<Offer> offers) {
-        dishesByCategory = dao.findDishesByCategory(dishCategory);
-        for (int dishNumber = 0; dishNumber < periode.calculateNumberOfRequiredMeatDishes(); dishNumber++) {
-            Offer offer = createOffer(dishNumber);
-            offers.add(offer);
-        }
+    public void execute(List<Offer> offers, Date offerDate) {
+        loadDishes();
+        Offer offer = createOffer(offerDate);
+        offers.add(offer);
+
     }
 
-    public void setPeriode(PeriodeConfiguration periode) {
-        this.periode = periode;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
+    @Override
     public void setDao(CreateMenuDao dao) {
         this.dao = dao;
     }
 
-    private Offer createOffer(int dishNumber) {
+    private Offer createOffer(Date day) {
         Offer offer = new Offer();
-        Date offerDate = calculateOfferDate(dishNumber);
-        offer.setDate(offerDate);
+        offer.setDate(day);
         offer.setDish(dishesByCategory.get(dishNumber));
+        dishNumber++;
         return offer;
     }
 
-    private Date calculateOfferDate(int dishNumber) {
-        Date offerDate = new DateTime(startDate).plusDays(dishNumber).toDate();
-        return offerDate;
+    public void loadDishes() throws NotEnoughDishesForMenuCreationAvailable {
+        if (dishesByCategory == null) {
+            dishesByCategory = dao.findDishesByCategory(dishCategory);
+        }
     }
 }

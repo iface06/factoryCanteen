@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.vawi.factroyCanteen;
+package de.vawi.factoryCanteen;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
