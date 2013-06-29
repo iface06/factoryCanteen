@@ -15,7 +15,7 @@ import org.joda.time.DateTimeConstants;
 public class OffersDB {
 
     private static OffersDB instance;
-    public static final String MENUES_FILE_NAME = "importFiles/offers.ser";
+    public static String MENUES_FILE_NAME;
 
     /**
      * MenuesManager ist als Singelton implementiert, da in der gesamten
@@ -25,13 +25,14 @@ public class OffersDB {
      */
     public static OffersDB getInstance() {
         if (instance == null) {
-            instance = new OffersDB();
+            instance = new OffersDB("importFiles/offers.ser");
         }
 
         return instance;
     }
 
-    OffersDB() {
+    OffersDB(String path) {
+        MENUES_FILE_NAME = path;
     }
     List<Offer> offers = new ArrayList<>();
 
@@ -39,11 +40,19 @@ public class OffersDB {
         this.offers.addAll(offers);
     }
 
-    void deserializeOffers() {
+    public void deserializeOffers() {
+        File file = new File(MENUES_FILE_NAME);
+        if (file.isFile() && file.length() > 0) {
+            readOffersFromFile(file);
+        }
+    }
+
+    protected void readOffersFromFile(File file) {
         FileInputStream inputFile = null;
         try {
-            inputFile = openInputStreamForOffers();
-            readOffersFrom(inputFile);
+            inputFile = new FileInputStream(file);
+            ObjectInputStream objectReader = new ObjectInputStream(inputFile);
+            offers = (List<Offer>) objectReader.readObject();
         } catch (ClassNotFoundException ex) {
             handleClassNotFoundException(ex);
         } catch (IOException ex) {
@@ -69,7 +78,7 @@ public class OffersDB {
         try {
             outputFile.close();
         } catch (IOException ex) {
-            throw new SerializeMenuException(ex);
+            throw new SerializeOffersException(ex);
         }
     }
 
@@ -80,12 +89,14 @@ public class OffersDB {
     }
 
     protected void handleIoException(IOException ex) {
-        throw new SerializeMenuException(ex);
+        throw new SerializeOffersException(ex);
     }
 
-    protected FileOutputStream openOutputStreamForOffers() throws FileNotFoundException {
+    protected FileOutputStream openOutputStreamForOffers() throws FileNotFoundException, IOException {
         FileOutputStream outputFile;
-        outputFile = new FileOutputStream(MENUES_FILE_NAME);
+        File file = new File(MENUES_FILE_NAME);
+        file.createNewFile();
+        outputFile = new FileOutputStream(file);
         return outputFile;
     }
 
@@ -97,23 +108,12 @@ public class OffersDB {
         try {
             inputFile.close();
         } catch (IOException ex) {
-            throw new SerializeMenuException(ex);
+            throw new SerializeOffersException(ex);
         }
     }
 
-    private FileInputStream openInputStreamForOffers() throws FileNotFoundException {
-        FileInputStream inputFile;
-        inputFile = new FileInputStream(MENUES_FILE_NAME);
-        return inputFile;
-    }
-
-    private void readOffersFrom(FileInputStream inputFile) throws ClassNotFoundException, IOException {
-        ObjectInputStream objectReader = new ObjectInputStream(inputFile);
-        offers = (List<Offer>) objectReader.readObject();
-    }
-
     protected void handleClassNotFoundException(ClassNotFoundException ex) {
-        throw new SerializeMenuException(ex);
+        throw new SerializeOffersException(ex);
     }
 
     public Date findDateOfLastOffer() {
@@ -127,14 +127,21 @@ public class OffersDB {
         return lastOffer != null ? lastOffer.getDate() : new DateTime().withDayOfWeek(DateTimeConstants.FRIDAY).toDate();
     }
 
-    public List<Offer> findCurrentMenu(PeriodeConfiguration periode) {
-        return new ArrayList<>();
+    public List<Offer> findOffersForCalendarWeek(CalendarWeek week) {
+        List<Offer> offersForWeek = new ArrayList<>();
+        List<Date> weekDays = week.extractWorkingDaysOfWeek();
+        for (Offer offer : offers) {
+            if (weekDays.contains(offer.getDate())) {
+                offersForWeek.add(offer);
+            }
+        }
+        return offersForWeek;
 
     }
 
-    public class SerializeMenuException extends RuntimeException {
+    public class SerializeOffersException extends RuntimeException {
 
-        public SerializeMenuException(Throwable cause) {
+        public SerializeOffersException(Throwable cause) {
             super(cause);
         }
     }

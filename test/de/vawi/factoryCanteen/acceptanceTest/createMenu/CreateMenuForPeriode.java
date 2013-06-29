@@ -1,5 +1,6 @@
 package de.vawi.factoryCanteen.acceptanceTest.createMenu;
 
+import de.vawi.factoryCanteen.acceptanceTest.GroupOffersByDate;
 import de.vawi.factoryCanteen.entities.PeriodeConfiguration;
 import de.vawi.factoryCanteen.entities.Offer;
 import de.vawi.factoryCanteen.entities.DishCategory;
@@ -22,7 +23,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import org.jbehave.core.io.StoryPathResolver;
 
-public class EnoughtMealsPerPeriode {
+public class CreateMenuForPeriode {
 
     private PeriodeConfiguration periode;
     private List<Offer> offers;
@@ -64,7 +65,7 @@ public class EnoughtMealsPerPeriode {
     @Then("each day with 3 dishes")
     public void requiredNumberOfDishesPerDayAreOffered() {
 
-        Map<Date, List<Offer>> groupedOffersPerDay = groupOfferByDate();
+        Map<Date, List<Offer>> groupedOffersPerDay = groupOffersByDate();
         for (Date date : groupedOffersPerDay.keySet()) {
             List<Offer> offersPerDay = groupedOffersPerDay.get(date);
             assertThat(offersPerDay.size(), equalTo(periode.getNumberOfDishesPerDay()));
@@ -74,7 +75,7 @@ public class EnoughtMealsPerPeriode {
 
     @Then("each day contains a vegetarian dish, a dish with meat and a third alternativ")
     public void menusContainsEnoughtMealsForThePeriode() {
-        Map<Date, List<Offer>> groupedOffersPerDay = groupOfferByDate();
+        Map<Date, List<Offer>> groupedOffersPerDay = groupOffersByDate();
         for (Date date : groupedOffersPerDay.keySet()) {
             List<Offer> offersPerDay = groupedOffersPerDay.get(date);
             int numberOfMeatDishes = countDishesByDishCategory(offersPerDay, DishCategory.MEAT);
@@ -86,19 +87,8 @@ public class EnoughtMealsPerPeriode {
         }
     }
 
-    private Map<Date, List<Offer>> groupOfferByDate() {
-        Map<Date, List<Offer>> groupdOffers = new HashMap<>();
-        for (Offer offer : offers) {
-            List<Offer> offersPerDay = groupdOffers.get(offer.getDate());
-            if (offersPerDay != null) {
-                offersPerDay.add(offer);
-            } else {
-                offersPerDay = new ArrayList<>();
-                offersPerDay.add(offer);
-                groupdOffers.put(offer.getDate(), offersPerDay);
-            }
-        }
-        return groupdOffers;
+    private Map<Date, List<Offer>> groupOffersByDate() {
+        return new GroupOffersByDate().apply(offers);
     }
 
     public int countDishesByDishCategory(List<Offer> offersAday, DishCategory category) {

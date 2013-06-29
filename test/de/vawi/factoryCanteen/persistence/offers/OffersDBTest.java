@@ -35,9 +35,10 @@ public class OffersDBTest {
         Offer offer = createOffer(d, offerDate);
         offers.add(offer);
 
+        int sizeBefore = db.offers.size();
         db.storeOffers(offers);
-
-        assertFalse(db.offers.isEmpty());
+        int sizeAfter = db.offers.size();
+        assertTrue(sizeAfter == sizeBefore + 1);
     }
 
     @Test
@@ -57,15 +58,17 @@ public class OffersDBTest {
 
     @Test
     public void test() {
-        DateTime offerDate = new DateTime().withDayOfWeek(DateTimeConstants.MONDAY);
+        DateTime offerDate = new DateTime().withTime(0, 0, 0, 0).withDayOfWeek(DateTimeConstants.MONDAY);
         List<Offer> offers = new ArrayList<>();
-        for (int days = 0; days <= new PeriodeConfiguration().getDaysPerWeek(); days++) {
+        for (int days = 0; days < new PeriodeConfiguration().getDaysPerWeek(); days++) {
             Offer offer = createOffer(new Dish(), offerDate.plusDays(days).toDate());
             offers.add(offer);
         }
         db.storeOffers(offers);
 
-        List<Offer> currentOffers = db.findCurrentMenu(new PeriodeConfiguration());
+        CalendarWeek week = CalendarWeek.current();
+        List<Offer> currentOffers = db.findOffersForCalendarWeek(week);
+        assertEquals(5, currentOffers.size());
 
 
     }

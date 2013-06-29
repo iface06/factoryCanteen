@@ -40,7 +40,7 @@ public class CurrentMenuInteractorTest {
     private FindMenuDao createDao() {
         return new FindMenuDao() {
             @Override
-            public List<Offer> findCurrentMenuFor() {
+            public List<Offer> findMenuForWeek(CalendarWeek week) {
                 return new ArrayList<>();
             }
         };

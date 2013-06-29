@@ -16,7 +16,7 @@ public class FileDaoFactory extends DaoFactory {
     }
 
     @Override
-    public FindMenuDao makeCurrentMenuDao() {
-        return new CurrentMenuFileDao();
+    public FindMenuDao makeFindMenuDao() {
+        return new FindMenuFileDao();
     }
 }

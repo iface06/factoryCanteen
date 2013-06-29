@@ -18,9 +18,10 @@ public class FindMenuInteractor implements ResponseBoundary<FindMenuResponse>, I
 
     @Override
     public void execute() {
-        Canteen c = requestBoundary.passRequest().getCanteen();
-        List<Offer> menu = dao.findCurrentMenuFor();
+        CalendarWeek week = requestBoundary.passRequest().getCalendarWeek();
+        List<Offer> menu = dao.findMenuForWeek(week);
         response = new FindMenuResponse();
+        response.setOffers(menu);
 
     }
 

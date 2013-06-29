@@ -19,10 +19,12 @@ public class FileSystemTest {
 
     private int writeMenusWasCalled;
     private int loadDishesWasCalled;
+    private int loadOffersWasCalled;
+    private int instanciateDaoWasCalled;
     private TestableFileSystem fileSystem;
 
     @Test
-    public void testImportPriceListsBeforeDishes() {
+    public void testImportDishes() {
         fileSystem.setUp();
         assertEquals(1, loadDishesWasCalled);
     }
@@ -31,6 +33,18 @@ public class FileSystemTest {
     public void testWriteMenusToDiskCalled() {
         fileSystem.tearDown();
         assertEquals(1, writeMenusWasCalled);
+    }
+
+    @Test
+    public void testImportOffers() {
+        fileSystem.setUp();
+        assertEquals(1, loadOffersWasCalled);
+    }
+
+    @Test
+    public void testInstanciateDaoFactory() {
+        fileSystem.setUp();
+        assertEquals(1, instanciateDaoWasCalled);
     }
 
     @Before
@@ -46,8 +60,18 @@ public class FileSystemTest {
         }
 
         @Override
+        protected void importOffers() {
+            loadOffersWasCalled++;
+        }
+
+        @Override
         protected void writeMenuesToDisk() {
             writeMenusWasCalled++;
+        }
+
+        @Override
+        protected void instanciateDao() {
+            instanciateDaoWasCalled++;
         }
     }
 }

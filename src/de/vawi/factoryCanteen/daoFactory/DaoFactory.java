@@ -13,5 +13,5 @@ public abstract class DaoFactory {
 
     public abstract CreateMenuDao makeCreateMenuDao();
 
-    public abstract FindMenuDao makeCurrentMenuDao();
+    public abstract FindMenuDao makeFindMenuDao();
 }

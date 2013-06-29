@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface FindMenuDao {
 
-    public List<Offer> findCurrentMenuFor();
+    public List<Offer> findMenuForWeek(CalendarWeek week);
 }

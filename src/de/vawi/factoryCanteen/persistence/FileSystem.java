@@ -1,6 +1,8 @@
 package de.vawi.factoryCanteen.persistence;
 
+import de.vawi.factoryCanteen.daoFactory.DaoFactory;
 import de.vawi.factoryCanteen.persistence.dishes.DishesImport;
+import de.vawi.factoryCanteen.persistence.interactorDaos.FileDaoFactory;
 import de.vawi.factoryCanteen.persistence.offers.OffersDB;
 
 /**
@@ -14,7 +16,8 @@ public class FileSystem {
 
     public void setUp() {
         importDishes();
-
+        importOffers();
+        instanciateDao();
     }
 
     public void tearDown() {
@@ -26,8 +29,16 @@ public class FileSystem {
         importer.importFiles();
     }
 
+    protected void importOffers() {
+        OffersDB.getInstance().deserializeOffers();
+    }
+
     protected void writeMenuesToDisk() {
         OffersDB menues = OffersDB.getInstance();
         menues.serializeOffers();
+    }
+
+    protected void instanciateDao() {
+        DaoFactory.INSTANCE = new FileDaoFactory();
     }
 }

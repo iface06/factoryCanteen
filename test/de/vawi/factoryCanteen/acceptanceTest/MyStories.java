@@ -1,6 +1,7 @@
 package de.vawi.factoryCanteen.acceptanceTest;
 
-import de.vawi.factoryCanteen.acceptanceTest.createMenu.EnoughtMealsPerPeriode;
+import de.vawi.factoryCanteen.acceptanceTest.createMenu.CreateMenuForPeriode;
+import de.vawi.factoryCanteen.acceptanceTest.currentMenu.FindMenuByDate;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -62,7 +63,7 @@ public class MyStories extends JUnitStories {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        return new InstanceStepsFactory(configuration(), new EnoughtMealsPerPeriode());
+        return new InstanceStepsFactory(configuration(), new CreateMenuForPeriode(), new FindMenuByDate());
     }
 
     @Override

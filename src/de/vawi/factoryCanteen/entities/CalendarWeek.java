@@ -1,8 +1,9 @@
 package de.vawi.factoryCanteen.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.*;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeConstants;
 
 public class CalendarWeek implements Comparable<CalendarWeek>, Serializable {
 
@@ -80,5 +81,18 @@ public class CalendarWeek implements Comparable<CalendarWeek>, Serializable {
         } else {
             return 0;
         }
+    }
+
+    public List<Date> extractWorkingDaysOfWeek() {
+        List<Date> workingDays = new ArrayList<>();
+        DateTime workingWeek = getCalendarWeekAsDateTime();
+        for (int day = DateTimeConstants.MONDAY; day <= DateTimeConstants.FRIDAY; day++) {
+            workingDays.add(workingWeek.withDayOfWeek(day).toDate());
+        }
+        return workingDays;
+    }
+
+    protected DateTime getCalendarWeekAsDateTime() {
+        return new DateTime().withWeekOfWeekyear(week).withYear(year).withTime(0, 0, 0, 0);
     }
 }
