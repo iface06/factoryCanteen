@@ -1,6 +1,6 @@
 package de.vawi.factoryCanteen.persistence.interactorDaos;
 
-import de.vawi.factoryCanteen.currentMenu.FindMenuDao;
+import de.vawi.factoryCanteen.findMenu.FindMenuDao;
 import de.vawi.factoryCanteen.entities.*;
 import de.vawi.factoryCanteen.persistence.offers.OffersDB;
 import java.util.List;

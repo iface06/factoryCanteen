@@ -2,7 +2,7 @@ package de.vawi.factoryCanteen.persistence.interactorDaos;
 
 import de.vawi.factoryCanteen.daoFactory.DaoFactory;
 import de.vawi.factoryCanteen.createMenu.CreateMenuDao;
-import de.vawi.factoryCanteen.currentMenu.FindMenuDao;
+import de.vawi.factoryCanteen.findMenu.FindMenuDao;
 
 /**
  *

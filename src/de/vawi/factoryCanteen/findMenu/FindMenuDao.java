@@ -1,4 +1,4 @@
-package de.vawi.factoryCanteen.currentMenu;
+package de.vawi.factoryCanteen.findMenu;
 
 import de.vawi.factoryCanteen.entities.*;
 import java.util.List;

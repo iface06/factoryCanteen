@@ -2,17 +2,12 @@ package de.vawi.factoryCanteen.createMenu;
 
 import de.vawi.factoryCanteen.entities.PeriodeConfiguration;
 import de.vawi.factoryCanteen.entities.Offer;
-import de.vawi.factoryCanteen.createMenu.MenuCreator;
 import de.vawi.factoryCanteen.entities.*;
 import java.util.*;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 import org.junit.*;
 import static org.junit.Assert.*;
-import org.mockito.ArgumentCaptor;
-import static org.mockito.Mockito.*;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 
 /**
  *
@@ -33,7 +28,7 @@ public class MenuCreatorTest {
     }
 
     @Test
-    public void testTheirAreNotWeekendOffers() {
+    public void testTheirAreNoWeekendOffers() {
         MenuCreationRule rule = new MenuCreationRuleMock();
         List<Offer> offers = creator.create();
 
@@ -50,9 +45,8 @@ public class MenuCreatorTest {
      */
     @Test
     public void testSortingCreatedOffersByDate() {
-
-
         List<Offer> offers = creator.create();
+
         Date previousOfferDate = null;
         for (Offer offer : offers) {
             if (previousOfferDate != null) {

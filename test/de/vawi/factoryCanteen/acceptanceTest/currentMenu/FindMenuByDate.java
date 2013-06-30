@@ -1,8 +1,8 @@
 package de.vawi.factoryCanteen.acceptanceTest.currentMenu;
 
 import de.vawi.factoryCanteen.acceptanceTest.GroupOffersByDate;
-import de.vawi.factoryCanteen.currentMenu.FindMenuInteractor;
-import de.vawi.factoryCanteen.currentMenu.FindMenuRequest;
+import de.vawi.factoryCanteen.findMenu.FindMenuInteractor;
+import de.vawi.factoryCanteen.findMenu.FindMenuRequest;
 import de.vawi.factoryCanteen.daoFactory.DaoFactory;
 import de.vawi.factoryCanteen.entities.*;
 import de.vawi.factoryCanteen.interactors.RequestBoundary;

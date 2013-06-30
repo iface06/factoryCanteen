@@ -23,7 +23,7 @@ public class CalendarWeek implements Comparable<CalendarWeek>, Serializable {
 
     public static CalendarWeek fromDate(Date d) {
         CalendarWeek week = new CalendarWeek();
-        DateTime dt = new DateTime(d);
+        DateTime dt = new DateTime(d).withTime(0, 0, 0, 0);
         week.setWeek(dt.getWeekOfWeekyear());
         week.setYear(dt.getYear());
         return week;

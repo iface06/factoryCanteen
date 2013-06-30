@@ -23,7 +23,6 @@ class EveryDayDishMenuRule implements MenuCreationRule {
         loadDishes();
         Offer offer = createOffer(offerDate);
         offers.add(offer);
-
     }
 
     @Override

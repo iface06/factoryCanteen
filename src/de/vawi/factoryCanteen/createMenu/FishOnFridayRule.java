@@ -10,7 +10,7 @@ import org.joda.time.DateTimeConstants;
  *
  * @author Tobias
  */
-class ThereIsFishOnFridayRule implements MenuCreationRule {
+class FishOnFridayRule implements MenuCreationRule {
 
     private CreateMenuDao dao;
     private List<Dish> fishDishes;

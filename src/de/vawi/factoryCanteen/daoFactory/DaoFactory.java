@@ -1,7 +1,7 @@
 package de.vawi.factoryCanteen.daoFactory;
 
 import de.vawi.factoryCanteen.createMenu.CreateMenuDao;
-import de.vawi.factoryCanteen.currentMenu.FindMenuDao;
+import de.vawi.factoryCanteen.findMenu.FindMenuDao;
 
 /**
  *

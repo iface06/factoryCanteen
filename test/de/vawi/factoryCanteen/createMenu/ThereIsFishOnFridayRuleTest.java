@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 public class ThereIsFishOnFridayRuleTest {
 
     List<Offer> offers;
-    private ThereIsFishOnFridayRule rule;
+    private FishOnFridayRule rule;
     private Date offerDate;
 
     @Test
@@ -41,7 +41,7 @@ public class ThereIsFishOnFridayRuleTest {
     }
 
     private void initRule() {
-        rule = new ThereIsFishOnFridayRule();
+        rule = new FishOnFridayRule();
         rule.setDao(new OfferCreatorDao());
 
     }

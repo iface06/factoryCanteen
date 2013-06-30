@@ -50,7 +50,7 @@ public class CreateMenuForPeriode {
             }
         });
         interactor.setDao(DaoFactory.INSTANCE.makeCreateMenuDao());
-        interactor.setOfferCreator(new MenuCreator());
+        interactor.setMenuCreator(new MenuCreator());
         interactor.execute();
 
         offers = interactor.getResponse();
