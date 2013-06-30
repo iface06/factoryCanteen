@@ -38,7 +38,7 @@ public class FindMenuInteractorTest {
     @Test
     public void testResponse() {
         interactor.execute();
-        assertFalse(interactor.getResponse().getOffers().isEmpty());
+        assertFalse(interactor.getResponse().isEmpty());
     }
 
     private List<Offer> createOffers() {

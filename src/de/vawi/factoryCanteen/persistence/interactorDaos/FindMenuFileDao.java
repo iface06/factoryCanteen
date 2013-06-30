@@ -11,6 +11,6 @@ public class FindMenuFileDao implements FindMenuDao {
     @Override
     public List<Offer> findMenuForWeek(CalendarWeek week) {
         OffersDB offers = OffersDB.getInstance();
-        return offers.findOffersForCalendarWeek(null);
+        return offers.findOffersForCalendarWeek(week);
     }
 }

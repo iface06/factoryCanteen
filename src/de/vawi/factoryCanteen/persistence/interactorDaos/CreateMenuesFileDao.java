@@ -11,7 +11,7 @@ import java.util.*;
 public class CreateMenuesFileDao implements CreateMenuDao {
 
     private DishesDB dishes = DishesDB.getInstance();
-    private OffersDB menues = OffersDB.getInstance();
+    private OffersDB offers = OffersDB.getInstance();
 
     @Override
     public List<Dish> findFavorDishesForPeriode() {
@@ -20,7 +20,7 @@ public class CreateMenuesFileDao implements CreateMenuDao {
 
     @Override
     public void storeOffers(List<Offer> menues) {
-        this.menues.storeOffers(menues);
+        this.offers.storeOffers(menues);
     }
 
     @Override
@@ -30,6 +30,6 @@ public class CreateMenuesFileDao implements CreateMenuDao {
 
     @Override
     public Date findDateOfLastOffer() {
-        return menues.findDateOfLastOffer();
+        return offers.findDateOfLastOffer();
     }
 }

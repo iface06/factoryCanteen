@@ -39,13 +39,13 @@ public class FindMenuByDate {
 
     @Then("expect $numberOfOffers offers ")
     public void expectNumberOfOffersPerWeek(int numberOfOffers) {
-        List<Offer> offers = interactor.getResponse().getOffers();
+        List<Offer> offers = interactor.getResponse();
         assertThat(offers.size(), equalTo(numberOfOffers));
     }
 
     @Then("expect each working day their are $numberOfOffersPerDay offers")
     public void expectThatContainsOffersForEachDay(int numberOfOffersPerDay) {
-        List<Offer> offers = interactor.getResponse().getOffers();
+        List<Offer> offers = interactor.getResponse();
         Map<Date, List<Offer>> groupedOffers = groupOffersByDate(offers);
 
         for (Date date : groupedOffers.keySet()) {

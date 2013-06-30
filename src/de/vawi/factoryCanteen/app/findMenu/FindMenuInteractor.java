@@ -6,11 +6,12 @@ import de.vawi.factoryCanteen.interactors.RequestBoundary;
 import de.vawi.factoryCanteen.interactors.Interactor;
 import java.util.List;
 
-public class FindMenuInteractor implements ResponseBoundary<FindMenuResponse>, Interactor {
+public class FindMenuInteractor implements ResponseBoundary<List<Offer>>, Interactor {
 
     private final RequestBoundary<FindMenuRequest> requestBoundary;
     private FindMenuResponse response;
     private FindMenuDao dao;
+    private List<Offer> offers;
 
     public FindMenuInteractor(RequestBoundary<FindMenuRequest> cmr) {
         this.requestBoundary = cmr;
@@ -19,15 +20,12 @@ public class FindMenuInteractor implements ResponseBoundary<FindMenuResponse>, I
     @Override
     public void execute() {
         CalendarWeek week = requestBoundary.passRequest().getCalendarWeek();
-        List<Offer> menu = dao.findMenuForWeek(week);
-        response = new FindMenuResponse();
-        response.setOffers(menu);
-
+        offers = dao.findMenuForWeek(week);
     }
 
     @Override
-    public FindMenuResponse getResponse() {
-        return response;
+    public List<Offer> getResponse() {
+        return offers;
     }
 
     public void setDao(FindMenuDao dao) {

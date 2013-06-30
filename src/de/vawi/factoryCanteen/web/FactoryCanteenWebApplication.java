@@ -14,6 +14,7 @@ public class FactoryCanteenWebApplication extends Application {
     private static final String ROOT_DIRECTORY = System.getProperty("user.dir");
     private Directory htmlDirectory;
     private Router router;
+    private FileSystem persistence;
 
     @Override
     public Restlet createInboundRoot() {
@@ -38,11 +39,12 @@ public class FactoryCanteenWebApplication extends Application {
     private void setUpRouterForServerResources() {
         router = new Router(getContext());
         router.attach("/web/", htmlDirectory);
-        router.attach("/menus/{canteen}/{calendarWeek}/{year}", MenuResource.class);
+        router.attach("/menus/{calendarWeek}/{year}", MenuResource.class);
+        router.attach("/menus", MenuResource.class);
     }
 
     private void setUpFactoryCanteenPersistence() {
-        FileSystem persistence = new FileSystem();
+        persistence = new FileSystem();
         persistence.setUp();
 
         DaoFactory.INSTANCE = new FileDaoFactory();

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="utf-8">
+  <title>My HTML File</title>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="lib/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="CurrentMenuCtrl">
+
+    <h1>Speiseplan für Woche {{menu.date}}</h1>
+    <select ng-model="canteens" ng-change="selectCanteen()" ng-options="canteen.name for canteen in canteens"></select>
+    <table style="margin-top:20px;">
+        <thead>
+            <tr >
+                <th ng-repeat="day in menu.days">{{day.weekDay}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr >
+                <td ng-repeat="day in menu.days">
+                    <div style="height:50px; width:150px; text-align: center; border:1px solid grey; " >{{day.first}}</div>
+                    <div style="height:50px; width:150px; text-align: center; border-left:1px solid grey; border-right:1px solid grey">{{day.second}}</div>
+                    <div style="height:50px; width:150px; text-align: center; border:1px solid grey">{{day.third}}</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+</body>
+</html>
