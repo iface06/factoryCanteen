@@ -1,8 +1,8 @@
 package de.vawi.factoryCanteen.persistence.dishes;
 
 import de.vawi.factoryCanteen.persistence.dishes.DishesDB;
-import de.vawi.factoryCanteen.entities.Dish;
-import de.vawi.factoryCanteen.entities.DishCategory;
+import de.vawi.factoryCanteen.app.entities.Dish;
+import de.vawi.factoryCanteen.app.entities.DishCategory;
 import de.vawi.factoryCanteen.persistence.dishes.DishesImport;
 
 import de.vawi.factoryCanteen.persistence.files.CsvFile;

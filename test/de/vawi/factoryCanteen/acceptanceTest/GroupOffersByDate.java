@@ -1,6 +1,6 @@
 package de.vawi.factoryCanteen.acceptanceTest;
 
-import de.vawi.factoryCanteen.entities.Offer;
+import de.vawi.factoryCanteen.app.entities.Offer;
 import java.util.*;
 
 /**

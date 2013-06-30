@@ -1,6 +1,6 @@
 package de.vawi.factoryCanteen.persistence;
 
-import de.vawi.factoryCanteen.daoFactory.DaoFactory;
+import de.vawi.factoryCanteen.app.daoFactory.DaoFactory;
 import de.vawi.factoryCanteen.persistence.dishes.DishesImport;
 import de.vawi.factoryCanteen.persistence.interactorDaos.FileDaoFactory;
 import de.vawi.factoryCanteen.persistence.offers.OffersDB;

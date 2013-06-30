@@ -1,10 +1,10 @@
 package de.vawi.factoryCanteen.persistence.dishes;
 
-import de.vawi.factoryCanteen.entities.Menu;
-import de.vawi.factoryCanteen.entities.PeriodeConfiguration;
-import de.vawi.factoryCanteen.entities.Dish;
-import de.vawi.factoryCanteen.entities.DishCategory;
-import static de.vawi.factoryCanteen.entities.DishCategory.*;
+import de.vawi.factoryCanteen.app.entities.Menu;
+import de.vawi.factoryCanteen.app.entities.PeriodeConfiguration;
+import de.vawi.factoryCanteen.app.entities.Dish;
+import de.vawi.factoryCanteen.app.entities.DishCategory;
+import static de.vawi.factoryCanteen.app.entities.DishCategory.*;
 import java.util.*;
 
 /**

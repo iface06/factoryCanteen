@@ -1,14 +1,14 @@
 package de.vawi.factoryCanteen.acceptanceTest.createMenu;
 
 import de.vawi.factoryCanteen.acceptanceTest.GroupOffersByDate;
-import de.vawi.factoryCanteen.entities.PeriodeConfiguration;
-import de.vawi.factoryCanteen.entities.Offer;
-import de.vawi.factoryCanteen.entities.DishCategory;
-import de.vawi.factoryCanteen.createMenu.CreateMenuDao;
-import de.vawi.factoryCanteen.createMenu.CreateMenusInteractor;
-import de.vawi.factoryCanteen.createMenu.CreateMenusRequest;
-import de.vawi.factoryCanteen.createMenu.MenuCreator;
-import de.vawi.factoryCanteen.daoFactory.DaoFactory;
+import de.vawi.factoryCanteen.app.entities.PeriodeConfiguration;
+import de.vawi.factoryCanteen.app.entities.Offer;
+import de.vawi.factoryCanteen.app.entities.DishCategory;
+import de.vawi.factoryCanteen.app.createMenu.CreateMenuDao;
+import de.vawi.factoryCanteen.app.createMenu.CreateMenusInteractor;
+import de.vawi.factoryCanteen.app.createMenu.CreateMenusRequest;
+import de.vawi.factoryCanteen.app.createMenu.MenuCreator;
+import de.vawi.factoryCanteen.app.daoFactory.DaoFactory;
 import de.vawi.factoryCanteen.interactors.RequestBoundary;
 import de.vawi.factoryCanteen.persistence.dishes.DishesImport;
 import de.vawi.factoryCanteen.persistence.interactorDaos.CreateMenuesFileDao;

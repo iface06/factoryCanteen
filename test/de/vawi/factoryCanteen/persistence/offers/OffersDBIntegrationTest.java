@@ -4,9 +4,9 @@
  */
 package de.vawi.factoryCanteen.persistence.offers;
 
-import de.vawi.factoryCanteen.entities.Dish;
-import de.vawi.factoryCanteen.entities.DishCategory;
-import de.vawi.factoryCanteen.entities.Offer;
+import de.vawi.factoryCanteen.app.entities.Dish;
+import de.vawi.factoryCanteen.app.entities.DishCategory;
+import de.vawi.factoryCanteen.app.entities.Offer;
 import java.io.*;
 import java.util.*;
 import org.joda.time.DateTime;

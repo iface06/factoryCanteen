@@ -1,7 +1,9 @@
 package de.vawi.factoryCanteen.persistence.interactorDaos;
 
-import de.vawi.factoryCanteen.createMenu.CreateMenuDao;
-import de.vawi.factoryCanteen.entities.*;
+import de.vawi.factoryCanteen.app.entities.DishCategory;
+import de.vawi.factoryCanteen.app.entities.Offer;
+import de.vawi.factoryCanteen.app.entities.Dish;
+import de.vawi.factoryCanteen.app.createMenu.CreateMenuDao;
 import de.vawi.factoryCanteen.persistence.dishes.DishesDB;
 import de.vawi.factoryCanteen.persistence.offers.OffersDB;
 import java.util.*;

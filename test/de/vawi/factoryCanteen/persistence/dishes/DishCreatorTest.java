@@ -1,8 +1,8 @@
 package de.vawi.factoryCanteen.persistence.dishes;
 
 import de.vawi.factoryCanteen.persistence.dishes.DishCreator;
-import de.vawi.factoryCanteen.entities.Dish;
-import de.vawi.factoryCanteen.entities.DishCategory;
+import de.vawi.factoryCanteen.app.entities.Dish;
+import de.vawi.factoryCanteen.app.entities.DishCategory;
 import org.junit.*;
 import static org.junit.Assert.*;
 

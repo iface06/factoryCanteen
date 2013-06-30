@@ -1,6 +1,6 @@
 package de.vawi.factoryCanteen.persistence.dishes;
 
-import de.vawi.factoryCanteen.entities.Dish;
+import de.vawi.factoryCanteen.app.entities.Dish;
 import de.vawi.fileManagement.VawiFileManager;
 import de.vawi.factoryCanteen.persistence.files.CsvFileReader;
 import de.vawi.factoryCanteen.persistence.files.CsvLineSeperator;

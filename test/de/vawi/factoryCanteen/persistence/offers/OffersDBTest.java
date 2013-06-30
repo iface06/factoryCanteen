@@ -1,6 +1,6 @@
 package de.vawi.factoryCanteen.persistence.offers;
 
-import de.vawi.factoryCanteen.entities.*;
+import de.vawi.factoryCanteen.app.entities.*;
 import de.vawi.factoryCanteen.persistence.offers.OffersDB;
 import java.io.*;
 import java.util.*;

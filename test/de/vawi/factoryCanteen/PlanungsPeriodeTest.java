@@ -1,7 +1,7 @@
 
 package de.vawi.factoryCanteen;
 
-import de.vawi.factoryCanteen.entities.PeriodeConfiguration;
+import de.vawi.factoryCanteen.app.entities.PeriodeConfiguration;
 import org.junit.*;
 import static org.junit.Assert.*;
 

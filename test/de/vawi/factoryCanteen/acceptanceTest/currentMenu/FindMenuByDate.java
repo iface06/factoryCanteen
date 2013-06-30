@@ -1,10 +1,10 @@
 package de.vawi.factoryCanteen.acceptanceTest.currentMenu;
 
 import de.vawi.factoryCanteen.acceptanceTest.GroupOffersByDate;
-import de.vawi.factoryCanteen.findMenu.FindMenuInteractor;
-import de.vawi.factoryCanteen.findMenu.FindMenuRequest;
-import de.vawi.factoryCanteen.daoFactory.DaoFactory;
-import de.vawi.factoryCanteen.entities.*;
+import de.vawi.factoryCanteen.app.findMenu.FindMenuInteractor;
+import de.vawi.factoryCanteen.app.findMenu.FindMenuRequest;
+import de.vawi.factoryCanteen.app.daoFactory.DaoFactory;
+import de.vawi.factoryCanteen.app.entities.*;
 import de.vawi.factoryCanteen.interactors.RequestBoundary;
 import de.vawi.factoryCanteen.persistence.FileSystem;
 import de.vawi.factoryCanteen.persistence.interactorDaos.FileDaoFactory;

@@ -1,7 +1,7 @@
 package de.vawi.factoryCanteen.persistence.learningTests;
 
-import de.vawi.factoryCanteen.entities.Dish;
-import de.vawi.factoryCanteen.entities.DishCategory;
+import de.vawi.factoryCanteen.app.entities.Dish;
+import de.vawi.factoryCanteen.app.entities.DishCategory;
 import java.io.*;
 import java.util.*;
 import org.junit.*;

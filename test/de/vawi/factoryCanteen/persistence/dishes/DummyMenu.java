@@ -4,10 +4,10 @@
  */
 package de.vawi.factoryCanteen.persistence.dishes;
 
-import de.vawi.factoryCanteen.entities.Dish;
-import de.vawi.factoryCanteen.entities.Canteen;
-import de.vawi.factoryCanteen.entities.Menu;
-import de.vawi.factoryCanteen.entities.Day;
+import de.vawi.factoryCanteen.app.entities.Dish;
+import de.vawi.factoryCanteen.app.entities.Canteen;
+import de.vawi.factoryCanteen.app.entities.Menu;
+import de.vawi.factoryCanteen.app.entities.Day;
 import java.util.Date;
 
 /**
