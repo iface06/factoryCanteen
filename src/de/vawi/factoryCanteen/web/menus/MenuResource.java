@@ -23,8 +23,8 @@ public class MenuResource extends ServerResource {
         FindMenuInteractor interactor = new FindMenuInteractor(requestBoundary);
         interactor.setDao(DaoFactory.INSTANCE.makeFindMenuDao());
         interactor.execute();
-
-        return new Gson().toJson(interactor.getResponse());
+        MenuPresenter presenter = new MenuPresenterBuilder().build(interactor.getResponse());
+        return new Gson().toJson(presenter);
     }
 
     @Post("json")
@@ -34,7 +34,10 @@ public class MenuResource extends ServerResource {
         interactor.setDao(DaoFactory.INSTANCE.makeCreateMenuDao());
         interactor.setMenuCreator(new MenuCreator());
         interactor.execute();
-        return new Gson().toJson(interactor.getResponse());
+        List<Offer> menu = interactor.getResponse();
+        MenuPresenter presenter = new MenuPresenterBuilder().build(menu);
+
+        return new Gson().toJson(presenter);
     }
 
     private CalendarWeek extracCalendarWeekFromReqeust() throws NumberFormatException {
