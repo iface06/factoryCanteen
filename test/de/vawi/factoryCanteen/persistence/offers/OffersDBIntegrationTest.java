@@ -24,7 +24,7 @@ public class OffersDBIntegrationTest {
 
     @BeforeClass
     public static void beforeClass() throws IOException {
-        createOfferForSerialitationAndDeserialitation();
+        createOfferForSerializationAndDeserialitation();
         File offers = new File("importFiles/offers.ser");
         if (offers.isFile()) {
             offers.renameTo(new File("importFiles/offers_backup.ser"));
@@ -66,7 +66,7 @@ public class OffersDBIntegrationTest {
         return offer;
     }
 
-    private static void createOfferForSerialitationAndDeserialitation() {
+    private static void createOfferForSerializationAndDeserialitation() {
         offersSerialized = new ArrayList<>();
         Offer offer = createOffer();
         offersSerialized.add(offer);

@@ -11,6 +11,7 @@ public class EveryDayDishMenuRuleTest {
     List<Offer> offers;
     private EveryDayDishMenuRule rule;
     private Date offerDate;
+    private List<Offer> wholeOffers;
 
     @Test
     public void testThatEveryDayOffersMeatDish() {
@@ -38,12 +39,14 @@ public class EveryDayDishMenuRuleTest {
     public void before() {
         offers = new ArrayList<>();
         offerDate = new DateTime().withDate(2013, 7, 1).withTime(0, 0, 0, 0).toDate();
+        wholeOffers = new ArrayList<>();
 
     }
 
     private void initRuleFor(DishCategory category) {
         rule = new EveryDayDishMenuRule(category);
         rule.setDao(new OfferCreatorDao());
+        rule.setAlreadySelectedOffers(wholeOffers);
     }
 
     private void assertDishCategoryIs(DishCategory category) {

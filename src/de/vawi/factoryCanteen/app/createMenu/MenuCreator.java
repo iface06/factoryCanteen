@@ -26,6 +26,7 @@ public class MenuCreator {
             List<Offer> offersForOfferDate = new ArrayList<>();
             for (MenuCreationRule menuCreationRule : rules) {
                 menuCreationRule.setDao(dao);
+                menuCreationRule.setAlreadySelectedOffers(offers);
                 menuCreationRule.execute(offersForOfferDate, offerDate);
             }
             offers.addAll(offersForOfferDate);

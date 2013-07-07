@@ -11,6 +11,7 @@ public class CreateMenusInteractor implements Interactor, ResponseBoundary<List<
     private final RequestBoundary<CreateMenusRequest> requestBoundary;
     private CreateMenuDao dao;
     private List<Offer> offers;
+    private List<Offer> wholeOffers;
     protected MenuCreator creator;
 
     public CreateMenusInteractor(RequestBoundary<CreateMenusRequest> requestBoundary) {

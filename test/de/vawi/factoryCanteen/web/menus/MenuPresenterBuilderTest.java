@@ -6,6 +6,7 @@ package de.vawi.factoryCanteen.web.menus;
 
 import de.vawi.factoryCanteen.app.entities.*;
 import java.util.*;
+import org.hamcrest.*;
 import org.joda.time.DateTime;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -49,6 +50,23 @@ public class MenuPresenterBuilderTest {
     public void testWeekdays() {
         MenuPresenter presenter = new MenuPresenterBuilder().build(offers);
         assertEquals(new PeriodeConfiguration().getDaysPerWeek(), presenter.getWeekdays().size());
+    }
+
+    @Test
+    public void testSortingByDate() {
+        MenuPresenter presenter = new MenuPresenterBuilder().build(offers);
+
+        for (MenuRow menuRow : presenter.getMenuRows()) {
+            Date offerDateBefore = null;
+            for (Offer o : menuRow.getOffers()) {
+                if (offerDateBefore == null) {
+                    offerDateBefore = o.getDate();
+                } else {
+                    assertThat(o.getDate(), Matchers.greaterThan(offerDateBefore));
+                }
+            }
+        }
+
     }
 
     @Before

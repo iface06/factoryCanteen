@@ -22,7 +22,6 @@ public class MenuCreatorTest {
     public void testOfferDays() {
         List<Offer> offers = creator.create();
         assertEquals(periode.getNumberOfDays(), offers.size());
-
     }
 
     @Test
@@ -90,7 +89,7 @@ public class MenuCreatorTest {
         }
     }
 
-    public static class MenuCreationRuleMock implements MenuCreationRule {
+    public static class MenuCreationRuleMock extends NoReplicationRule {
 
         @Override
         public void execute(List<Offer> offers, Date offerDate) {
@@ -101,6 +100,11 @@ public class MenuCreatorTest {
 
         @Override
         public void setDao(CreateMenuDao dao) {
+        }
+
+        @Override
+        protected Dish selectDishForOffer(int dishNumber) {
+            return new Dish();
         }
     }
 }

@@ -10,31 +10,34 @@ import org.joda.time.DateTimeConstants;
  *
  * @author Tobias
  */
-class FishOnFridayRule implements MenuCreationRule {
+class FishOnFridayRule extends NoReplicationRule {
 
     private CreateMenuDao dao;
     private List<Dish> fishDishes;
-    private int dishNumber = 0;
 
     @Override
-    public void execute(List<Offer> offers, Date offerDate) {
-        fishDishes = dao.findDishesByCategory(DishCategory.FISH);
-        if (isOfferDateAFriday(offerDate)) {
-            Offer fishDish = new Offer();
-            fishDish.setDish(fishDishes.get(dishNumber));
-            fishDish.setDate(offerDate);
-            offers.add(fishDish);
-            dishNumber++;
+    protected Dish selectDishForOffer(int dishNumber) {
+        loadFishDishes();
+        if (!(dishNumber >= fishDishes.size())) {
+            return fishDishes.get(dishNumber);
+        } else {
+            throw new NotEnoughDishesForMenuCreationAvailable();
         }
+    }
 
+    @Override
+    protected boolean isOfferRequiredForOfferDate(Date offerDate, List<Offer> offers) {
+        return new DateTime(offerDate).getDayOfWeek() == DateTimeConstants.FRIDAY;
+    }
+
+    private void loadFishDishes() {
+        if (fishDishes == null) {
+            fishDishes = dao.findDishesByCategory(DishCategory.FISH);
+        }
     }
 
     @Override
     public void setDao(CreateMenuDao offerCreatorDao) {
         this.dao = offerCreatorDao;
-    }
-
-    private boolean isOfferDateAFriday(Date offerDate) {
-        return new DateTime(offerDate).getDayOfWeek() == DateTimeConstants.FRIDAY;
     }
 }

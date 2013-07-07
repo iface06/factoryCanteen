@@ -26,6 +26,7 @@ class MenuPresenterBuilder {
         populateWeekdaysIntoMenu();
 
 
+
         return presenter;
     }
 
@@ -48,7 +49,9 @@ class MenuPresenterBuilder {
     }
 
     public void populateOffersIntoMenu() {
-        for (Date date : groupdDishes.keySet()) {
+        List<Date> offerDates = new ArrayList<>(groupdDishes.keySet());
+        Collections.sort(offerDates);
+        for (Date date : offerDates) {
             List<Offer> offersToday = groupdDishes.get(date);
             sortOffersByPopularity(offersToday);
             if (offersToday.size() == new PeriodeConfiguration().getNumberOfDishesPerDay()) {

@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
 public class AlternativeDishesRuleTest {
 
     private List<Offer> offers;
+    private List<Offer> wholeOffers;
     private static List<Dish> dishes;
     private Date offerDate;
     private AlternativeDihesRule rule;
@@ -69,6 +70,7 @@ public class AlternativeDishesRuleTest {
     public void before() {
         offerDate = new DateTime().withDate(2012, 12, 31).withTime(0, 0, 0, 0).toDate();
         offers = new ArrayList<>();
+        wholeOffers = new ArrayList<>();
         initRule();
         initDishes();
     }
@@ -76,6 +78,7 @@ public class AlternativeDishesRuleTest {
     public void initRule() {
         rule = new AlternativeDihesRule(3);
         rule.setDao(new OfferCreatorDao());
+        rule.setAlreadySelectedOffers(wholeOffers);
     }
 
     private void initDishes() {

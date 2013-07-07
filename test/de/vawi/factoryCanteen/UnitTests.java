@@ -4,7 +4,7 @@ import de.vawi.factoryCanteen.app.createMenu.AlternativeDishesRuleTest;
 import de.vawi.factoryCanteen.app.createMenu.MenuCreatorTest;
 import de.vawi.factoryCanteen.app.createMenu.CreateMenusInteractorTest;
 import de.vawi.factoryCanteen.app.createMenu.EveryDayDishMenuRuleTest;
-import de.vawi.factoryCanteen.app.createMenu.ThereIsFishOnFridayRuleTest;
+import de.vawi.factoryCanteen.app.createMenu.FishOnFridayRuleTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
     CreateMenusInteractorTest.class,
     EveryDayDishMenuRuleTest.class,
     MenuCreatorTest.class,
-    ThereIsFishOnFridayRuleTest.class
+    FishOnFridayRuleTest.class
 })
 public class UnitTests {
 }

@@ -21,6 +21,7 @@ public class CreateMenuesFileDao implements CreateMenuDao {
     @Override
     public void storeOffers(List<Offer> menues) {
         this.offers.storeOffers(menues);
+        this.offers.serializeOffers();
     }
 
     @Override

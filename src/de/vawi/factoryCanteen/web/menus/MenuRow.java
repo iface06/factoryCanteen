@@ -18,4 +18,8 @@ class MenuRow {
     public int size() {
         return offers.size();
     }
+
+    public List<Offer> getOffers() {
+        return offers;
+    }
 }

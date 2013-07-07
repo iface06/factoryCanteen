@@ -9,14 +9,18 @@ import java.util.*;
 import org.joda.time.*;
 import org.junit.*;
 import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 /**
  *
  * @author iface06
  */
-public class ThereIsFishOnFridayRuleTest {
+public class FishOnFridayRuleTest {
 
-    List<Offer> offers;
+    private static List<Dish> dishes;
+    private List<Offer> offers;
+    private List<Offer> wholeOffers;
     private FishOnFridayRule rule;
     private Date offerDate;
 
@@ -34,36 +38,32 @@ public class ThereIsFishOnFridayRuleTest {
         assertTrue(offers.isEmpty());
     }
 
+    @Test
+    public void testEveryFridayAnOtherFishMeal() {
+        offerDate = new DateTime().withDayOfWeek(DateTimeConstants.FRIDAY).toDate();
+        Offer offer = new Offer();
+        offer.setDish(dishes.get(0));
+        offer.setDate(offerDate);
+        offers.add(offer);
+
+        rule.execute(offers, offerDate);
+        assertThat(offers.size(), is(2));
+        assertThat(offers.get(1), not(offer));
+
+    }
+
     @Before
     public void before() {
         offers = new ArrayList<>();
+        wholeOffers = new ArrayList<>();
         initRule();
     }
 
     private void initRule() {
         rule = new FishOnFridayRule();
         rule.setDao(new OfferCreatorDao());
+        rule.setAlreadySelectedOffers(wholeOffers);
 
-    }
-
-    private void assertDishCategoryIs(DishCategory category) {
-        boolean isRequiredCategory = true;
-        for (Offer offer : offers) {
-            if (!offer.getDishCategory().equals(category)) {
-                isRequiredCategory = false;
-            }
-        }
-        assertTrue("Contains a dish with a not required category!", isRequiredCategory);
-    }
-
-    private void assertEachFishDishIsOfferedOnFriday() {
-        boolean offeredOnEachFriday = true;
-        for (Offer offer : offers) {
-            if (!(new DateTime(offer.getDate()).getDayOfWeek() == DateTimeConstants.FRIDAY)) {
-                offeredOnEachFriday = false;
-            }
-        }
-        assertTrue("Fish dish is not offered on a Friday!", offeredOnEachFriday);
     }
 
     private static class OfferCreatorDao implements CreateMenuDao {
@@ -80,7 +80,7 @@ public class ThereIsFishOnFridayRuleTest {
 
         @Override
         public List<Dish> findDishesByCategory(DishCategory category) {
-            List<Dish> dishes = new ArrayList<>();
+            dishes = new ArrayList<>();
             for (int i = 0; i < new PeriodeConfiguration().calculateRequiredMealsForPeriode(); i++) {
                 Dish d = new Dish();
                 d.setName("Dish-" + i);

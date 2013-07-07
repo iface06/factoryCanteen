@@ -12,4 +12,6 @@ public interface MenuCreationRule {
     public void execute(List<Offer> offers, Date offerDate);
 
     public void setDao(CreateMenuDao dao);
+
+    public void setAlreadySelectedOffers(List<Offer> wholeOffers);
 }

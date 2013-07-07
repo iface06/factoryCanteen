@@ -9,6 +9,7 @@ import de.vawi.factoryCanteen.app.createMenu.CreateMenusInteractor;
 import de.vawi.factoryCanteen.app.createMenu.CreateMenusRequest;
 import de.vawi.factoryCanteen.app.createMenu.MenuCreator;
 import de.vawi.factoryCanteen.app.daoFactory.DaoFactory;
+import de.vawi.factoryCanteen.app.entities.*;
 import de.vawi.factoryCanteen.interactors.RequestBoundary;
 import de.vawi.factoryCanteen.persistence.dishes.DishesImport;
 import de.vawi.factoryCanteen.persistence.interactorDaos.CreateMenuesFileDao;
@@ -57,7 +58,7 @@ public class CreateMenuForPeriode {
 
     }
 
-    @Then("expect $days days with $expectedNumberOfMeals meals")
+    @Then("expect $days days with $expectedNumberOfMeals dishes")
     public void menusContainsEnoughtMealsForThePeriode(int days, int expectedNumberOfMeals) {
         assertThat(offers.size(), equalTo(periode.calculateRequiredMealsForPeriode()));
     }
@@ -85,6 +86,19 @@ public class CreateMenuForPeriode {
             assertThat(numberOfMeatDishes, greaterThan(0));
             assertThat(numberOfVegetarian, greaterThan(0));
         }
+    }
+
+    @Then("each dish is not offered repeatedly in the periode")
+    public void eachDishIsNonRecurring() {
+        Set<Dish> dishes = new HashSet<>();
+        Boolean nonRecurringDish = true;
+        for (Offer offer : offers) {
+            if (!dishes.add(offer.getDish())) {
+                nonRecurringDish = false;
+            }
+        }
+
+        assertThat("Dishes repeated", nonRecurringDish, is(Boolean.TRUE));
     }
 
     private Map<Date, List<Offer>> groupOffersByDate() {
