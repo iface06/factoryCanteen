@@ -1,7 +1,14 @@
 'use strict';
 
-/* jasmine specs for controllers go here */
+describe('Buzz Client', function() {
 
-describe('controllers', function() {
+    beforeEach(function() {
 
+        browser().navigateTo('http://localhost:8182/web/index.html');
+    });
+
+    it('should filter results', function() {
+        expect(binding('menu.calendarWeek.week')).toBe(Date.today().getWeek);
+        expect(binding('menu.calendarWeek.year')).toBe(Date.today().getYear);
+    });
 });

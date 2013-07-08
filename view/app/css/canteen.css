@@ -1,0 +1,100 @@
+span.alert-icon {
+    float:left;
+    margin-right:5px;
+}
+
+.open {
+    background: #fff;
+    border:none;
+}
+
+label {
+    font-weight: bold;
+}
+input {
+    font-size: 0.9em;
+    border: 1px solid #333;
+    padding:5px;
+}
+
+input.button{
+    padding: 5px;
+    background-color:#ddd;
+    color:#333;
+}
+
+input.button:hover{
+    padding: 5px;
+    background-color:#fff;
+    color:#c00;
+}
+
+input.row-button{
+
+    background-color:#333;
+    color:white;
+}
+
+input.row-button:hover{
+
+    padding: 5px;
+    background-color:red;
+    color:white;
+}
+
+div.event-field {
+    margin-bottom: 5px;
+}
+
+div.event-field input,
+div.event-field textarea {
+    width:80%;
+}
+
+div.event-field label{
+    margin-right: 6px;
+    display:block;
+}
+
+div.event-field-view ul{
+    margin-top:0;
+    padding-top:0;
+    list-style: none;
+}
+
+#events-button-row {
+    margin-top:10px;
+}
+
+button.ui-widget.ui-widget {
+    font-size: 0.9em;
+}
+
+div.ui.dialog.ui-widget {
+    font-family: Arial, Helvetica;
+    font-size:0.9em;
+    color:#333;
+}
+
+table {
+    font-family: verdana,arial,sans-serif;
+    font-size:0.9em;
+    color:#333;
+    border-width: 1px;
+    border-color: #c1c1c1;
+    border-collapse: collapse;
+}
+th {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #333;
+    background-color: #c1c1c1;
+}
+td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #333;
+    background-color: #fff;
+}

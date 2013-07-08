@@ -2,26 +2,14 @@
 
 /* Controllers */
 
-function CurrentMenuCtrl($scope, $http){
-    $scope.menu = {'date' : '12/2013', 
-                   'days' : [{'weekDay' : 'Monday', 
-                              'first' : 'Surf & Turf', 
-                              'second' : 'Gemüse Toskana', 
-                              'third' : 'Schnipo'
-                             },
-                         {'weekDay' : 'Thuesday', 
-                              'first' : 'Surf & Turf', 
-                              'second' : 'Gemüse Toskana', 
-                              'third' : 'Schnipo'
-                             }]
-                };
-    $scope.canteens = [{'name' : 'Essen'}, {'name' : 'Mühlheim a. d. Ruhr'}];
-    $scope.selectCanteen = function(){
-        window.alert("Yep...");
-    };
-    
-    $http.get('').success(function(data) {
+function CurrentMenuCtrl($scope, $http) {
+    $scope.weekdays = new Array();
+    $scope.menu = {};
+    $http.get('/menus/28/2013').success(function(data) {
         $scope.menu = data;
+        jQuery.each($scope.menu.weekdays, function(index, date) {
+            $scope.weekdays[index] = Date.parse(date).toString("dddd");
+        });
     });
-    
+
 }

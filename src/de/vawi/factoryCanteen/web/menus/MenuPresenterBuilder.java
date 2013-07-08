@@ -74,5 +74,6 @@ class MenuPresenterBuilder {
 
     private void populateWeekdaysIntoMenu() {
         presenter.setWeekdays(new ArrayList<>(groupdDishes.keySet()));
+        Collections.sort(presenter.getWeekdays());
     }
 }

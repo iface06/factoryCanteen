@@ -1,33 +1,50 @@
 <!doctype html>
 <html lang="en" ng-app>
-<head>
-  <meta charset="utf-8">
-  <title>My HTML File</title>
-  <link rel="stylesheet" href="css/app.css">
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <script src="lib/angular/angular.js"></script>
-  <script src="js/controllers.js"></script>
-</head>
-<body ng-controller="CurrentMenuCtrl">
+    <head>
+        <meta charset="utf-8">
+        <title>Speiseplan</title>
+        <link rel="stylesheet" type="text/css" href="./css/portal.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/canteen.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/jquery-ui-1.10.3.custom.css"/>
+        <script src="lib/angular/angular.js"></script>
+        <script type="text/javascript" src="lib/jquery/jquery.js"></script>
+        <script type="text/javascript" src="lib/jquery/jquery-ui.js"></script>
+        <script type="text/javascript" src="lib/datejs/date.js"></script>
+        <script src="js/controllers.js"></script>
+    </head>
+    <body ng-controller="CurrentMenuCtrl">
+        <noscript class="error-message">Lebst du hinter dem Mond oder warum hast du kein JavaScript?</noscript>
+        <div id="white-area">
+            <nav id="main-menu" class="clearfix">
+            </nav>
+            <header id="main">
+                <div id="company">
+                    <div>VaWi Factory</div>
+                </div>
+            </header>
+            <div id="app-container">
+                <div id="error" class="ui-state-error" style="display:none">
+                    <p>
+                        <span class="ui-icon ui-icon-alert alert-icon" ></span>
+                        <strong>Fehler: </strong>
+                        <span id="error-message"></span>
+                    </p>
+                </div>
 
-    <h1>Speiseplan für Woche {{menu.date}}</h1>
-    <select ng-model="canteens" ng-change="selectCanteen()" ng-options="canteen.name for canteen in canteens"></select>
-    <table style="margin-top:20px;">
-        <thead>
-            <tr >
-                <th ng-repeat="day in menu.days">{{day.weekDay}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr >
-                <td ng-repeat="day in menu.days">
-                    <div style="height:50px; width:150px; text-align: center; border:1px solid grey; " >{{day.first}}</div>
-                    <div style="height:50px; width:150px; text-align: center; border-left:1px solid grey; border-right:1px solid grey">{{day.second}}</div>
-                    <div style="height:50px; width:150px; text-align: center; border:1px solid grey">{{day.third}}</div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    
-</body>
+                <h1>Speiseplan für Woche {{menu.calendarWeek.week}} / {{menu.calendarWeek.year}}</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="day in weekdays">{{day}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in menu.menuRows">
+                            <td ng-repeat="dailyOffer in row.offers">{{dailyOffer.dish.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <footer id="copyright">Projektarbeit "test..." von Tobias Tatsch</footer>
+    </body>
 </html>

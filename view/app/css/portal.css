@@ -1,0 +1,170 @@
+body{
+    margin:0;
+    padding:0;
+    background-color:#c1c1c1;
+    font-family: Arial, Helvetica;
+    font-size:0.9em;
+    color:#333;
+}
+
+div#white-area {
+    background-color:white;
+}
+
+a {
+    text-decoration:none;
+    color:black;
+}
+
+a:hover {
+    color:red;
+}
+
+#app-container{
+    background-color:white;
+    width: 1000px;
+    margin:auto;
+    padding-bottom: 20px
+}
+
+header#main{
+    text-align:right;
+    margin:0px 10px 0px 0px;
+    padding:0;
+}
+
+
+header#pageHeader h1{
+    padding: 0;
+    margin:0;
+}
+header#pageHeader p {
+    padding: 0;
+    margin:0;
+}
+
+nav#main-menu  {
+    font: bold 0.9em Helvetica;
+    background-color:#333;
+    height:20px;
+}
+
+nav#main-menu ul {
+    width: 1000px;
+    margin:auto;
+    padding: .4em;
+    list-style: none;
+}
+
+nav#main-menu li {
+    float:left;
+}
+
+nav#main-menu a {
+    float:left;
+    padding: .8em 1.5em;
+    text-decoration: none;
+    color: #333;
+
+    letter-spacing: 1px;
+
+    border-right: 1px solid #eee;
+    background: #c1c1c1;
+}
+
+nav#main-menu a:hover, nav a:focus {
+    outline: 0;
+    color: #fff;
+    background: red;
+}
+
+nav#main-menu a:active {
+    background-color: red;
+}
+
+nav#main-menu li:first-child a {
+    border-left: 0;
+}
+
+nav#main-menu li:last-child a {
+    border-right: 0;
+}
+
+div#login-form{
+
+}
+
+nav#secondar-menu {
+    margin:20px auto;
+    width:70%;
+}
+
+nav#secondar-menu ul{
+    display: inline;
+    padding: .4em;
+    list-style: none;
+}
+nav#secondar-menu li{
+    float:left;
+}
+
+nav#secondar-menu a:hover, nav, a:active {
+    color: red;
+}
+
+nav#secondar-menu a{
+    float:left;
+    padding: 0.9em 1.5em;
+    text-decoration: none;
+    color: #333;
+    font: bold 0.9em Helvetica;
+    letter-spacing: 1px;
+}
+
+section#content-news{
+    margin-top: 50px;
+}
+
+div#breadcrumb {
+    margin-bottom: 20px;
+    border-bottom: 1px solid grey;
+    font-size:0.9em;
+}
+
+
+div#company{
+    font-size:0.9em;
+    font-weight:bold;
+    color:black;
+    padding: 10px 5px 0 0;
+}
+div#company img{
+    width:40px;
+}
+
+footer#copyright{
+    width:100%;
+    font-size:0.7em;
+    font-family:cursiv;
+    text-align:center;
+    background-color:#333;
+    padding: 5px 0px;
+    color:white;
+}
+
+footer#copyright a {
+    color:white;
+}
+
+footer#copyright a:hover {
+    color:red;
+}
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+
+.error-message{
+    color:red;
+    font-weight: bold;
+    font-size: 14px;
+}
