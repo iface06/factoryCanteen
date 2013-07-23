@@ -1,7 +1,6 @@
 package de.vawi.factoryCanteen.app.entities;
 
 import java.io.Serializable;
-import java.util.*;
 
 /**
  * Speisen aus der Rezeptedatei. Erweitert um die Beliebtheit aus der Hitliste.
@@ -51,8 +50,12 @@ public class Dish implements Serializable {
      */
     @Override
     public boolean equals(Object obj) {
-        Dish d = (Dish) obj;
-        return d.name.equals(this.name);
+        if (obj == null || !obj.getClass().equals(this.getClass())) {
+            return false;
+        } else {
+            Dish d = (Dish) obj;
+            return d.name.equals(this.name);
+        }
     }
 
     /**

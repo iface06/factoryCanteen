@@ -1,6 +1,5 @@
 package de.vawi.factoryCanteen.app.entities;
 
-import de.vawi.factoryCanteen.app.entities.Dish;
 import java.io.Serializable;
 import java.util.*;
 

@@ -31,6 +31,23 @@ public class NoReplicationRuleTest {
     }
 
     @Test
+    public void test() {
+        Date offerDate = new DateTime().withTime(0, 0, 0, 0).withDate(2013, 5, 3).toDate();
+        List<Offer> dailyOffers = new ArrayList<>();
+        List<Offer> alreadySelectedOffers = new ArrayList<>();
+        CreateMenuDao dao = new CreateMenuDao();
+
+        NoReplicationRule rule = new NoReplicationRule();
+        rule.setAlreadySelectedOffers(alreadySelectedOffers);
+        rule.setDao(dao);
+        rule.execute(dailyOffers, offerDate);
+    }
+
+    @Test
+    public void testFirstDishSelection() {
+    }
+
+    @Test
     public void testEachDishUnique() {
         rule.execute(dailyOffers, offerDate);
 
