@@ -4,25 +4,19 @@ import de.vawi.factoryCanteen.acceptanceTest.GroupOffersByDate;
 import de.vawi.factoryCanteen.app.entities.PeriodeConfiguration;
 import de.vawi.factoryCanteen.app.entities.Offer;
 import de.vawi.factoryCanteen.app.entities.DishCategory;
-import de.vawi.factoryCanteen.app.createMenu.CreateMenuDao;
-import de.vawi.factoryCanteen.app.createMenu.CreateMenusInteractor;
-import de.vawi.factoryCanteen.app.createMenu.CreateMenusRequest;
-import de.vawi.factoryCanteen.app.createMenu.MenuCreator;
+import de.vawi.factoryCanteen.app.createMenu.*;
 import de.vawi.factoryCanteen.app.daoFactory.DaoFactory;
 import de.vawi.factoryCanteen.app.entities.*;
 import de.vawi.factoryCanteen.interactors.RequestBoundary;
 import de.vawi.factoryCanteen.persistence.dishes.DishesImport;
-import de.vawi.factoryCanteen.persistence.interactorDaos.CreateMenuesFileDao;
 import de.vawi.factoryCanteen.persistence.interactorDaos.FileDaoFactory;
 import java.util.*;
 import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Pending;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import org.jbehave.core.io.StoryPathResolver;
 
 public class CreateMenuForPeriode {
 
@@ -42,14 +36,7 @@ public class CreateMenuForPeriode {
         DishesImport importer = new DishesImport();
         importer.importFiles();
         DaoFactory.INSTANCE = new FileDaoFactory();
-        CreateMenusInteractor interactor = new CreateMenusInteractor(new RequestBoundary<CreateMenusRequest>() {
-            @Override
-            public CreateMenusRequest passRequest() {
-                CreateMenusRequest request = new CreateMenusRequest();
-                request.setPeriode(periode);
-                return request;
-            }
-        });
+        CreateMenusInteractor interactor = new CreateMenusInteractor(createRequestBoundary());
         interactor.setDao(DaoFactory.INSTANCE.makeCreateMenuDao());
         interactor.setMenuCreator(new MenuCreator());
         interactor.execute();
@@ -113,5 +100,16 @@ public class CreateMenuForPeriode {
             }
         }
         return numberOfMeatDishes;
+    }
+
+    private RequestBoundary<CreateMenusRequest> createRequestBoundary() {
+        return new RequestBoundary<CreateMenusRequest>() {
+            @Override
+            public CreateMenusRequest passRequest() {
+                CreateMenusRequest request = new CreateMenusRequest();
+                request.setPeriode(periode);
+                return request;
+            }
+        };
     }
 }

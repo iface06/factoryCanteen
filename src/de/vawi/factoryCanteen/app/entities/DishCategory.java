@@ -34,28 +34,14 @@ public enum DishCategory {
      * @param abbr die Abkürzung, die aus der Datei gelesen wird.
      * @return Gibt die vom Programm vorgegebene Kategorie wider.
      */
-    public static DishCategory byAbbrevation(String abbr) {
+    public static DishCategory byAbbrevation(String abbr) throws UnknownDishCategory {
         for (DishCategory kategorie : values()) {
             if (kategorie.abkuerzung.equals(abbr)) {
                 return kategorie;
             }
         }
-        return DishCategory.VEGETARIAN;
+        throw new UnknownDishCategory();
     }
-
-    /**
-     * Diese Methode gibt die Kategorien aus, die nicht eingegeben werden.
-     *
-     * @param kategorie eine Speisen- und Nahrungsmittel-Kategorie.
-     * @return Die Kategorien, die nicht eingegeben wurden.
-     */
-    public static List<DishCategory> getOtherOwnTo(DishCategory kategorie) {
-        List<DishCategory> andereKategorien = new ArrayList<>();
-        for (DishCategory kategoriee : values()) {
-            if (!kategoriee.equals(kategorie)) {
-                andereKategorien.add(kategoriee);
-            }
-        }
-        return andereKategorien;
-    }
+    
+    public static class UnknownDishCategory extends RuntimeException{}
 }

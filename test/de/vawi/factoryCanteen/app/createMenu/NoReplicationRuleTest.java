@@ -45,6 +45,15 @@ public class NoReplicationRuleTest {
 
     @Test
     public void testFirstDishSelection() {
+        Date offerDate = new DateTime().withTime(0, 0, 0, 0).withDate(2013, 5, 3).toDate();
+        List<Offer> dailyOffers = new ArrayList<>();
+        List<Offer> alreadySelectedOffers = new ArrayList<>();
+        CreateMenuDao dao = new CreateMenuDao();
+
+        NoReplicationRule rule = new NoReplicationRule();
+        rule.setAlreadySelectedOffers(alreadySelectedOffers);
+        rule.setDao(dao);
+        rule.execute(dailyOffers, offerDate);
     }
 
     @Test
@@ -106,5 +115,29 @@ public class NoReplicationRuleTest {
         @Override
         public void setDao(CreateMenuDao dao) {
         }
+    }
+    
+    public class TestableCreateMenuDao implements CreateMenuDao {
+
+        @Override
+        public List<Dish> findFavorDishesForPeriode() {
+            return new ArrayList<>();
+        }
+
+        @Override
+        public void storeOffers(List<Offer> offers) {
+            
+        }
+
+        @Override
+        public List<Dish> findDishesByCategory(DishCategory category) {
+            return new ArrayList<>();
+        }
+
+        @Override
+        public Date findDateOfLastOffer() {
+            return new Date();
+        }
+        
     }
 }

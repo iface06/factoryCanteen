@@ -19,16 +19,13 @@ public class DishCategoryTest {
     }
 
     @Test
-    public void testFromAbbreviation() {
-        DishCategory founded = DishCategory.byAbbrevation("v");
-        assertEquals(DishCategory.VEGETARIAN, founded);
+    public void testFindVegetarianFromAbbreviation() {
+        DishCategory category = DishCategory.byAbbrevation("v");
+        assertEquals(DishCategory.VEGETARIAN, category);
     }
-
-    @Test
-    public void testGetOtherOwnTo() {
-        List<DishCategory> founded = DishCategory.getOtherOwnTo(DishCategory.FISH);
-
-        assertTrue(founded.contains(DishCategory.MEAT));
-        assertTrue(founded.contains(DishCategory.VEGETARIAN));
+    
+    @Test(expected = DishCategory.UnknownDishCategory.class)
+    public void testUnknownDishCategory(){
+        DishCategory category = DishCategory.byAbbrevation("x");
     }
 }

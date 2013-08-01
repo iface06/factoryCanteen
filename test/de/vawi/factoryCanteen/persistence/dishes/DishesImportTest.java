@@ -54,7 +54,7 @@ public class DishesImportTest {
         assertEquals(DishCategory.MEAT, dish.getCategory());
     }
 
-    @Test(expected = DishesImport.HitlisteDateiIstNichtValide.class)
+    @Test(expected = DishesImport.HitlistFileNotValide.class)
     public void testFehlerhafteHitliste() {
         hitlisteZeilen.add(",\"Falscher Hase\"");
         importer.importFiles();

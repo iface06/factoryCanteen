@@ -51,13 +51,13 @@ public class DishesImport {
      * de.vawi.kuechenchefApp.speisen.SpeisenImport.HitlisteDateiIstNichtValide
      * Wird geworfen, wenn die hitliste-CsvFile nicht gelsen werden kann.
      */
-    private void fuegeSpeisenVonHitlisteInSpeisenverwaltungEin() throws HitlisteDateiIstNichtValide {
+    private void fuegeSpeisenVonHitlisteInSpeisenverwaltungEin() throws HitlistFileNotValide {
         for (String line : hitlist) {
             try {
                 Dish dish = erstelleSpeise(line);
                 dishes.addDish(dish);
             } catch (Exception ex) {
-                throw new HitlisteDateiIstNichtValide(line);
+                throw new HitlistFileNotValide(line);
             }
         }
     }
@@ -99,9 +99,9 @@ public class DishesImport {
      * Diese Methode greift, wenn die Hitlisten-CsvFile in einer bestimmten
      * Zeile nicht eingelsen werden kann.
      */
-    public static class HitlisteDateiIstNichtValide extends RuntimeException {
+    public static class HitlistFileNotValide extends RuntimeException {
 
-        public HitlisteDateiIstNichtValide(String zeile) {
+        public HitlistFileNotValide(String zeile) {
             super("Hitlistedatei enthaelt fehlerhafte Zeile: " + zeile);
         }
     }
