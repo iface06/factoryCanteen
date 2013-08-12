@@ -1,8 +1,12 @@
 basePath = '../';
 
 files = [
+  
+  'test/lib/*.js',
+  'app/lib/**/*.js',
   ANGULAR_SCENARIO,
   ANGULAR_SCENARIO_ADAPTER,
+  'app/js/*.js',
   'test/e2e/**/*.js'
 ];
 
@@ -10,10 +14,10 @@ autoWatch = false;
 
 browsers = ['Chrome'];
 
-singleRun = true;
+singleRun = false;
 
 proxies = {
-  '/': 'http://localhost:8000/'
+  '/': 'http://localhost:8182/'
 };
 
 junitReporter = {

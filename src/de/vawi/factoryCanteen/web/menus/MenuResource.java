@@ -7,6 +7,7 @@ import de.vawi.factoryCanteen.app.findMenu.FindMenuRequest;
 import de.vawi.factoryCanteen.app.daoFactory.DaoFactory;
 import de.vawi.factoryCanteen.app.entities.*;
 import java.util.List;
+import org.joda.time.DateTime;
 import org.restlet.representation.Representation;
 import org.restlet.resource.*;
 
@@ -41,9 +42,9 @@ public class MenuResource extends ServerResource {
     }
 
     private CalendarWeek extracCalendarWeekFromReqeust() throws NumberFormatException {
-        String week = (String) getRequest().getAttributes().get("calendarWeek");
-        String year = (String) getRequest().getAttributes().get("year");
-        CalendarWeek calendarWeek = CalendarWeek.fromWeekAndYear(Integer.valueOf(week), Integer.valueOf(year));
+        String timestamp = (String) getRequest().getAttributes().get("timestamp");
+        DateTime date =  new DateTime(Long.valueOf(timestamp));
+        CalendarWeek calendarWeek = CalendarWeek.fromDate(date.toDate());
         return calendarWeek;
     }
 
