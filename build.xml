@@ -76,7 +76,7 @@
     <target name="zipping">
         <zip destfile="dist/factoryCantenn.zip">
             <zipfileset dir="dist" includes="*.jar"/>
-            <zipfileset dir="dist" includes="*.txt"/>
+            <zipfileset dir="dist" includes="*.TXT"/>
             <zipfileset dir="." includes="view/**"/>
             <zipfileset dir="." includes="lib/**"/>
         </zip>
