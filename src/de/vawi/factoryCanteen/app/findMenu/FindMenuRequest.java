@@ -1,6 +1,5 @@
 package de.vawi.factoryCanteen.app.findMenu;
 
-import de.vawi.factoryCanteen.app.entities.Canteen;
 import de.vawi.factoryCanteen.app.entities.CalendarWeek;
 
 public class FindMenuRequest {

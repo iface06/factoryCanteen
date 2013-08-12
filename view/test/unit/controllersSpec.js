@@ -1,14 +1,14 @@
 'use strict';
 
-describe('Buzz Client', function() {
+describe('Find Menu Test', function() {
 
     beforeEach(function() {
+        browser().navigateTo('index.html');
+    }); 
 
-        browser().navigateTo('http://localhost:8182/web/index.html');
-    });
-
-    it('should filter results', function() {
-        expect(binding('menu.calendarWeek.week')).toBe(Date.today().getWeek);
-        expect(binding('menu.calendarWeek.year')).toBe(Date.today().getYear);
+    it('menu for calendar week found', function() {
+        
+        expect(binding('menu.calendarWeek.week')).toBe("32");
+        expect(binding('menu.calendarWeek.year')).toBe("2013");
     });
 });

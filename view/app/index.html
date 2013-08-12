@@ -32,13 +32,13 @@
                 </div>
 
                 <h1>Speiseplan für Woche {{menu.calendarWeek.week}} / {{menu.calendarWeek.year}}</h1>
-                <table class="table">
+                <table class="menu">
                     <thead>
                         <tr>
                             <th ng-repeat="day in weekdays">{{day}}</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="offers">
                         <tr ng-repeat="row in menu.menuRows">
                             <td ng-repeat="dailyOffer in row.offers">{{dailyOffer.dish.name}}</td>
                         </tr>

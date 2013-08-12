@@ -39,7 +39,7 @@ public class FactoryCanteenWebApplication extends Application {
     private void setUpRouterForServerResources() {
         router = new Router(getContext());
         router.attach("/web/", htmlDirectory);
-        router.attach("/menus/{calendarWeek}/{year}", MenuResource.class);
+        router.attach("/menus/{timestamp}", MenuResource.class);
         router.attach("/menus", MenuResource.class);
     }
 

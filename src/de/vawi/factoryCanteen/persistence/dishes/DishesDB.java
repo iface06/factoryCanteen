@@ -1,10 +1,9 @@
 package de.vawi.factoryCanteen.persistence.dishes;
 
-import de.vawi.factoryCanteen.app.entities.Menu;
+
 import de.vawi.factoryCanteen.app.entities.PeriodeConfiguration;
 import de.vawi.factoryCanteen.app.entities.Dish;
 import de.vawi.factoryCanteen.app.entities.DishCategory;
-import static de.vawi.factoryCanteen.app.entities.DishCategory.*;
 import java.util.*;
 
 /**
@@ -18,7 +17,7 @@ public class DishesDB {
     static DishesDB INSTANZ;
     private Set<Dish> dishes = new HashSet<>();
     private PeriodeConfiguration planungsperiode = new PeriodeConfiguration();
-    private List<Menu> menues = new ArrayList<Menu>();
+    
 
     DishesDB() {
     }
