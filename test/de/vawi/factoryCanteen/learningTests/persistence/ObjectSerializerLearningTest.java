@@ -1,4 +1,4 @@
-package de.vawi.factoryCanteen.persistence.learningTests;
+package de.vawi.factoryCanteen.learningTests.persistence;
 
 import de.vawi.factoryCanteen.app.entities.Dish;
 import de.vawi.factoryCanteen.app.entities.DishCategory;
@@ -7,10 +7,10 @@ import java.util.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class ObjectSerializerTest {
+public class ObjectSerializerLearningTest {
 
-    public static final String DISHES_FILE_NAME = "test/de/vawi/factoryCanteen/learningTests/dishes.ser";
-    public static final String DISH_FILE_NAME = "test/de/vawi/factoryCanteen/learningTests/dish.ser";
+    public static final String DISHES_FILE_NAME = "test/de/vawi/factoryCanteen/learningTests/persistence/dishes.ser";
+    public static final String DISH_FILE_NAME = "test/de/vawi/factoryCanteen/learningTests/persistence/dish.ser";
     private Dish dish;
     private FileOutputStream outputFile;
     private ObjectOutputStream objectWriter;

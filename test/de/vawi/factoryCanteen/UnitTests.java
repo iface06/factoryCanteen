@@ -1,23 +1,34 @@
 package de.vawi.factoryCanteen;
 
-import de.vawi.factoryCanteen.app.createMenu.AlternativeDishesRuleTest;
-import de.vawi.factoryCanteen.app.createMenu.MenuCreatorTest;
-import de.vawi.factoryCanteen.app.createMenu.CreateMenusInteractorTest;
-import de.vawi.factoryCanteen.app.createMenu.EveryDayDishMenuRuleTest;
-import de.vawi.factoryCanteen.app.createMenu.FishOnFridayRuleTest;
+import de.vawi.factoryCanteen.app.createMenu.*;
+import de.vawi.factoryCanteen.app.entities.*;
+import de.vawi.factoryCanteen.app.findMenu.FindMenuInteractorTest;
+import de.vawi.factoryCanteen.persistence.FileSystem;
+import de.vawi.factoryCanteen.persistence.dishes.*;
+import de.vawi.factoryCanteen.persistence.files.*;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-    PlanungsPeriodeTest.class,
-    de.vawi.factoryCanteen.app.entities.DishTest.class,
-    de.vawi.factoryCanteen.app.createMenu.KantineTest.class,
-    AlternativeDishesRuleTest.class,
+    PeriodeConfigurationTest.class,
+    DishTest.class,
+    CalendarWeekTest.class,
+    DishCategoryTest.class,
+    CsvLineSeperatorTest.class,
+    CsvFileReaderTest.class,
     CreateMenusInteractorTest.class,
-    EveryDayDishMenuRuleTest.class,
+    DishesImportTest.class,
+    DishesDBTest.class,
+    DishCreatorTest.class,
+    FindMenuInteractorTest.class,
     MenuCreatorTest.class,
-    FishOnFridayRuleTest.class
+    AlternativeDishesRuleTest.class,
+    EveryDayDishMenuRuleTest.class,
+    CreateMenusInteractorTest.class,
+    FishOnFridayRuleTest.class,
+    NoReplicationRuleTest.class
 })
 public class UnitTests {
 }
