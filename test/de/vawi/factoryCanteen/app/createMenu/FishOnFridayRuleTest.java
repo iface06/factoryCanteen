@@ -18,7 +18,7 @@ import static org.hamcrest.Matchers.*;
  */
 public class FishOnFridayRuleTest {
 
-    private static List<Dish> dishes;
+    private List<Dish> dishes;
     private List<Offer> offers;
     private List<Offer> wholeOffers;
     private FishOnFridayRule rule;
@@ -38,20 +38,6 @@ public class FishOnFridayRuleTest {
         assertTrue(offers.isEmpty());
     }
 
-    @Test
-    public void testEveryFridayAnOtherFishMeal() {
-        offerDate = new DateTime().withDayOfWeek(DateTimeConstants.FRIDAY).toDate();
-        Offer offer = new Offer();
-        offer.setDish(dishes.get(0));
-        offer.setDate(offerDate);
-        offers.add(offer);
-
-        rule.execute(offers, offerDate);
-        assertThat(offers.size(), is(2));
-        assertThat(offers.get(1), not(offer));
-
-    }
-
     @Before
     public void before() {
         offers = new ArrayList<>();
@@ -66,7 +52,7 @@ public class FishOnFridayRuleTest {
 
     }
 
-    private static class OfferCreatorDao implements CreateMenuDao {
+    private class OfferCreatorDao implements CreateMenuDao {
 
         @Override
         public List<Dish> findFavorDishesForPeriode() {

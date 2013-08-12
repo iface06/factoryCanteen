@@ -5,7 +5,7 @@ import de.vawi.factoryCanteen.app.entities.PeriodeConfiguration;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class PlanungsPeriodeTest {
+public class PeriodeConfigurationTest {
 
     @Test
     public void testAnzahlBenoetigerGerichte() {
