@@ -31,37 +31,17 @@ public class NoReplicationRuleTest {
     }
 
     @Test
-    public void test() {
-        Date offerDate = new DateTime().withTime(0, 0, 0, 0).withDate(2013, 5, 3).toDate();
-        List<Offer> dailyOffers = new ArrayList<>();
-        List<Offer> alreadySelectedOffers = new ArrayList<>();
-        CreateMenuDao dao = new CreateMenuDao();
-
-        NoReplicationRule rule = new NoReplicationRule();
-        rule.setAlreadySelectedOffers(alreadySelectedOffers);
-        rule.setDao(dao);
-        rule.execute(dailyOffers, offerDate);
-    }
-
-    @Test
     public void testFirstDishSelection() {
-        Date offerDate = new DateTime().withTime(0, 0, 0, 0).withDate(2013, 5, 3).toDate();
-        List<Offer> dailyOffers = new ArrayList<>();
-        List<Offer> alreadySelectedOffers = new ArrayList<>();
-        CreateMenuDao dao = new CreateMenuDao();
-
-        NoReplicationRule rule = new NoReplicationRule();
-        rule.setAlreadySelectedOffers(alreadySelectedOffers);
-        rule.setDao(dao);
+        rule.setAlreadySelectedOffers(new ArrayList<Offer>());
         rule.execute(dailyOffers, offerDate);
+        assertEquals(1, dailyOffers.size());
     }
 
     @Test
     public void testEachDishUnique() {
+        rule.setAlreadySelectedOffers(wholeOffers);
         rule.execute(dailyOffers, offerDate);
-
-        assertFalse(dailyOffers.isEmpty());
-        assertFalse(wholeOffers.containsAll(dailyOffers));
+        assertThatAllDishesUnique();
     }
 
     public Offer createOffer(String dishName) {
@@ -101,11 +81,19 @@ public class NoReplicationRuleTest {
         dailyOffers = new ArrayList<>();
         offerDate = new DateTime().withTime(0, 0, 0, 0).withDate(2013, 5, 3).toDate();
         rule = new TestableNoReplicationRule();
-        rule.setAlreadySelectedOffers(wholeOffers);
         rule.setDao(dao);
     }
 
+    private void assertThatAllDishesUnique() {
+        assertFalse(dailyOffers.isEmpty());
+        Set<Dish> selectedDishes = new HashSet<>();
+        for (Offer offer : dailyOffers) {
+            assertTrue(selectedDishes.add(offer.getDish()));
+        }
+    }
+
     public class TestableNoReplicationRule extends NoReplicationRule {
+        private CreateMenuDao dao;
 
         @Override
         protected Dish selectDishForOffer(int dishNumber) {
@@ -114,6 +102,7 @@ public class NoReplicationRuleTest {
 
         @Override
         public void setDao(CreateMenuDao dao) {
+            this.dao = dao;
         }
     }
     
