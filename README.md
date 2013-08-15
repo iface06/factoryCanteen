@@ -22,8 +22,18 @@ Repository heruntergeladen werden kann.
 12. Schritt: File -> Projekt öffnen 
 13. Schritt: In den Ordner in dem das Projekt heruntergeladen wurde wechseln und öffnen klicken
 
-Anschließend könnt ihr in den Source-Files browsen und die Tests im Test Package starten. Die Anwendung könnt ihr über
-den grünen dreickigen Play-Button in Netbeans starten. Anschließend ist die Anwendung über folgende URL erreichbar: 
+Anschließend könnt ihr in den Source Files browsen und die Tests im Test Package starten. Die Anwendung könnt ihr über
+den grünen dreickigen Play-Button in Netbeans starten. 
+
+Falls ihr die Anwendung nicht über Netbeans starten wollt, könnt ihr über 
+            https://github.com/iface06/factoryCanteen/blob/master/factoryCanteen.zip
+eine kompilierte Version herunterladen. Nach dem Download, die zip-Datei entpacken und die Konsole starten. In den 
+Ordner wechseln, in dem ihr die Anwendung entpackt habt und mit 
+            java -jar kuechenchefApp.jar
+die Anwendung starten. 
+
+
+Anschließend ist die Anwendung über folgende URL erreichbar: 
 
   http://localhost:8182/web/index.html
 
