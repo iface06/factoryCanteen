@@ -79,6 +79,7 @@
             <zipfileset dir="dist" includes="*.TXT"/>
             <zipfileset dir="." includes="view/**"/>
             <zipfileset dir="." includes="lib/**"/>
+            <zipfileset dir="." includes="importFiles/**"/>
         </zip>
     </target>
 

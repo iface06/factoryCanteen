@@ -98,3 +98,15 @@ td {
     border-color: #333;
     background-color: #fff;
 }
+
+div#buttons {
+    margin-top:10px;
+    width:100%;
+    text-align: center;
+}
+
+div#buttons button {
+    background-color:#c1c1c1;
+    border: 1px solid #333;
+    height: 30px;
+}
