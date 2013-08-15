@@ -125,7 +125,7 @@ public class OffersDB {
             }
         }
 
-        return lastOffer != null ? lastOffer.getDate() : new DateTime().withDayOfWeek(DateTimeConstants.FRIDAY).toDate();
+        return lastOffer != null ? lastOffer.getDate() : lastWeek();
     }
 
     public List<Offer> findOffersForCalendarWeek(CalendarWeek week) {
@@ -138,6 +138,10 @@ public class OffersDB {
         }
         return offersForWeek;
 
+    }
+
+    private Date lastWeek() {
+        return new DateTime().minusWeeks(1).withDayOfWeek(DateTimeConstants.FRIDAY).withTime(0, 0, 0, 0).toDate();
     }
 
     public class SerializeOffersException extends RuntimeException {

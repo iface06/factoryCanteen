@@ -2,6 +2,7 @@ package de.vawi.factoryCanteen.app.entities;
 
 import java.util.Date;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeConstants;
 
 /**
  *
@@ -19,7 +20,7 @@ public class PeriodeConfiguration {
     private static int numberOfWeeks = 3;
     private static int numberOfDaysPerWeek = 5;
     private static int anzahlGerichteProTag = 3;
-    private static Date nextStartDate = new DateTime().withDate(2012, 12, 31).withTime(0, 0, 0, 0).toDate();
+    private static Date nextStartDate = new DateTime().withDayOfWeek(DateTimeConstants.MONDAY).withTime(0, 0, 0, 0).toDate();
     private static int numberOfDishes = 3;
 
     /**
