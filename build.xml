@@ -74,11 +74,11 @@
 
     <target depends="clean, test, jar" description="Build and test whole project." name="test and compile"/>
     <target name="zipping">
-        <zip destfile="dist/factoryCantenn.zip">
+        <zip destfile="dist/factoryCanteen.zip">
             <zipfileset dir="dist" includes="*.jar"/>
             <zipfileset dir="dist" includes="*.TXT"/>
             <zipfileset dir="." includes="view/**"/>
-            <zipfileset dir="." includes="lib/**"/>
+            <zipfileset dir="dist" includes="lib/**"/>
             <zipfileset dir="." includes="importFiles/**"/>
         </zip>
     </target>
