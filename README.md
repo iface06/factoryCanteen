@@ -42,6 +42,8 @@ Anschließend ist die Anwendung über folgende URL erreichbar:
 
 Ein Speiseplan kann durch klicken auf "Speiseplan erstellen" angelegt werden. 
 
-Bei Fragen oder Problemen könnt ihr ein Issue einstellen (https://github.com/iface06/factoryCanteen/issues)
+Bei Fragen, Anregungen oder Problemen könnt ihr mit mir über https://github.com/iface06/factoryCanteen/issues 
+oder Google+ kontakt aufnehmen. 
 
 Viel Spaß!
+Tobias Tatsch
